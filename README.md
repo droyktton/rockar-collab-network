@@ -119,6 +119,6 @@ Python · [NetworkX](https://networkx.org/) · [BeautifulSoup4](https://www.crum
 
 ## 🤝 Créditos
 
-- Idea, dirección del proyecto y ejecución: [tu nombre]
+- Idea, dirección del proyecto y ejecución: Ale Kolton
 - Diseño de scraper, código de análisis de red y documentación:
   desarrollado con [Claude](https://claude.ai) (Anthropic)
