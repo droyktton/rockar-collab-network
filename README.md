@@ -116,3 +116,9 @@ sitio fuente.
 ## 🛠️ Stack
 
 Python · [NetworkX](https://networkx.org/) · [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/) · [Matplotlib](https://matplotlib.org/) · [pyvis](https://pyvis.readthedocs.io/)
+
+## 🤝 Créditos
+
+- Idea, dirección del proyecto y ejecución: [tu nombre]
+- Diseño de scraper, código de análisis de red y documentación:
+  desarrollado con [Claude](https://claude.ai) (Anthropic)
