@@ -1,0 +1,96 @@
+slug,name,degree,degree_centrality,betweenness,eigenvector,pagerank,community
+a-rodar,A rodar,0,0.0,0,0.0,0.00227,14
+a-tirador-laser,A-Tirador Láser,5,0.05319,0,0.0,0.04293,2
+alma,A.L.M.A.,0,0.0,0,0.0,0.00227,15
+animal,A.N.I.M.A.L.,15,0.15957,0.85747,0.69943,0.10522,0
+apg-hard-rock,A.P.G. Hard Rock,0,0.0,0,0.0,0.00227,16
+aru,A.R.U.,0,0.0,0,0.0,0.00227,17
+a1,A1,2,0.02128,0,0.0,0.02208,7
+abaxial,Abaxial,1,0.01064,0,0.0,0.01513,9
+abbadon,Abbadón,0,0.0,0,0.0,0.00227,18
+abed-nego,Abed Nego,2,0.02128,0.06667,0.0526,0.0168,6
+abeja-reina,Abeja Reina,0,0.0,0,0.0,0.00227,19
+abejorros,Abejorros,3,0.03191,0,0.0,0.02903,5
+abelardos,Abelardos,0,0.0,0,0.0,0.00227,20
+abeydon,Abeydon,0,0.0,0,0.0,0.00227,21
+abisal,Abisal,0,0.0,0,0.0,0.00227,22
+abisales,Abisales,1,0.01064,0,0.0,0.01513,10
+abimsla,Abismal,0,0.0,0,0.0,0.00227,23
+aborigen,Aborigen,0,0.0,0,0.0,0.00227,24
+abrasantia,Abrasantia,0,0.0,0,0.0,0.00227,25
+abrelatas,Abrelatas,1,0.01064,0,0.0,0.01513,11
+abril-a-mil,Abril a Mil,0,0.0,0,0.0,0.00227,26
+abterno,Abterno,0,0.0,0,0.0,0.00227,27
+abuela-coca,Abuela Coca,1,0.01064,0,0.0,0.01513,12
+abylon,Abylon,0,0.0,0,0.0,0.00227,28
+aca-seca-trio,Aca Seca Trío,0,0.0,0,0.0,0.00227,29
+acalanto,Acalanto,0,0.0,0,0.0,0.00227,30
+acampantes,Acampantes,0,0.0,0,0.0,0.00227,31
+acapella,Acapella,0,0.0,0,0.0,0.00227,32
+accion-reaccion,Acción reacción,0,0.0,0,0.0,0.00227,33
+acid-caramels,Acid Caramels,0,0.0,0,0.0,0.00227,34
+acida,Acida,3,0.03191,0.42069,0.0158,0.02222,4
+acidground,Acidground,0,0.0,0,0.0,0.00227,35
+acido-canario,Acido Canario,0,0.0,0,0.0,0.00227,36
+acido-mc,Acido MC,0,0.0,0,0.0,0.00227,37
+acolitos-anonimos,Acólitos Anónimos,0,0.0,0,0.0,0.00227,38
+acorazado-potemkin,Acorazado Potemkin,6,0.06383,0,2e-05,0.04988,1
+acorralados,Acorralados,0,0.0,0,0.0,0.00227,39
+acostadetodo,Acostadetodo,0,0.0,0,0.0,0.00227,40
+actitud-maria-marta,Actitud María Marta,2,0.02128,0.45977,0.19245,0.01449,4
+actitud-sospechosa,Actitud Sospechosa,2,0.02128,0.06667,0.0526,0.0168,8
+adan-cabron,Adán Cabrón,0,0.0,0,0.0,0.00227,41
+adelas,Adelas,0,0.0,0,0.0,0.00227,42
+adella,Adella,0,0.0,0,0.0,0.00227,43
+adenoma,Adenoma,0,0.0,0,0.0,0.00227,44
+adicta,Adicta,6,0.06383,0.31034,0.00173,0.04606,3
+adiestradores-de-moscas,Adiestradores de moscas,0,0.0,0,0.0,0.00227,45
+adn,ADN,1,0.01064,0.0,0.04892,0.00903,0
+adonis-macho,Adonis Macho,0,0.0,0,0.0,0.00227,46
+adrian-abonizio,Adrián Abonizio,1,0.01064,0,0.0,0.01513,13
+aereals,Aereals,0,0.0,0,0.0,0.00227,47
+221,221,1,0.01064,0,0.0,0.00957,2
+2600,2600,1,0.01064,0,0.0,0.00957,2
+944,944,1,0.01064,0,0.0,0.00957,2
+lucas-marti,Lucas Marti,1,0.01064,0,0.0,0.00957,2
+migue-garcia,Migue Garcia,1,0.01064,0,0.0,0.00957,2
+andres-gimenez,Andres Gimenez,1,0.01064,0.0,0.17883,0.00823,0
+attaque-77,Attaque 77,1,0.01064,0.0,0.17883,0.00823,0
+botafogo,Botafogo,1,0.01064,0.0,0.17883,0.00823,0
+carajo,Carajo,1,0.01064,0.0,0.17883,0.00823,0
+d-mente,D Mente,1,0.01064,0.0,0.17883,0.00823,0
+de-la-tierra,De La Tierra,1,0.01064,0.0,0.17883,0.00823,0
+divididos,Divididos,2,0.02128,0.06667,0.19134,0.01591,0
+la-renga,La Renga,1,0.01064,0.0,0.17883,0.00823,0
+las-pelotas,Las Pelotas,1,0.01064,0.0,0.17883,0.00823,0
+leon-gieco,Leon Gieco,1,0.01064,0.0,0.17883,0.00823,0
+los-piojos,Los Piojos,2,0.02128,0.12874,0.19228,0.01537,8
+los-violadores,Los Violadores,1,0.01064,0.0,0.17883,0.00823,0
+power-of-soul,Power Of Soul,1,0.01064,0.0,0.17883,0.00823,0
+todos-tus-muertos,Todos Tus Muertos,2,0.02128,0.12874,0.19228,0.01537,6
+charly-garcia,Charly Garcia,1,0.01064,0,0.0,0.01165,7
+maria-gabriela-epumer,Maria Gabriela Epumer,1,0.01064,0,0.0,0.01165,7
+soda-stereo,Soda Stereo,1,0.01064,0,0.0,0.01513,9
+pablo-molina,Pablo Molina,1,0.01064,0.0,0.01345,0.00941,6
+duna,Duna,1,0.01064,0,0.0,0.0105,5
+nito-mestre,Nito Mestre,1,0.01064,0,0.0,0.0105,5
+sui-generis,Sui Generis,1,0.01064,0,0.0,0.0105,5
+humo-del-cairo,Humo Del Cairo,1,0.01064,0,0.0,0.01513,10
+raul-porchetto,Raul Porchetto,1,0.01064,0,0.0,0.01513,11
+ruben-rada,Ruben Rada,1,0.01064,0,0.0,0.01513,12
+alina-gandini,Alina Gandini,1,0.01064,0.0,0.00404,0.00856,4
+fito-paez,Fito Paez,2,0.02128,0.43448,0.05325,0.01472,4
+tweety-gonzalez,Tweety Gonzalez,2,0.02128,0.33103,0.00449,0.01509,4
+don-cornelio-y-la-zona,Don Cornelio Y La Zona,1,0.01064,0,1e-05,0.00934,1
+los-visitantes,Los Visitantes,1,0.01064,0,1e-05,0.00934,1
+me-daras-mil-hijos,Me Daras Mil Hijos,1,0.01064,0,1e-05,0.00934,1
+motorama,Motorama,1,0.01064,0,1e-05,0.00934,1
+pequena-orquesta-reincidentes,Pequena Orquesta Reincidentes,1,0.01064,0,1e-05,0.00934,1
+valle-de-munecas,Valle De Munecas,1,0.01064,0,1e-05,0.00934,1
+sumo,Sumo,1,0.01064,0.0,0.01345,0.00941,8
+audioperu,Audioperu,1,0.01064,0.0,0.00045,0.00879,3
+fanfarron,Fanfarron,1,0.01064,0.0,0.00045,0.00879,3
+los-brujos,Los Brujos,1,0.01064,0.0,0.00045,0.00879,3
+toto,Toto,1,0.01064,0.0,0.00045,0.00879,3
+virus,Virus,1,0.01064,0.0,0.00045,0.00879,3
+juan-carlos-baglietto,Juan Carlos Baglietto,1,0.01064,0,0.0,0.01513,13

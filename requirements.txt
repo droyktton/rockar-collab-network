@@ -1,0 +1,5 @@
+requests>=2.31
+beautifulsoup4>=4.12
+networkx>=3.2
+matplotlib>=3.8
+pyvis>=0.3.2

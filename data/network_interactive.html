@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#ffe119", "font": {"color": "white"}, "id": "a-tirador-laser", "label": "A-Tirador L\u00e1ser", "shape": "dot", "size": 18, "title": "A-Tirador L\u00e1ser \u2014 5 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "animal", "label": "A.N.I.M.A.L.", "shape": "dot", "size": 38, "title": "A.N.I.M.A.L. \u2014 15 colaboraciones"}, {"color": "#f032e6", "font": {"color": "white"}, "id": "a1", "label": "A1", "shape": "dot", "size": 12, "title": "A1 \u2014 2 colaboraciones"}, {"color": "#fabebe", "font": {"color": "white"}, "id": "abaxial", "label": "Abaxial", "shape": "dot", "size": 10, "title": "Abaxial \u2014 1 colaboraciones"}, {"color": "#46f0f0", "font": {"color": "white"}, "id": "abed-nego", "label": "Abed Nego", "shape": "dot", "size": 12, "title": "Abed Nego \u2014 2 colaboraciones"}, {"color": "#911eb4", "font": {"color": "white"}, "id": "abejorros", "label": "Abejorros", "shape": "dot", "size": 14, "title": "Abejorros \u2014 3 colaboraciones"}, {"color": "#008080", "font": {"color": "white"}, "id": "abisales", "label": "Abisales", "shape": "dot", "size": 10, "title": "Abisales \u2014 1 colaboraciones"}, {"color": "#e6beff", "font": {"color": "white"}, "id": "abrelatas", "label": "Abrelatas", "shape": "dot", "size": 10, "title": "Abrelatas \u2014 1 colaboraciones"}, {"color": "#9a6324", "font": {"color": "white"}, "id": "abuela-coca", "label": "Abuela Coca", "shape": "dot", "size": 10, "title": "Abuela Coca \u2014 1 colaboraciones"}, {"color": "#f58231", "font": {"color": "white"}, "id": "acida", "label": "Acida", "shape": "dot", "size": 14, "title": "Acida \u2014 3 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "acorazado-potemkin", "label": "Acorazado Potemkin", "shape": "dot", "size": 20, "title": "Acorazado Potemkin \u2014 6 colaboraciones"}, {"color": "#f58231", "font": {"color": "white"}, "id": "actitud-maria-marta", "label": "Actitud Mar\u00eda Marta", "shape": "dot", "size": 12, "title": "Actitud Mar\u00eda Marta \u2014 2 colaboraciones"}, {"color": "#bcf60c", "font": {"color": "white"}, "id": "actitud-sospechosa", "label": "Actitud Sospechosa", "shape": "dot", "size": 12, "title": "Actitud Sospechosa \u2014 2 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "adicta", "label": "Adicta", "shape": "dot", "size": 20, "title": "Adicta \u2014 6 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "adn", "label": "ADN", "shape": "dot", "size": 10, "title": "ADN \u2014 1 colaboraciones"}, {"color": "#800000", "font": {"color": "white"}, "id": "adrian-abonizio", "label": "Adri\u00e1n Abonizio", "shape": "dot", "size": 10, "title": "Adri\u00e1n Abonizio \u2014 1 colaboraciones"}, {"color": "#ffe119", "font": {"color": "white"}, "id": "221", "label": "221", "shape": "dot", "size": 10, "title": "221 \u2014 1 colaboraciones"}, {"color": "#ffe119", "font": {"color": "white"}, "id": "2600", "label": "2600", "shape": "dot", "size": 10, "title": "2600 \u2014 1 colaboraciones"}, {"color": "#ffe119", "font": {"color": "white"}, "id": "944", "label": "944", "shape": "dot", "size": 10, "title": "944 \u2014 1 colaboraciones"}, {"color": "#ffe119", "font": {"color": "white"}, "id": "lucas-marti", "label": "Lucas Marti", "shape": "dot", "size": 10, "title": "Lucas Marti \u2014 1 colaboraciones"}, {"color": "#ffe119", "font": {"color": "white"}, "id": "migue-garcia", "label": "Migue Garcia", "shape": "dot", "size": 10, "title": "Migue Garcia \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "andres-gimenez", "label": "Andres Gimenez", "shape": "dot", "size": 10, "title": "Andres Gimenez \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "attaque-77", "label": "Attaque 77", "shape": "dot", "size": 10, "title": "Attaque 77 \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "botafogo", "label": "Botafogo", "shape": "dot", "size": 10, "title": "Botafogo \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "carajo", "label": "Carajo", "shape": "dot", "size": 10, "title": "Carajo \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "d-mente", "label": "D Mente", "shape": "dot", "size": 10, "title": "D Mente \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "de-la-tierra", "label": "De La Tierra", "shape": "dot", "size": 10, "title": "De La Tierra \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "divididos", "label": "Divididos", "shape": "dot", "size": 12, "title": "Divididos \u2014 2 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "la-renga", "label": "La Renga", "shape": "dot", "size": 10, "title": "La Renga \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "las-pelotas", "label": "Las Pelotas", "shape": "dot", "size": 10, "title": "Las Pelotas \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "leon-gieco", "label": "Leon Gieco", "shape": "dot", "size": 10, "title": "Leon Gieco \u2014 1 colaboraciones"}, {"color": "#bcf60c", "font": {"color": "white"}, "id": "los-piojos", "label": "Los Piojos", "shape": "dot", "size": 12, "title": "Los Piojos \u2014 2 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "los-violadores", "label": "Los Violadores", "shape": "dot", "size": 10, "title": "Los Violadores \u2014 1 colaboraciones"}, {"color": "#e6194b", "font": {"color": "white"}, "id": "power-of-soul", "label": "Power Of Soul", "shape": "dot", "size": 10, "title": "Power Of Soul \u2014 1 colaboraciones"}, {"color": "#46f0f0", "font": {"color": "white"}, "id": "todos-tus-muertos", "label": "Todos Tus Muertos", "shape": "dot", "size": 12, "title": "Todos Tus Muertos \u2014 2 colaboraciones"}, {"color": "#f032e6", "font": {"color": "white"}, "id": "charly-garcia", "label": "Charly Garcia", "shape": "dot", "size": 10, "title": "Charly Garcia \u2014 1 colaboraciones"}, {"color": "#f032e6", "font": {"color": "white"}, "id": "maria-gabriela-epumer", "label": "Maria Gabriela Epumer", "shape": "dot", "size": 10, "title": "Maria Gabriela Epumer \u2014 1 colaboraciones"}, {"color": "#fabebe", "font": {"color": "white"}, "id": "soda-stereo", "label": "Soda Stereo", "shape": "dot", "size": 10, "title": "Soda Stereo \u2014 1 colaboraciones"}, {"color": "#46f0f0", "font": {"color": "white"}, "id": "pablo-molina", "label": "Pablo Molina", "shape": "dot", "size": 10, "title": "Pablo Molina \u2014 1 colaboraciones"}, {"color": "#911eb4", "font": {"color": "white"}, "id": "duna", "label": "Duna", "shape": "dot", "size": 10, "title": "Duna \u2014 1 colaboraciones"}, {"color": "#911eb4", "font": {"color": "white"}, "id": "nito-mestre", "label": "Nito Mestre", "shape": "dot", "size": 10, "title": "Nito Mestre \u2014 1 colaboraciones"}, {"color": "#911eb4", "font": {"color": "white"}, "id": "sui-generis", "label": "Sui Generis", "shape": "dot", "size": 10, "title": "Sui Generis \u2014 1 colaboraciones"}, {"color": "#008080", "font": {"color": "white"}, "id": "humo-del-cairo", "label": "Humo Del Cairo", "shape": "dot", "size": 10, "title": "Humo Del Cairo \u2014 1 colaboraciones"}, {"color": "#e6beff", "font": {"color": "white"}, "id": "raul-porchetto", "label": "Raul Porchetto", "shape": "dot", "size": 10, "title": "Raul Porchetto \u2014 1 colaboraciones"}, {"color": "#9a6324", "font": {"color": "white"}, "id": "ruben-rada", "label": "Ruben Rada", "shape": "dot", "size": 10, "title": "Ruben Rada \u2014 1 colaboraciones"}, {"color": "#f58231", "font": {"color": "white"}, "id": "alina-gandini", "label": "Alina Gandini", "shape": "dot", "size": 10, "title": "Alina Gandini \u2014 1 colaboraciones"}, {"color": "#f58231", "font": {"color": "white"}, "id": "fito-paez", "label": "Fito Paez", "shape": "dot", "size": 12, "title": "Fito Paez \u2014 2 colaboraciones"}, {"color": "#f58231", "font": {"color": "white"}, "id": "tweety-gonzalez", "label": "Tweety Gonzalez", "shape": "dot", "size": 12, "title": "Tweety Gonzalez \u2014 2 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "don-cornelio-y-la-zona", "label": "Don Cornelio Y La Zona", "shape": "dot", "size": 10, "title": "Don Cornelio Y La Zona \u2014 1 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "los-visitantes", "label": "Los Visitantes", "shape": "dot", "size": 10, "title": "Los Visitantes \u2014 1 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "me-daras-mil-hijos", "label": "Me Daras Mil Hijos", "shape": "dot", "size": 10, "title": "Me Daras Mil Hijos \u2014 1 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "motorama", "label": "Motorama", "shape": "dot", "size": 10, "title": "Motorama \u2014 1 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "pequena-orquesta-reincidentes", "label": "Pequena Orquesta Reincidentes", "shape": "dot", "size": 10, "title": "Pequena Orquesta Reincidentes \u2014 1 colaboraciones"}, {"color": "#3cb44b", "font": {"color": "white"}, "id": "valle-de-munecas", "label": "Valle De Munecas", "shape": "dot", "size": 10, "title": "Valle De Munecas \u2014 1 colaboraciones"}, {"color": "#bcf60c", "font": {"color": "white"}, "id": "sumo", "label": "Sumo", "shape": "dot", "size": 10, "title": "Sumo \u2014 1 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "audioperu", "label": "Audioperu", "shape": "dot", "size": 10, "title": "Audioperu \u2014 1 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "fanfarron", "label": "Fanfarron", "shape": "dot", "size": 10, "title": "Fanfarron \u2014 1 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "los-brujos", "label": "Los Brujos", "shape": "dot", "size": 10, "title": "Los Brujos \u2014 1 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "toto", "label": "Toto", "shape": "dot", "size": 10, "title": "Toto \u2014 1 colaboraciones"}, {"color": "#4363d8", "font": {"color": "white"}, "id": "virus", "label": "Virus", "shape": "dot", "size": 10, "title": "Virus \u2014 1 colaboraciones"}, {"color": "#800000", "font": {"color": "white"}, "id": "juan-carlos-baglietto", "label": "Juan Carlos Baglietto", "shape": "dot", "size": 10, "title": "Juan Carlos Baglietto \u2014 1 colaboraciones"}]);
+                  edges = new vis.DataSet([{"from": "a-tirador-laser", "title": "bio", "to": "221", "value": 1.0}, {"from": "a-tirador-laser", "title": "bio", "to": "2600", "value": 1.0}, {"from": "a-tirador-laser", "title": "bio", "to": "944", "value": 1.0}, {"from": "a-tirador-laser", "title": "bio", "to": "lucas-marti", "value": 1.0}, {"from": "a-tirador-laser", "title": "bio", "to": "migue-garcia", "value": 1.0}, {"from": "animal", "title": "bio", "to": "actitud-maria-marta", "value": 1.0}, {"from": "animal", "title": "bio", "to": "andres-gimenez", "value": 1.0}, {"from": "animal", "title": "bio", "to": "attaque-77", "value": 1.0}, {"from": "animal", "title": "bio", "to": "botafogo", "value": 1.0}, {"from": "animal", "title": "bio", "to": "carajo", "value": 1.0}, {"from": "animal", "title": "bio", "to": "d-mente", "value": 1.0}, {"from": "animal", "title": "bio", "to": "de-la-tierra", "value": 1.0}, {"from": "animal", "title": "bio", "to": "divididos", "value": 1.0}, {"from": "animal", "title": "bio", "to": "la-renga", "value": 1.0}, {"from": "animal", "title": "bio", "to": "las-pelotas", "value": 1.0}, {"from": "animal", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"from": "animal", "title": "bio", "to": "los-piojos", "value": 1.0}, {"from": "animal", "title": "bio", "to": "los-violadores", "value": 1.0}, {"from": "animal", "title": "bio", "to": "power-of-soul", "value": 1.0}, {"from": "animal", "title": "bio", "to": "todos-tus-muertos", "value": 1.0}, {"from": "a1", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"from": "a1", "title": "bio", "to": "maria-gabriela-epumer", "value": 1.0}, {"from": "abaxial", "title": "bio", "to": "soda-stereo", "value": 1.0}, {"from": "abed-nego", "title": "bio", "to": "pablo-molina", "value": 1.0}, {"from": "abed-nego", "title": "bio", "to": "todos-tus-muertos", "value": 1.0}, {"from": "abejorros", "title": "bio", "to": "duna", "value": 1.0}, {"from": "abejorros", "title": "bio", "to": "nito-mestre", "value": 1.0}, {"from": "abejorros", "title": "bio", "to": "sui-generis", "value": 1.0}, {"from": "abisales", "title": "bio", "to": "humo-del-cairo", "value": 1.0}, {"from": "abrelatas", "title": "bio", "to": "raul-porchetto", "value": 1.0}, {"from": "abuela-coca", "title": "bio", "to": "ruben-rada", "value": 1.0}, {"from": "acida", "title": "bio", "to": "alina-gandini", "value": 1.0}, {"from": "acida", "title": "bio", "to": "fito-paez", "value": 1.0}, {"from": "acida", "title": "bio", "to": "tweety-gonzalez", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "don-cornelio-y-la-zona", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "los-visitantes", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "me-daras-mil-hijos", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "motorama", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "pequena-orquesta-reincidentes", "value": 1.0}, {"from": "acorazado-potemkin", "title": "bio", "to": "valle-de-munecas", "value": 1.0}, {"from": "actitud-maria-marta", "title": "bio", "to": "fito-paez", "value": 1.0}, {"from": "actitud-sospechosa", "title": "bio", "to": "los-piojos", "value": 1.0}, {"from": "actitud-sospechosa", "title": "bio", "to": "sumo", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "audioperu", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "fanfarron", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "los-brujos", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "toto", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "tweety-gonzalez", "value": 1.0}, {"from": "adicta", "title": "bio", "to": "virus", "value": 1.0}, {"from": "adn", "title": "bio", "to": "divididos", "value": 1.0}, {"from": "adrian-abonizio", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
