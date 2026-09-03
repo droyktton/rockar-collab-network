@@ -27,9 +27,9 @@ explorarla.
 4. **Visualización**: una imagen estática coloreada por comunidad y una red
    interactiva navegable en el browser (zoom, arrastre, tooltips).
 
-## 📊 Ejemplo de salida
+## 🎸 Explorá la red
 
-*(reemplazar con un screenshot de `network_static.png` o un GIF del HTML interactivo)*
+**[👉 Abrir la red interactiva](https://droyktton.github.io/rockar-collab-network/)**
 
 ## 🚀 Instalación
 
