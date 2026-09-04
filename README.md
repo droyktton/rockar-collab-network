@@ -103,7 +103,7 @@ Si este proyecto te resultó interesante, la mejor forma de agradecer es
 visitar [rock.com.ar](https://rock.com.ar) y explorar las fichas originales
 de los artistas que aparecen en la red.
 
-*Datos descargados en [fecha]. La enciclopedia sigue actualizándose, así que
+*Datos descargados en 3/9/2026. La enciclopedia sigue actualizándose, así que
 una corrida posterior puede dar resultados distintos.*
 
 ## 📄 Licencia
