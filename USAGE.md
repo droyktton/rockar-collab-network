@@ -38,30 +38,78 @@ python3 scraper.py all
 Recomendado: probar primero con una muestra chica antes de la corrida completa.
 
 ```bash
-python3 scraper.py artists --limit 50
-python3 scraper.py discs --limit 100
+python3 scraper.py artists --limit 5
+python3 scraper.py discs --limit 5
 ```
 
-### Tiempos esperados (corrida completa, ~5.778 artistas)
+### ⚠️ Sobre el rate limiting: por qué esto es (intencionalmente) lento
 
-- `artists`: con el delay por defecto (0.8s), del orden de **1h15min** de
-  puro delay, más el tiempo real de descarga.
-- `discs`: depende de cuántos discos únicos aparezcan (varios miles). Puede
-  tardar **3-5 horas**.
+El [robots.txt de rock.com.ar](https://rock.com.ar/robots.txt) declara
+explícitamente:
 
-Para dejarlo corriendo de fondo:
+```
+Crawl-delay: 60
+Request-rate: 6/60m    (00:00–09:00 America/Argentina/Buenos_Aires)
+Request-rate: 3/60m    (resto del día)
+```
+
+Es decir: **1 request cada 10 minutos** en el horario nocturno ART, y
+**1 cada 20 minutos** el resto del día. El scraper respeta esto
+automáticamente — `common.fetch()` calcula el intervalo correcto según la
+hora actual en Argentina y espera lo que haga falta antes de cada request
+real (las páginas ya cacheadas no generan ningún request ni espera).
+
+**Esto tiene una consecuencia importante**: con ~5.778 artistas y varios
+miles de discos (del orden de 10.000+ requests en total), una corrida
+completa *desde cero* que respete esta política puede tardar
+**semanas o meses** de reloj, no horas. No es un bug ni una exageración del
+script — es lo que el propio sitio pide.
+
+Si necesitás un dataset completo en un tiempo razonable, las opciones
+razonables son:
+
+1. **Escribirle a rock.com.ar** contándoles el proyecto y pidiendo
+   autorización para un crawl puntual más rápido (mandale tráfico y
+   atribución es un buen argumento a favor). Si te la dan, usá:
+   ```bash
+   python3 scraper.py all --override-robots-delay 1.0 --i-have-permission
+   ```
+   (ajustá el valor al que te hayan autorizado)
+2. **Dejarlo correr de fondo, respetando el ritmo real**, durante el tiempo
+   que haga falta (ver más abajo).
+3. Si sólo te interesa una muestra representativa para explorar el
+   análisis, usar `--limit` con un número chico y aceptar que no vas a
+   tener el dataset completo.
+
+### Tiempos esperados (corrida completa, ~5.778 artistas, sin autorización especial)
+
+Con el rate limit real del sitio, y asumiendo que el proceso corre las
+24 horas (incluyendo el horario nocturno más permisivo):
+- Mejor caso (todo en horario 00:00-09:00 ART): ~54 requests/día → del
+  orden de **6-7 meses** para completar `artists` + `discs`.
+- Caso típico (mezcla de horarios): más cerca de **8-10 meses**.
+
+Sí, es mucho. Es la realidad de respetar la política real del sitio para
+un dataset de este tamaño — considerá seriamente la opción 1 de arriba.
+
+Para dejarlo corriendo de fondo por un tiempo largo:
 
 ```bash
 nohup python3 scraper.py all > scraper.log 2>&1 &
-tail -f scraper.log        # ver progreso en vivo (Ctrl+C solo corta el tail)
+tail -f scraper.log        # ver progreso en vivo (Ctrl+C sólo corta el tail)
 ps aux | grep scraper.py   # confirmar que sigue vivo
 ```
+
+El log va a mostrar mensajes tipo `(respetando robots.txt de rock.com.ar:
+esperando 587s / ~9.8 min antes del próximo request)` — es esperable, no
+es que el script esté colgado.
 
 ### Si se corta a mitad de camino
 
 No pasa nada — tanto `cache/` (HTML crudo) como `data/artists.json` /
 `data/disc_credits.json` guardan progreso incremental. Volvé a correr el
-mismo comando y retoma donde quedó, sin volver a bajar lo ya cacheado.
+mismo comando y retoma donde quedó, sin volver a bajar lo ya cacheado ni
+perder el ritmo acumulado.
 
 ## 3. Analizar el grafo
 
@@ -107,12 +155,15 @@ coincidencias para que seas más específico.
 
 ## Sobre el scraping responsable
 
-- Revisá `https://rock.com.ar/robots.txt` y sus términos legales antes de
-  lanzar una corrida completa.
-- El `delay` por defecto (0.8s) y la caché en disco están puestos a
-  propósito para minimizar la carga sobre el sitio. Si vas a compartir
-  públicamente el dataset o el análisis, es buena práctica citar a
-  rock.com.ar como fuente (ver el README).
+- El scraper respeta automáticamente el `Request-rate` real declarado en
+  `https://rock.com.ar/robots.txt` (ver la sección de arriba) — no hay
+  ningún delay fijo que ajustar manualmente, y no deberías intentar
+  acelerarlo sin autorización explícita del sitio.
+- La caché en disco (`cache/`) evita volver a pedir una página ya
+  descargada, incluso entre corridas distintas — importante dado lo lento
+  que es respetar el rate limit real.
+- Si vas a compartir públicamente el dataset o el análisis, es buena
+  práctica citar a rock.com.ar como fuente (ver el README).
 - Si el sitio cambia de estructura en el futuro, lo primero que vas a notar
   es que `artist_index.json` queda vacío o muy chico — revisá los
   selectores en `scraper.py` (`ARTIST_URL_RE`, `DISC_URL_RE`, `YEAR_LABELS`)
