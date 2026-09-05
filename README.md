@@ -31,6 +31,10 @@ explorarla.
 
 *(reemplazar con un screenshot de `network_static.png` o un GIF del HTML interactivo)*
 
+![Charly García network](assets/ego-charly-garcia.png)
+
+![Luis Alberto Spinetta network](assets/ego-spinetta.png)
+
 ## 🚀 Instalación
 
 ```bash
