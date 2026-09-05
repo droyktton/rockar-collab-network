@@ -48,7 +48,7 @@ def _abs_url(href: str) -> str:
 # 1. Índice de artistas: /enciclopedia/ -> /abc/{letra}/ (con paginación)
 # ---------------------------------------------------------------------------
 
-def build_artist_index(delay=0.8, max_pages_per_letter=200):
+def build_artist_index(max_pages_per_letter=200, override_robots_delay=None):
     index_path = DATA_DIR / "artist_index.json"
     index = load_json(index_path, {})
 
@@ -57,7 +57,7 @@ def build_artist_index(delay=0.8, max_pages_per_letter=200):
         seen_this_letter = set()
         while page <= max_pages_per_letter:
             url = f"{BASE}/abc/{letter}/" if page == 1 else f"{BASE}/abc/{letter}/page/{page}/"
-            html = fetch(url, delay=delay)
+            html = fetch(url, override_robots_delay=override_robots_delay)
             if not html:
                 break
             soup = BeautifulSoup(html, "html.parser")
@@ -93,8 +93,8 @@ def build_artist_index(delay=0.8, max_pages_per_letter=200):
 # 2. Fichas de artista: biografía (links a otros artistas) + discografía
 # ---------------------------------------------------------------------------
 
-def scrape_artist_page(slug: str, url: str, delay=0.8):
-    html = fetch(url, delay=delay)
+def scrape_artist_page(slug: str, url: str, override_robots_delay=None):
+    html = fetch(url, override_robots_delay=override_robots_delay)
     if not html:
         return None
     soup = BeautifulSoup(html, "html.parser")
@@ -129,7 +129,7 @@ def scrape_artist_page(slug: str, url: str, delay=0.8):
     }
 
 
-def scrape_all_artists(delay=0.8, limit=None):
+def scrape_all_artists(limit=None, override_robots_delay=None):
     index = load_json(DATA_DIR / "artist_index.json")
     if not index:
         print("No hay índice de artistas. Corré primero: python scraper.py index")
@@ -140,12 +140,16 @@ def scrape_all_artists(delay=0.8, limit=None):
     if limit:
         slugs = slugs[:limit]
 
+    pending = [s for s in slugs if s not in artists]
+    if pending:
+        print(f"  {len(pending)} fichas de artista por descargar (el resto ya está en caché)")
+
     for i, slug in enumerate(slugs, 1):
         if slug in artists:
             continue
         info = index[slug]
         try:
-            data = scrape_artist_page(slug, info["url"], delay=delay)
+            data = scrape_artist_page(slug, info["url"], override_robots_delay=override_robots_delay)
         except Exception as e:
             print(f"  ! error en {slug}: {e}")
             continue
@@ -184,7 +188,35 @@ def resolve_credit_names(raw_credit: str, lookup: dict):
     return resolved
 
 
-def scrape_all_discs(delay=0.8, limit=None):
+# Etiquetas comunes en fichas de disco de este tipo de enciclopedia. Si el
+# sitio usa otra palabra, agregala a esta lista.
+YEAR_LABELS = [
+    r"fecha de edici[oó]n", r"a[nñ]o de edici[oó]n", r"edici[oó]n",
+    r"a[nñ]o", r"lanzamiento", r"publicado",
+]
+
+
+def extract_year(soup):
+    """Busca el año de edición del disco. Primero intenta cerca de una
+    etiqueta conocida (ej. 'Fecha de edición: 1986'); si no la encuentra,
+    busca el primer año de 4 dígitos razonable (1950-2029) en el texto
+    de la página. Devuelve None si no encuentra nada confiable."""
+    text = soup.get_text(" ", strip=True)
+
+    for label in YEAR_LABELS:
+        m = re.search(label + r"[^\d]{0,15}(19[5-9]\d|20[0-2]\d)", text, re.IGNORECASE)
+        if m:
+            return int(m.group(1))
+
+    # respaldo: primer año de 4 dígitos que aparezca en los primeros 1000
+    # caracteres de la página (donde suele estar la ficha técnica)
+    m = re.search(r"\b(19[5-9]\d|20[0-2]\d)\b", text[:1000])
+    if m:
+        return int(m.group(1))
+    return None
+
+
+def scrape_all_discs(limit=None, override_robots_delay=None):
     index = load_json(DATA_DIR / "artist_index.json")
     artists = load_json(DATA_DIR / "artists.json", {})
     if not artists:
@@ -204,11 +236,15 @@ def scrape_all_discs(delay=0.8, limit=None):
 
     disc_credits = load_json(DATA_DIR / "disc_credits.json", {})
 
+    pending = [u for u in disc_urls if u not in disc_credits]
+    if pending:
+        print(f"  {len(pending)} fichas de disco por descargar (el resto ya está en caché)")
+
     for i, url in enumerate(sorted(disc_urls), 1):
         if url in disc_credits:
             continue
         try:
-            html = fetch(url, delay=delay)
+            html = fetch(url, override_robots_delay=override_robots_delay)
         except Exception as e:
             print(f"  ! error en {url}: {e}")
             continue
@@ -226,10 +262,12 @@ def scrape_all_discs(delay=0.8, limit=None):
                 break
         raw_credit = credit_tag.get_text(strip=True) if credit_tag else ""
         resolved = resolve_credit_names(raw_credit, lookup)
+        year = extract_year(soup)
         disc_credits[url] = {
             "title": title,
             "raw_credit": raw_credit,
             "resolved_slugs": resolved,
+            "year": year,
         }
         if i % 50 == 0 or i == len(disc_urls):
             save_json(disc_credits, DATA_DIR / "disc_credits.json")
@@ -243,24 +281,53 @@ def scrape_all_discs(delay=0.8, limit=None):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Scraper de rock.com.ar")
+    parser = argparse.ArgumentParser(
+        description="Scraper de rock.com.ar",
+        epilog="Por default, respeta el Request-rate real del robots.txt del "
+               "sitio (1 request cada 10-20 min según la hora en Argentina). "
+               "Esto es intencional y hace que una corrida completa tome "
+               "semanas o meses — ver USAGE.md. Si conseguiste permiso "
+               "explícito del sitio para ir más rápido, usá "
+               "--override-robots-delay junto con --i-have-permission.",
+    )
     parser.add_argument("cmd", choices=["index", "artists", "discs", "all"])
-    parser.add_argument("--delay", type=float, default=0.8,
-                         help="segundos entre requests (default 0.8, sé respetuoso)")
     parser.add_argument("--limit", type=int, default=None,
-                         help="límite de artistas/discos a procesar (para pruebas)")
+                         help="límite de artistas/discos a procesar (para pruebas; "
+                              "no evita el rate limiting, solo acorta la lista)")
+    parser.add_argument("--override-robots-delay", type=float, default=None,
+                         help="ADVERTENCIA: ignora el Request-rate del robots.txt y usa "
+                              "este delay fijo en segundos en su lugar. Requiere también "
+                              "--i-have-permission. Sólo usar si conseguiste autorización "
+                              "explícita de rock.com.ar para un crawl más rápido.")
+    parser.add_argument("--i-have-permission", action="store_true",
+                         help="confirma que --override-robots-delay se usa con permiso "
+                              "explícito del sitio, no por impaciencia")
     args = parser.parse_args()
+
+    if args.override_robots_delay is not None and not args.i_have_permission:
+        parser.error(
+            "--override-robots-delay requiere también --i-have-permission. "
+            "El robots.txt de rock.com.ar pide explícitamente 1 request cada "
+            "10-20 minutos (ver USAGE.md) — no lo aceleres sin autorización "
+            "real del sitio."
+        )
+    override_delay = args.override_robots_delay if args.i_have_permission else None
+
+    if override_delay is None:
+        print("Rate limiting: respetando el robots.txt real de rock.com.ar "
+              "(1 request cada 10-20 min según la hora). Esto puede tardar "
+              "mucho — ver USAGE.md para tiempos estimados y alternativas.\n")
 
     t0 = time.time()
     if args.cmd in ("index", "all"):
         print("== Construyendo índice de artistas ==")
-        build_artist_index(delay=args.delay)
+        build_artist_index(override_robots_delay=override_delay)
     if args.cmd in ("artists", "all"):
         print("\n== Descargando fichas de artista ==")
-        scrape_all_artists(delay=args.delay, limit=args.limit)
+        scrape_all_artists(limit=args.limit, override_robots_delay=override_delay)
     if args.cmd in ("discs", "all"):
         print("\n== Descargando créditos de discos ==")
-        scrape_all_discs(delay=args.delay, limit=args.limit)
+        scrape_all_discs(limit=args.limit, override_robots_delay=override_delay)
     print(f"\nListo en {time.time()-t0:.1f}s")
 
 

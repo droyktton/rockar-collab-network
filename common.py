@@ -6,6 +6,7 @@ import json
 import re
 import time
 import unicodedata
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -23,6 +24,63 @@ HEADERS = {
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
+
+# ---------------------------------------------------------------------------
+# Rate limiting según robots.txt de rock.com.ar (revisado el 2026-09-05):
+#
+#   Crawl-delay: 60
+#   Request-rate: 6/60m          (00:00–09:00 America/Argentina/Buenos_Aires)
+#   Request-rate: 3/60m          (resto del día)
+#
+# Es decir: como mucho 1 request cada 10 minutos en el horario nocturno, y
+# 1 cada 20 minutos el resto del día. Estos números son ÓRDENES DE MAGNITUD
+# más lentos que un delay fijo de menos de un segundo — por eso el rate
+# limiting se calcula automáticamente acá, en vez de dejarlo como un
+# parámetro que alguien pueda bajar sin darse cuenta de la política real
+# del sitio. Ver USAGE.md para el detalle y las implicancias de tiempo.
+# ---------------------------------------------------------------------------
+ROBOTS_TZ = "America/Argentina/Buenos_Aires"
+ROBOTS_NIGHT_START_HOUR = 0   # 00:00 ART
+ROBOTS_NIGHT_END_HOUR = 9     # 09:00 ART
+ROBOTS_NIGHT_INTERVAL_SECONDS = 600     # 6 req / 60 min
+ROBOTS_DAY_INTERVAL_SECONDS = 1200      # 3 req / 60 min
+
+_last_request_monotonic = [None]  # estado del proceso, en una lista mutable
+
+
+def _art_now():
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo(ROBOTS_TZ))
+    except Exception:
+        # Fallback si el sistema no tiene la base de datos de zonas horarias
+        # instalada (poco común, pero posible). ART no tiene horario de
+        # verano actualmente, así que un offset fijo de -3 es seguro.
+        return datetime.now(timezone(timedelta(hours=-3)))
+
+
+def _required_interval_seconds() -> int:
+    hour = _art_now().hour
+    if ROBOTS_NIGHT_START_HOUR <= hour < ROBOTS_NIGHT_END_HOUR:
+        return ROBOTS_NIGHT_INTERVAL_SECONDS
+    return ROBOTS_DAY_INTERVAL_SECONDS
+
+
+def _throttle_for_robots(quiet: bool = False):
+    """Bloquea lo necesario para respetar el Request-rate del robots.txt
+    real del sitio, según la hora actual en Argentina."""
+    required = _required_interval_seconds()
+    now = time.monotonic()
+    if _last_request_monotonic[0] is not None:
+        elapsed = now - _last_request_monotonic[0]
+        wait = required - elapsed
+        if wait > 0:
+            if not quiet:
+                mins = wait / 60
+                print(f"  (respetando robots.txt de rock.com.ar: esperando "
+                      f"{wait:.0f}s / ~{mins:.1f} min antes del próximo request)")
+            time.sleep(wait)
+    _last_request_monotonic[0] = time.monotonic()
 
 
 def slugify(name: str) -> str:
@@ -62,10 +120,17 @@ def _cache_path(url: str) -> Path:
     return CACHE_DIR / f"{h}.html"
 
 
-def fetch(url: str, delay: float = 0.8, retries: int = 3, force: bool = False) -> str:
-    """Descarga una URL con caché en disco y rate limiting básico.
-    Guarda el HTML crudo en cache/ para poder re-correr el análisis
-    sin volver a pegarle al sitio."""
+def fetch(url: str, retries: int = 3, force: bool = False,
+          override_robots_delay: float = None) -> str:
+    """Descarga una URL con caché en disco. Si la página ya está cacheada,
+    la devuelve directo sin generar ningún request nuevo (ni esperar nada).
+
+    Si hace falta un request real, respeta por default el Request-rate real
+    del robots.txt de rock.com.ar (ver constantes arriba) — esto puede
+    implicar esperas de 10-20 minutos entre páginas. Es intencional: no lo
+    aceleres salvo que hayas conseguido permiso explícito del sitio (en cuyo
+    caso podés pasar `override_robots_delay` con el valor acordado).
+    """
     cpath = _cache_path(url)
     if cpath.exists() and not force:
         return cpath.read_text(encoding="utf-8", errors="ignore")
@@ -73,6 +138,10 @@ def fetch(url: str, delay: float = 0.8, retries: int = 3, force: bool = False) -
     last_err = None
     for attempt in range(retries):
         try:
+            if override_robots_delay is not None:
+                time.sleep(override_robots_delay)
+            else:
+                _throttle_for_robots()
             resp = SESSION.get(url, timeout=20)
             if resp.status_code == 404:
                 cpath.write_text("", encoding="utf-8")
@@ -80,11 +149,10 @@ def fetch(url: str, delay: float = 0.8, retries: int = 3, force: bool = False) -
             resp.raise_for_status()
             html = resp.text
             cpath.write_text(html, encoding="utf-8")
-            time.sleep(delay)
             return html
         except requests.RequestException as e:
             last_err = e
-            time.sleep(delay * (attempt + 1) * 2)
+            time.sleep(5 * (attempt + 1))
     raise RuntimeError(f"No se pudo descargar {url}: {last_err}")
 
 
