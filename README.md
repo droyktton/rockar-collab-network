@@ -135,9 +135,10 @@ actualizándose, así que una corrida posterior puede dar resultados distintos.*
 
 ## 🤝 Créditos
 
-Scraper, análisis de red, visualizaciones y esta página fueron desarrollados
-con [Claude](https://claude.ai) (Anthropic).
-
+- Idea, dirección del proyecto y ejecución: Ale Kolton
+- Scraper, análisis de red, visualizaciones y esta página: desarrollados
+  con [Claude](https://claude.ai) (Anthropic)
+  
 ## 📄 Licencia
 
 El código de este repositorio se distribuye bajo licencia [MIT](LICENSE).
