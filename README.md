@@ -4,6 +4,10 @@
 
 **[👉 Explorá la red interactiva](https://droyktton.github.io/rockar-collab-network/)**
 
+*(la red completa tiene 5.778 nodos — en celular puede tardar unos segundos
+en acomodarse o sentirse menos fluida; el timeline, el heatmap y los
+ego-networks son más livianos y andan bien en cualquier dispositivo)*
+
 Este proyecto descarga datos de [rock.com.ar](https://rock.com.ar) —la enciclopedia
 del rock argentino online desde 1996— y construye la **red de colaboración**
 entre artistas: quién grabó con quién, quién integró qué banda, quién aparece
@@ -78,7 +82,7 @@ Versiones interactivas (navegables, con hover): [Charly García](https://droyktt
 | `data/nodes.csv` / `edges.csv` | Tablas planas con centralidades y pesos |
 | `data/graph.gexf` / `.graphml` | El grafo, para abrir en [Gephi](https://gephi.org/) |
 | `data/network_static.png` | Imagen coloreada por comunidad |
-| `data/network_interactive.html` | Red completa navegable en el browser |
+| `data/network_interactive.html` | Red completa navegable en el browser (5.778 nodos — más liviana en desktop que en celular) |
 | `data/timeline_interactive.html` | Año de debut vs. grado, por comunidad |
 | `data/heatmap_comunidad_decada.png` | Actividad discográfica por comunidad/década |
 | `data/ego_<artista>.png` / `.html` | Red de colaboración de un artista puntual |
