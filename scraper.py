@@ -216,6 +216,162 @@ def extract_year(soup):
     return None
 
 
+# Selectores típicos de WordPress para el cuerpo del artículo. Se prueban en
+# orden; el primero que devuelva contenido gana. Esto es importante para no
+# buscar menciones en el sidebar ("Notas relacionadas", menús, etc.), que
+# también contienen texto libre y podrían generar falsos positivos.
+CONTENT_SELECTORS = [
+    "article", ".entry-content", ".post-content", ".single-content", "main",
+]
+
+
+def _extract_bio_text(soup) -> str:
+    for sel in CONTENT_SELECTORS:
+        node = soup.select_one(sel)
+        if node and len(node.get_text(strip=True)) > 200:
+            return node.get_text(" ", strip=True)
+    # respaldo: toda la página. Menos preciso (puede incluir sidebar/menú),
+    # pero mejor que no detectar nada si el sitio no usa ninguno de los
+    # selectores de arriba.
+    return soup.get_text(" ", strip=True)
+
+
+# Algunos artistas de la enciclopedia tienen nombres que también son frases
+# genéricas muy comunes en español ("la banda", "buenos aires"), que
+# aparecen todo el tiempo en cualquier biografía SIN referirse a ese artista
+# en particular. Esto infla artificialmente sus menciones muy por encima de
+# cualquier hub real (se detectó porque aparecían con 10x+ el conteo del
+# siguiente hub genuino). Los excluimos de la detección de menciones en
+# texto plano; igual pueden aparecer en el grafo vía bio_links reales o
+# créditos de disco, sin problema.
+#
+# Se excluye por NOMBRE normalizado (no por slug): la enciclopedia tiene
+# varias entradas distintas con el mismo nombre exacto quando hay bandas
+# homónimas (ej. "El Resto", "El Resto (2)", etc. -> slugs el-resto,
+# el-resto-2, el-resto-3...). Si excluyéramos sólo un slug puntual, la
+# colisión simplemente reaparece en el próximo duplicado con el mismo
+# nombre. Excluir por nombre cubre todos los duplicados de una sola vez.
+STOPLIST_NAMES_RAW = [
+    "la banda",       # frase genérica "la banda de X", no un artista específico
+    "buenos aires",   # nombre de la ciudad, mencionado en casi toda bio
+    "la costa",       # frase genérica geográfica ("gira por la costa")
+    "la mezcla",      # término técnico de grabación ("la mezcla del disco")
+    "la data",        # jerga genérica ("no tengo la data exacta")
+    "de juan",        # colisiona con "de Juan [Carlos Baglietto, etc]" — la
+                       # preposición "de" + cualquier "Juan ___", no un artista
+    "el resto",       # colisiona con la frase genérica "el resto de los
+                       # integrantes/músicos", no el/los artista(s) reales
+                       # con ese nombre (hay varios duplicados: el-resto,
+                       # el-resto-2, el-resto-3...)
+]
+
+
+def _build_full_name_lookup(index: dict, min_name_length: int = 6, stoplist_names=None):
+    """Mapa nombre_completo_normalizado -> slug, para detectar menciones en
+    texto libre. A diferencia de _build_name_lookup (que también acepta
+    nombres cortos, pensado para resolver créditos de disco ya acotados),
+    acá exigimos:
+      - al menos dos palabras (evita falsos positivos de artistas con
+        nombre artístico de una sola palabra común, ej. si alguien se hace
+        llamar "Sol" o "Rey")
+      - largo mínimo razonable
+      - que el nombre normalizado no esté en la lista de exclusión
+        (STOPLIST_NAMES_RAW) — cubre automáticamente todos los artistas
+        homónimos con ese nombre, no sólo un slug puntual
+    para minimizar falsos positivos al buscar en biografías completas."""
+    stoplist_norm = {normalize_name(n) for n in
+                      (stoplist_names if stoplist_names is not None else STOPLIST_NAMES_RAW)}
+    lookup = {}
+    for slug, info in index.items():
+        norm = normalize_name(info["name"])
+        if norm in stoplist_norm:
+            continue
+        if len(norm) >= min_name_length and " " in norm:
+            lookup[norm] = slug
+    return lookup
+
+
+# Palabras/raíces que indican colaboración real (no mera influencia o
+# admiración) cerca de un nombre mencionado. Se buscan como substring ya
+# normalizado (sin acentos, minúsculas) dentro de una ventana de texto
+# alrededor de cada mención. Esto separa "grabó junto a X" (colaboración)
+# de "tuvo como influencia a X" (inspiración, no colaboración real).
+COLLAB_CONTEXT_KEYWORDS_RAW = [
+    "grabo", "grabaron", "grabando",
+    "toco", "tocaron", "tocando",
+    "particip", "integrante", "invitad", "convocad", "acompano", "colabor",
+    "banda de", "productor", "produjo", "produccion",
+    "arregl", "junto a", "junto con",
+    "musico de", "bajista de", "guitarrista de", "baterista de",
+    "tecladista de", "violinista de", "vientos de", "coros de", "coro de",
+    "featuring", "dueto con", "duo con",
+    "telonero de", "telonera de", "gira de", "gira con",
+    "fundadora", "fundador", "fundaron", "reemplazo",
+]
+# Palabras ambiguas: sólo cuentan como contexto de colaboración si ADEMÁS
+# aparece un sustantivo de agrupación musical cerca (ver MUSICAL_GROUP_NOUNS).
+# "integrado"/"integrada" es el caso típico: "trío integrado por X" es
+# colaboración real, pero "jurado integrado por X" no tiene nada que ver
+# con música — la palabra sola no alcanza para distinguirlos.
+AMBIGUOUS_CONTEXT_KEYWORDS_RAW = ["integrado", "integrada", "integrando", "integraron"]
+MUSICAL_GROUP_NOUNS_RAW = [
+    "banda", "trio", "grupo", "dueto", "duo", "cuarteto", "conjunto",
+    "orquesta", "ensamble", "quinteto", "sexteto", "combo",
+]
+CONTEXT_WINDOW_CHARS = 80
+
+
+def find_mentioned_artists(bio_text: str, full_name_lookup: dict, self_slug: str):
+    """Busca nombres completos de otros artistas mencionados como texto
+    plano (sin link) dentro de una biografía, exigiendo que haya una palabra
+    de colaboración cerca del nombre (ver COLLAB_CONTEXT_KEYWORDS_RAW) para
+    distinguir colaboración real de una simple mención de influencia
+    ("tuvo como influencia a X" no cuenta; "grabó junto a X" sí).
+
+    Palabras ambiguas como "integrado" sólo cuentan si además hay un
+    sustantivo de agrupación musical cerca (ver AMBIGUOUS_CONTEXT_KEYWORDS_RAW
+    y MUSICAL_GROUP_NOUNS_RAW) — así "trío integrado por X" cuenta pero
+    "jurado integrado por X" no.
+
+    Devuelve (con_contexto, sin_contexto): la primera lista es la que se usa
+    para el grafo; la segunda se guarda aparte sólo para inspección/debug.
+    """
+    keywords_norm = [normalize_name(k) for k in COLLAB_CONTEXT_KEYWORDS_RAW]
+    ambiguous_norm = [normalize_name(k) for k in AMBIGUOUS_CONTEXT_KEYWORDS_RAW]
+    group_nouns_norm = [normalize_name(k) for k in MUSICAL_GROUP_NOUNS_RAW]
+    norm_text = f" {normalize_name(bio_text)} "
+
+    con_contexto, sin_contexto = [], []
+    for name_norm, slug in full_name_lookup.items():
+        if slug == self_slug:
+            continue
+        needle = f" {name_norm} "
+        start = 0
+        found_any = False
+        found_context = False
+        while True:
+            idx = norm_text.find(needle, start)
+            if idx == -1:
+                break
+            found_any = True
+            window = norm_text[max(0, idx - CONTEXT_WINDOW_CHARS):
+                                idx + len(needle) + CONTEXT_WINDOW_CHARS]
+            if any(kw in window for kw in keywords_norm):
+                found_context = True
+                break
+            if (any(kw in window for kw in ambiguous_norm)
+                    and any(g in window for g in group_nouns_norm)):
+                found_context = True
+                break
+            start = idx + 1
+        if found_context:
+            con_contexto.append(slug)
+        elif found_any:
+            sin_contexto.append(slug)
+
+    return sorted(set(con_contexto)), sorted(set(sin_contexto))
+
+
 def scrape_all_discs(limit=None, override_robots_delay=None):
     index = load_json(DATA_DIR / "artist_index.json")
     artists = load_json(DATA_DIR / "artists.json", {})
@@ -278,6 +434,94 @@ def scrape_all_discs(limit=None, override_robots_delay=None):
     return disc_credits
 
 
+def rescan_bio_mentions(min_name_length=6, limit=None):
+    """Reprocesa las páginas de artista YA CACHEADAS (no genera ningún
+    request nuevo) para detectar menciones en texto plano a otros artistas
+    que no estaban linkeadas — por ejemplo, músicos de sesión mencionados
+    por nombre pero sin hipervínculo en la biografía de la estrella.
+
+    Agrega el campo 'mentioned_slugs' a cada entrada de artists.json,
+    separado de 'bio_links' (que sigue siendo sólo links reales) para que
+    la procedencia de cada conexión quede trazable en edges.csv."""
+    index = load_json(DATA_DIR / "artist_index.json")
+    artists = load_json(DATA_DIR / "artists.json", {})
+    if not index or not artists:
+        print("Faltan artist_index.json / artists.json. Corré primero "
+              "'index' y 'artists'.")
+        sys.exit(1)
+
+    full_lookup = _build_full_name_lookup(index, min_name_length=min_name_length)
+    print(f"Nombres completos aptos para detección de menciones: {len(full_lookup)} "
+          f"de {len(index)} (se excluyen nombres de una sola palabra o muy cortos)")
+
+    slugs = list(artists.keys())
+    if limit:
+        slugs = slugs[:limit]
+
+    updated = 0
+    total_mentions_found = 0
+    total_weak_found = 0
+    for i, slug in enumerate(slugs, 1):
+        info = artists[slug]
+        try:
+            html = fetch(info["url"])  # ya está cacheado, esto no genera request real
+        except Exception as e:
+            print(f"  ! error en {slug}: {e}")
+            continue
+        if not html:
+            continue
+        soup = BeautifulSoup(html, "html.parser")
+        bio_text = _extract_bio_text(soup)
+        con_contexto, sin_contexto = find_mentioned_artists(bio_text, full_lookup, self_slug=slug)
+        # no duplicar lo que ya está como link real
+        already_linked = set(info.get("bio_links", []))
+        new_mentions = sorted(set(con_contexto) - already_linked)
+        weak_mentions = sorted(set(sin_contexto) - already_linked - set(new_mentions))
+        info["mentioned_slugs"] = new_mentions
+        info["mentioned_slugs_weak"] = weak_mentions  # sólo para inspección, no se usa en el grafo
+        total_mentions_found += len(new_mentions)
+        total_weak_found += len(weak_mentions)
+        updated += 1
+        if i % 200 == 0 or i == len(slugs):
+            save_json(artists, DATA_DIR / "artists.json")
+            print(f"  {i}/{len(slugs)} biografías re-escaneadas "
+                  f"({total_mentions_found} con contexto de colaboración, "
+                  f"{total_weak_found} sin contexto -descartadas del grafo-)")
+
+    save_json(artists, DATA_DIR / "artists.json")
+    print(f"\nListo: {updated} artistas re-escaneados.")
+    print(f"  {total_mentions_found} menciones CON contexto de colaboración "
+          f"(se usan en el grafo, campo 'mentioned_slugs')")
+    print(f"  {total_weak_found} menciones SIN contexto claro "
+          f"(guardadas en 'mentioned_slugs_weak' sólo para inspección, "
+          f"no se usan en el grafo)")
+
+    # Diagnóstico automático: si algún nombre aparece mencionado por una
+    # cantidad de artistas DISTINTOS sospechosamente alta, probablemente sea
+    # una colisión con una frase genérica del español (como pasó con
+    # "la banda" / "buenos aires"), no un hub real. Un hub genuino puede
+    # tener grado alto, pero rara vez es 5-10x más que el siguiente.
+    from collections import Counter
+    mention_counts = Counter()
+    for info in artists.values():
+        for slug in info.get("mentioned_slugs", []):
+            mention_counts[slug] += 1
+    if mention_counts:
+        top = mention_counts.most_common(8)
+        threshold = top[0][1]
+        segundo = top[1][1] if len(top) > 1 else 0
+        if threshold > 3 * max(segundo, 1) and threshold > 50:
+            print(f"\n⚠️  POSIBLE COLISIÓN DE NOMBRE GENÉRICO:")
+            print(f"   '{top[0][0]}' aparece mencionado por {threshold} artistas distintos, "
+                  f"muy por encima del siguiente ({segundo}). Si no es un hub real "
+                  f"conocido, agregalo a STOPLIST_NAMES_RAW en scraper.py y volvé a "
+                  f"correr 'scraper.py mentions'.")
+        print("\nTop 8 nombres más mencionados (revisar si tiene sentido):")
+        for slug, n in top:
+            name = artists.get(slug, {}).get("name", slug)
+            print(f"   {name} ({slug}): mencionado por {n} artistas distintos")
+
+
 # ---------------------------------------------------------------------------
 
 def main():
@@ -290,7 +534,7 @@ def main():
                "explícito del sitio para ir más rápido, usá "
                "--override-robots-delay junto con --i-have-permission.",
     )
-    parser.add_argument("cmd", choices=["index", "artists", "discs", "all"])
+    parser.add_argument("cmd", choices=["index", "artists", "discs", "mentions", "all"])
     parser.add_argument("--limit", type=int, default=None,
                          help="límite de artistas/discos a procesar (para pruebas; "
                               "no evita el rate limiting, solo acorta la lista)")
@@ -328,6 +572,12 @@ def main():
     if args.cmd in ("discs", "all"):
         print("\n== Descargando créditos de discos ==")
         scrape_all_discs(limit=args.limit, override_robots_delay=override_delay)
+    if args.cmd == "mentions":
+        # No forma parte de "all" a propósito: es una detección basada en
+        # texto libre (más ruidosa que links/créditos), conviene correrla
+        # aparte y revisar los resultados antes de sumarlos al análisis.
+        print("== Re-escaneando biografías cacheadas por menciones en texto plano ==")
+        rescan_bio_mentions(limit=args.limit)
     print(f"\nListo en {time.time()-t0:.1f}s")
 
 
