@@ -313,12 +313,29 @@ COLLAB_CONTEXT_KEYWORDS_RAW = [
 # "integrado"/"integrada" es el caso típico: "trío integrado por X" es
 # colaboración real, pero "jurado integrado por X" no tiene nada que ver
 # con música — la palabra sola no alcanza para distinguirlos.
-AMBIGUOUS_CONTEXT_KEYWORDS_RAW = ["integrado", "integrada", "integrando", "integraron"]
+AMBIGUOUS_CONTEXT_KEYWORDS_RAW = [
+    "integrado", "integrada", "integrando", "integraron",
+    "compuesta", "compuesto", "compusieron",
+    "conformada", "conformado", "conformaban", "conformaron",
+]
 MUSICAL_GROUP_NOUNS_RAW = [
     "banda", "trio", "grupo", "dueto", "duo", "cuarteto", "conjunto",
     "orquesta", "ensamble", "quinteto", "sexteto", "combo",
 ]
-CONTEXT_WINDOW_CHARS = 80
+CONTEXT_WINDOW_CHARS = 100
+
+# Patrón directo "Nombre en <instrumento>" — muy común en listas de
+# formación de banda ("Marcelo Torres en bajo, Hernán Arramberri en
+# batería..."). Es una señal fuerte por sí sola: no depende de estar cerca
+# de una palabra como "compuesta por", que en listas largas puede quedar
+# lejos de los últimos nombres enumerados.
+INSTRUMENT_WORDS_RAW = [
+    "bajo", "guitarra", "guitarras", "bateria", "teclado", "teclados",
+    "voz", "voces", "coro", "coros", "saxo", "saxofon", "trompeta",
+    "trombon", "violin", "percusion", "vientos", "sintetizador",
+    "sintetizadores", "flauta", "acordeon", "charango", "bombo",
+    "contrabajo", "piano",
+]
 
 
 def find_mentioned_artists(bio_text: str, full_name_lookup: dict, self_slug: str):
@@ -328,10 +345,14 @@ def find_mentioned_artists(bio_text: str, full_name_lookup: dict, self_slug: str
     distinguir colaboración real de una simple mención de influencia
     ("tuvo como influencia a X" no cuenta; "grabó junto a X" sí).
 
-    Palabras ambiguas como "integrado" sólo cuentan si además hay un
-    sustantivo de agrupación musical cerca (ver AMBIGUOUS_CONTEXT_KEYWORDS_RAW
-    y MUSICAL_GROUP_NOUNS_RAW) — así "trío integrado por X" cuenta pero
-    "jurado integrado por X" no.
+    Palabras ambiguas como "integrado"/"compuesta" sólo cuentan si además
+    hay un sustantivo de agrupación musical cerca (ver
+    AMBIGUOUS_CONTEXT_KEYWORDS_RAW y MUSICAL_GROUP_NOUNS_RAW) — así "trío
+    integrado por X" cuenta pero "jurado integrado por X" no.
+
+    También reconoce directamente el patrón "Nombre en <instrumento>"
+    (ver INSTRUMENT_WORDS_RAW), típico de listas de formación de banda,
+    sin depender de la distancia a otras palabras clave.
 
     Devuelve (con_contexto, sin_contexto): la primera lista es la que se usa
     para el grafo; la segunda se guarda aparte sólo para inspección/debug.
@@ -339,6 +360,7 @@ def find_mentioned_artists(bio_text: str, full_name_lookup: dict, self_slug: str
     keywords_norm = [normalize_name(k) for k in COLLAB_CONTEXT_KEYWORDS_RAW]
     ambiguous_norm = [normalize_name(k) for k in AMBIGUOUS_CONTEXT_KEYWORDS_RAW]
     group_nouns_norm = [normalize_name(k) for k in MUSICAL_GROUP_NOUNS_RAW]
+    instruments_norm = [normalize_name(k) for k in INSTRUMENT_WORDS_RAW]
     norm_text = f" {normalize_name(bio_text)} "
 
     con_contexto, sin_contexto = [], []
@@ -354,6 +376,15 @@ def find_mentioned_artists(bio_text: str, full_name_lookup: dict, self_slug: str
             if idx == -1:
                 break
             found_any = True
+
+            # patrón directo "Nombre en <instrumento>": mirar sólo los ~20
+            # caracteres inmediatamente después del nombre
+            after = norm_text[idx + len(needle): idx + len(needle) + 20]
+            if after.startswith("en ") and any(
+                    after[3:3 + len(instr)] == instr for instr in instruments_norm):
+                found_context = True
+                break
+
             window = norm_text[max(0, idx - CONTEXT_WINDOW_CHARS):
                                 idx + len(needle) + CONTEXT_WINDOW_CHARS]
             if any(kw in window for kw in keywords_norm):

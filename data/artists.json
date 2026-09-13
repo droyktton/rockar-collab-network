@@ -152,10 +152,11 @@
     "url": "https://rock.com.ar/artistas/apg-hard-rock/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "gunner-sixx",
-      "lady-macbeth",
+      "lady-macbeth"
+    ],
+    "mentioned_slugs_weak": [
       "rata-blanca",
       "walter-giardino"
     ]
@@ -309,7 +310,8 @@
       "el-soldado",
       "esas-cosas",
       "las-pastillas-del-abuelo",
-      "las-pelotas"
+      "las-pelotas",
+      "ultimo-dia"
     ],
     "mentioned_slugs_weak": [
       "2-minutos",
@@ -320,7 +322,6 @@
       "los-pericos",
       "pappos-blues",
       "pescado-rabioso",
-      "ultimo-dia",
       "viejas-locas",
       "vox-dei"
     ]
@@ -397,11 +398,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "mariano-toziano",
       "oscar-kreimer"
     ],
-    "mentioned_slugs_weak": [
-      "mariano-toziano"
-    ]
+    "mentioned_slugs_weak": []
   },
   "aborigen": {
     "name": "Aborigen",
@@ -776,9 +776,10 @@
         "url": "https://rock.com.ar/discos/esto-es-acorazado-potemkin/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "flopa-manza-minimal"
+    ],
     "mentioned_slugs_weak": [
-      "flopa-manza-minimal",
       "mariana-paraway"
     ]
   },
@@ -829,15 +830,14 @@
     ],
     "mentioned_slugs": [
       "animal",
+      "attaque-77",
       "la-renga",
       "las-pelotas",
       "leon-gieco",
       "los-piojos",
       "todos-tus-muertos"
     ],
-    "mentioned_slugs_weak": [
-      "attaque-77"
-    ]
+    "mentioned_slugs_weak": []
   },
   "actitud-sospechosa": {
     "name": "Actitud Sospechosa",
@@ -1647,11 +1647,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "animal",
       "dios-los-cria"
     ],
-    "mentioned_slugs_weak": [
-      "animal"
-    ]
+    "mentioned_slugs_weak": []
   },
   "alados": {
     "name": "Alados",
@@ -1900,12 +1899,12 @@
       "julieta-rada",
       "karma-sudaca",
       "leon-gieco",
+      "los-piojos",
+      "los-tipitos",
       "luis-salinas"
     ],
     "mentioned_slugs_weak": [
-      "la-gente",
-      "los-piojos",
-      "los-tipitos"
+      "la-gente"
     ]
   },
   "alerta-pachuca": {
@@ -2096,9 +2095,10 @@
         "url": "https://rock.com.ar/discos/educate-yourself-alika"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "los-cafres"
+    ],
     "mentioned_slugs_weak": [
-      "los-cafres",
       "valeria-goberna"
     ]
   },
@@ -2605,10 +2605,10 @@
       }
     ],
     "mentioned_slugs": [
+      "ciudad-feliz",
       "gustavo-cerati"
     ],
     "mentioned_slugs_weak": [
-      "ciudad-feliz",
       "el-regreso",
       "leandro-fresco",
       "luca-prodan"
@@ -2670,11 +2670,10 @@
     ],
     "mentioned_slugs": [
       "francisco-bochaton",
+      "los-ratones-paranoicos",
       "peligrosos-gorriones"
     ],
-    "mentioned_slugs_weak": [
-      "los-ratones-paranoicos"
-    ]
+    "mentioned_slugs_weak": []
   },
   "alunar": {
     "name": "Alunar",
@@ -2709,13 +2708,12 @@
       }
     ],
     "mentioned_slugs": [
+      "juan-stewart",
       "juliana-gattas",
       "maria-ezquiaga",
       "pablo-dacal"
     ],
-    "mentioned_slugs_weak": [
-      "juan-stewart"
-    ]
+    "mentioned_slugs_weak": []
   },
   "amanda": {
     "name": "Amanda",
@@ -2767,10 +2765,10 @@
     "url": "https://rock.com.ar/artistas/amas-de-casa-rock/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "daniela-doffo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "amatista": {
     "name": "Amatista",
@@ -2910,11 +2908,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "candelaria-zamar",
       "el-sur"
     ],
-    "mentioned_slugs_weak": [
-      "candelaria-zamar"
-    ]
+    "mentioned_slugs_weak": []
   },
   "amor-en-la-isla": {
     "name": "Amor en la Isla",
@@ -2975,12 +2972,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "che-sudaka",
       "gaspar-om",
       "los-umbanda",
       "pablo-molina"
     ],
     "mentioned_slugs_weak": [
-      "che-sudaka",
       "la-celebracion"
     ]
   },
@@ -3313,11 +3310,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "jovenes-pordioseros"
-    ],
-    "mentioned_slugs_weak": [
+      "jovenes-pordioseros",
       "la-gente"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "angeles-guerreros": {
     "name": "Angeles Guerreros",
@@ -3940,14 +3936,14 @@
     "mentioned_slugs": [
       "gran-martell",
       "jorge-pinchevsky",
+      "la-chilinga",
       "la-renga",
       "leon-gieco",
       "liliana-herrero"
     ],
     "mentioned_slugs_weak": [
       "el-ombligo",
-      "fernandez-fierro",
-      "la-chilinga"
+      "fernandez-fierro"
     ]
   },
   "arcabuz": {
@@ -4236,10 +4232,10 @@
     "url": "https://rock.com.ar/artistas/argonauticks/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "francisco-munoz"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "ariadna-project": {
     "name": "Ariadna Project",
@@ -4505,11 +4501,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "lautaro-barcelo"
-    ],
-    "mentioned_slugs_weak": [
+      "lautaro-barcelo",
       "orquesta-de-perros"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "asado-violento": {
     "name": "Asado violento",
@@ -4577,12 +4572,12 @@
       "cadena-perpetua",
       "ciro-pertusi",
       "las-manos-de-filippi",
-      "los-autenticos-decadentes"
+      "los-autenticos-decadentes",
+      "todos-tus-muertos"
     ],
     "mentioned_slugs_weak": [
       "el-otro-yo",
-      "los-caligaris",
-      "todos-tus-muertos"
+      "los-caligaris"
     ]
   },
   "asi-zapaba-zaratustra": {
@@ -4645,16 +4640,16 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-sitio",
       "emilio-del-guercio",
       "la-cruda",
       "la-movida",
       "litto-nebbia",
+      "los-cafres",
       "los-gatos"
     ],
     "mentioned_slugs_weak": [
-      "el-sitio",
-      "la-moto",
-      "los-cafres"
+      "la-moto"
     ]
   },
   "astroblues": {
@@ -4738,11 +4733,11 @@
     "discography": [],
     "mentioned_slugs": [
       "fernando-kabusacki",
+      "fernando-nale",
       "tweety-gonzalez",
       "ulises-butron"
     ],
     "mentioned_slugs_weak": [
-      "fernando-nale",
       "gustavo-cerati",
       "maria-gabriela-epumer"
     ]
@@ -5233,10 +5228,11 @@
         "url": "https://rock.com.ar/discos/jugar-auge"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "el-corte",
+    "mentioned_slugs": [
       "julio-y-agosto"
+    ],
+    "mentioned_slugs_weak": [
+      "el-corte"
     ]
   },
   "aura": {
@@ -5244,10 +5240,10 @@
     "url": "https://rock.com.ar/artistas/aura/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "el-grito"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "aura-2": {
     "name": "AurA",
@@ -5356,12 +5352,12 @@
     "discography": [],
     "mentioned_slugs": [
       "david-lebon",
-      "hugo-fattoruso"
+      "hugo-fattoruso",
+      "los-rancheros"
     ],
     "mentioned_slugs_weak": [
       "alejandro-schanzenbach",
-      "gaby-kerpel",
-      "los-rancheros"
+      "gaby-kerpel"
     ]
   },
   "autocine": {
@@ -5600,10 +5596,11 @@
         "url": "https://rock.com.ar/discos/en-la-luz-ave-tierra"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "fernandez-fierro"
+    ],
     "mentioned_slugs_weak": [
       "el-hombre",
-      "fernandez-fierro",
       "la-fuga",
       "los-ojos",
       "sin-nombre",
@@ -5872,11 +5869,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-gente",
       "ocaso-2012"
     ],
     "mentioned_slugs_weak": [
-      "el-sotano",
-      "la-gente"
+      "el-sotano"
     ]
   },
   "el-ajenjo": {
@@ -6016,7 +6013,9 @@
     ],
     "mentioned_slugs": [
       "charly-garcia",
+      "coki-y-the-killer-burritos",
       "deborah-de-corral",
+      "fabian-gallardo",
       "guillermo-vadala",
       "intrepidos-navegantes",
       "javier-malosetti",
@@ -6027,8 +6026,6 @@
       "luis-alberto-spinetta"
     ],
     "mentioned_slugs_weak": [
-      "coki-y-the-killer-burritos",
-      "fabian-gallardo",
       "la-naranja-2"
     ]
   },
@@ -6073,16 +6070,16 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "andy-chango",
       "fito-paez",
       "javier-calamaro",
       "jorge-serrano",
+      "la-culpa",
       "los-twist",
       "mariano-otero"
     ],
     "mentioned_slugs_weak": [
-      "andy-chango",
       "coti-sorokin",
-      "la-culpa",
       "los-autenticos-decadentes"
     ]
   },
@@ -6672,6 +6669,8 @@
       "diego-cebolla-demarco",
       "dread-mar-i",
       "emmanuel-horvilleur",
+      "fernando-ruiz-diaz",
+      "fidel-nadal",
       "joaquin-levinton",
       "leon-gieco",
       "los-cafres",
@@ -6681,8 +6680,6 @@
     ],
     "mentioned_slugs_weak": [
       "el-corte",
-      "fernando-ruiz-diaz",
-      "fidel-nadal",
       "la-caja",
       "no-te-va-gustar",
       "no-tengo"
@@ -6705,8 +6702,10 @@
       "agente-naranja",
       "cadena-perpetua",
       "doble-gota-2",
+      "flavio-cianciarulo",
       "la-nave",
       "las-manos-de-filippi",
+      "mimi-maura",
       "ni-idea",
       "restos-fosiles",
       "satan-dealers",
@@ -6721,10 +6720,8 @@
       "claudio-oconnor",
       "cuentos-borgeanos",
       "estoy-konfundida",
-      "flavio-cianciarulo",
       "heroicos-sobrevivientes",
       "los-fabulosos-cadillacs",
-      "mimi-maura",
       "nikita-nipone",
       "responsables-no-inscriptos"
     ]
@@ -7044,6 +7041,7 @@
       }
     ],
     "mentioned_slugs": [
+      "lito-epumer",
       "oscar-moro"
     ],
     "mentioned_slugs_weak": [
@@ -7051,7 +7049,6 @@
       "la-gente",
       "la-torre",
       "la-trampa",
-      "lito-epumer",
       "los-perros",
       "terrores-nocturnos"
     ]
@@ -7088,10 +7085,10 @@
     "url": "https://rock.com.ar/artistas/tomas-aristimuno/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "lisandro-aristimuno"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "victor-astorga": {
     "name": "Víctor Astorga",
@@ -7207,12 +7204,15 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "axel-krygier",
       "hilda-lizarazu",
+      "jimena-lopez-chaplin",
       "juan-jacinto",
       "kevin-johansen",
       "lisandro-aristimuno",
       "los-cocineros",
       "lucas-marti",
+      "nacho-rodriguez",
       "onda-vaga",
       "pablo-dacal",
       "palo-pandolfo",
@@ -7220,13 +7220,10 @@
     ],
     "mentioned_slugs_weak": [
       "anetol-delmonte",
-      "axel-krygier",
       "entre-rios",
-      "jimena-lopez-chaplin",
       "lucila-cueva",
       "lucio-mantel",
-      "maria-ezquiaga",
-      "nacho-rodriguez"
+      "maria-ezquiaga"
     ]
   },
   "andres-brisson": {
@@ -7312,11 +7309,11 @@
     "mentioned_slugs": [
       "claudio-gabis",
       "deborah-de-corral",
-      "gustavo-cerati"
+      "gustavo-cerati",
+      "leo-garcia",
+      "los-videos"
     ],
     "mentioned_slugs_weak": [
-      "leo-garcia",
-      "los-videos",
       "richard-coleman",
       "roberto-pettinato"
     ]
@@ -7545,14 +7542,15 @@
         "url": "https://rock.com.ar/discos/cuerpos-vol-1-babasonicos/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "los-brujos-mandioca"
+    ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
       "el-corte",
       "grand-prix",
       "la-linea",
       "las-cosas",
-      "los-brujos-mandioca",
       "victoria-mil"
     ]
   },
@@ -7680,11 +7678,11 @@
       }
     ],
     "mentioned_slugs": [
+      "adrian-abonizio",
       "fito-paez",
       "mas-de-lo-mismo"
     ],
     "mentioned_slugs_weak": [
-      "adrian-abonizio",
       "jorge-fandermole"
     ]
   },
@@ -8046,13 +8044,14 @@
         "url": "https://rock.com.ar/discos/vandalos-bandalos-chinos/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "despertar-antoles",
+    "mentioned_slugs": [
       "la-linea",
       "la-naranja-2",
+      "silvestre-y-la-naranja"
+    ],
+    "mentioned_slugs_weak": [
+      "despertar-antoles",
       "luis-alberto-spinetta",
-      "silvestre-y-la-naranja",
       "surfistas-del-sistema"
     ]
   },
@@ -8092,11 +8091,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "claudio-marciello",
       "la-fuga",
       "los-navarros"
     ],
     "mentioned_slugs_weak": [
-      "claudio-marciello",
       "las-pelotas",
       "patricio-rey-y-sus-redonditos-de-ricota"
     ]
@@ -8263,10 +8262,10 @@
     "url": "https://rock.com.ar/artistas/barrio-funk/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "soda-stereo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "barrio-viejo": {
     "name": "Barrio Viejo",
@@ -8399,10 +8398,10 @@
     "url": "https://rock.com.ar/artistas/bautista-viajando/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "un-planeta"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "bayou-country": {
     "name": "Bayou Country",
@@ -9300,11 +9299,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "don-cornelio-y-la-zona",
       "jaime-sin-tierra",
       "juan-stewart"
     ],
     "mentioned_slugs_weak": [
-      "don-cornelio-y-la-zona",
       "la-cara"
     ]
   },
@@ -9329,9 +9328,10 @@
     "url": "https://rock.com.ar/artistas/blazer/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "catupecu-machu"
+    ],
     "mentioned_slugs_weak": [
-      "catupecu-machu",
       "eruca-sativa"
     ]
   },
@@ -9351,10 +9351,10 @@
         "url": "https://rock.com.ar/discos/viaje-de-ida-blender"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "no-tan-distintos"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "blends": {
     "name": "Blends",
@@ -9562,6 +9562,7 @@
     "discography": [],
     "mentioned_slugs": [
       "billy-cafaro",
+      "daniela-herrero",
       "juana-la-loca",
       "la-franela",
       "los-cocineros",
@@ -9569,9 +9570,7 @@
       "pipo-cipolatti",
       "sebastian-escofet"
     ],
-    "mentioned_slugs_weak": [
-      "daniela-herrero"
-    ]
+    "mentioned_slugs_weak": []
   },
   "bodegas-blues": {
     "name": "Bodega’s Blues",
@@ -9633,11 +9632,10 @@
       "charly-garcia",
       "el-otro-yo",
       "los-de-fuego",
-      "los-twist"
-    ],
-    "mentioned_slugs_weak": [
+      "los-twist",
       "los-violadores"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "bodoke": {
     "name": "Bodoke",
@@ -9747,7 +9745,9 @@
     "mentioned_slugs": [
       "blues-band",
       "color-chino",
+      "gabriel-gratzer",
       "los-vandalos",
+      "luis-salinas",
       "punto-g"
     ],
     "mentioned_slugs_weak": [
@@ -9756,9 +9756,7 @@
       "ciro-fogliatta",
       "david-lebon",
       "edelmiro-molinari",
-      "gabriel-gratzer",
       "liliana-herrero",
-      "luis-salinas",
       "pablo-el-enterrador"
     ]
   },
@@ -9972,12 +9970,13 @@
       "209"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "joaquin-levinton",
-      "la-linea",
+    "mentioned_slugs": [
       "soda-stereo",
       "zeta-bosio"
+    ],
+    "mentioned_slugs_weak": [
+      "joaquin-levinton",
+      "la-linea"
     ]
   },
   "boxer": {
@@ -10289,11 +10288,10 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "coki-y-the-killer-burritos",
       "munecas-rusas"
     ],
-    "mentioned_slugs_weak": [
-      "coki-y-the-killer-burritos"
-    ]
+    "mentioned_slugs_weak": []
   },
   "buenas-y-santas": {
     "name": "Buenas y Santas",
@@ -10616,10 +10614,10 @@
     "url": "https://rock.com.ar/artistas/butumbaba/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "entre-rios"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "buzon-sueno": {
     "name": "Buzón sueño",
@@ -10660,11 +10658,11 @@
       "daniel-melero",
       "flavio-etcheto",
       "gustavo-cerati",
+      "los-videos",
       "soda-stereo"
     ],
     "mentioned_slugs_weak": [
-      "antonio-birabent",
-      "los-videos"
+      "antonio-birabent"
     ]
   },
   "carolina-bossa": {
@@ -10992,6 +10990,7 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "gaby-kerpel",
       "juana-molina",
       "liliana-herrero",
       "perota-chingo",
@@ -10999,7 +10998,6 @@
     ],
     "mentioned_slugs_weak": [
       "axel-krygier",
-      "gaby-kerpel",
       "las-cosas",
       "santiago-vazquez",
       "sebastian-escofet"
@@ -11018,13 +11016,14 @@
     "url": "https://rock.com.ar/artistas/federico-boaglio/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "fernando-pareta"
+    ],
     "mentioned_slugs_weak": [
       "andres-calamaro",
       "ariel-leira",
       "ariel-minimal",
       "black-amaya",
-      "fernando-pareta",
       "gonzalo-aloras",
       "guillermo-vadala",
       "gustavo-bazterrica",
@@ -11131,11 +11130,10 @@
       "charly-garcia",
       "fito-paez",
       "gustavo-cerati",
+      "kumbia-queers",
       "miss-bolivia"
     ],
-    "mentioned_slugs_weak": [
-      "kumbia-queers"
-    ]
+    "mentioned_slugs_weak": []
   },
   "gustavo-bazterrica": {
     "name": "Gustavo Bazterrica",
@@ -11461,10 +11459,10 @@
       "almendra"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "pedro-conde"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-barretta": {
     "name": "La Barretta",
@@ -11920,10 +11918,10 @@
     "url": "https://rock.com.ar/artistas/los-bardos/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "cielo-razzo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "los-barenboim": {
     "name": "Los Barenboim",
@@ -12026,12 +12024,11 @@
     "discography": [],
     "mentioned_slugs": [
       "charly-garcia",
+      "javier-calamaro",
+      "mes-de-mayo",
       "viva-elastico"
     ],
-    "mentioned_slugs_weak": [
-      "javier-calamaro",
-      "mes-de-mayo"
-    ]
+    "mentioned_slugs_weak": []
   },
   "los-bilis": {
     "name": "Los Bilis",
@@ -12046,10 +12043,11 @@
     "url": "https://rock.com.ar/artistas/los-bizzarros/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "2-minutos",
+    "mentioned_slugs": [
       "cadena-perpetua"
+    ],
+    "mentioned_slugs_weak": [
+      "2-minutos"
     ]
   },
   "los-blues-makers": {
@@ -12144,12 +12142,12 @@
     ],
     "mentioned_slugs": [
       "alejandro-alaci",
+      "buenos-aires-karma",
       "la-ley",
       "los-brujos-mandioca",
       "los-cuerpos"
     ],
     "mentioned_slugs_weak": [
-      "buenos-aires-karma",
       "el-dragon",
       "el-regreso"
     ]
@@ -12267,11 +12265,11 @@
       }
     ],
     "mentioned_slugs": [
+      "cam-beszkin",
       "marilina-bertoldi",
       "sergio-alvarez"
     ],
     "mentioned_slugs_weak": [
-      "cam-beszkin",
       "esteban-sehinkman",
       "pajaro-de-fuego"
     ]
@@ -12359,7 +12357,8 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "julian-venegas"
+      "julian-venegas",
+      "lorena-astudillo"
     ],
     "mentioned_slugs_weak": [
       "charly-garcia",
@@ -12367,8 +12366,7 @@
       "gustavo-cerati",
       "jorge-drexler",
       "la-forma",
-      "la-gente",
-      "lorena-astudillo"
+      "la-gente"
     ]
   },
   "nahuel-briones": {
@@ -12414,15 +12412,15 @@
       }
     ],
     "mentioned_slugs": [
-      "antonio-birabent"
+      "antonio-birabent",
+      "sergio-dawi"
     ],
     "mentioned_slugs_weak": [
       "diego-frenkel",
       "las-taradas",
       "lucy-patane-2",
       "pablo-dacal",
-      "paula-maffia",
-      "sergio-dawi"
+      "paula-maffia"
     ]
   },
   "nicolas-bereciartua": {
@@ -12931,7 +12929,8 @@
       "la-linea",
       "los-twist",
       "miguel-abuelo",
-      "pipo-cipolatti"
+      "pipo-cipolatti",
+      "zeta-bosio"
     ],
     "mentioned_slugs_weak": [
       "bersuit-vergarabat",
@@ -12950,8 +12949,7 @@
       "los-autenticos-decadentes",
       "los-pericos",
       "miguel-zavaleta",
-      "no-tengo",
-      "zeta-bosio"
+      "no-tengo"
     ]
   },
   "andy-chango": {
@@ -12982,12 +12980,13 @@
         "url": "https://rock.com.ar/discos/boris-vian-andy-chango/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "pol-medina"
+    ],
     "mentioned_slugs_weak": [
       "andres-calamaro",
       "ariel-rot",
-      "fito-paez",
-      "pol-medina"
+      "fito-paez"
     ]
   },
   "babu-cervino": {
@@ -13038,11 +13037,10 @@
     ],
     "mentioned_slugs": [
       "andres-calamaro",
-      "luis-alberto-spinetta"
-    ],
-    "mentioned_slugs_weak": [
+      "luis-alberto-spinetta",
       "nico-cota"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "benito-cerati": {
     "name": "Benito Cerati",
@@ -13158,10 +13156,10 @@
       "los-gatos"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "las-diferencias"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "caballos-de-noche": {
     "name": "Caballos de Noche",
@@ -13866,6 +13864,7 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "dread-mar-i",
       "fidel-nadal",
       "karamelo-santo",
       "los-cafres",
@@ -13873,7 +13872,6 @@
     ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
-      "dread-mar-i",
       "los-autenticos-decadentes"
     ]
   },
@@ -14017,9 +14015,10 @@
     "url": "https://rock.com.ar/artistas/capitan-saturno/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "de-la-tierra"
+    ],
     "mentioned_slugs_weak": [
-      "de-la-tierra",
       "la-sangre"
     ]
   },
@@ -14247,10 +14246,10 @@
       }
     ],
     "mentioned_slugs": [
+      "carola-bony",
       "flavio-cianciarulo"
     ],
     "mentioned_slugs_weak": [
-      "carola-bony",
       "la-ley",
       "toque-de-queda"
     ]
@@ -14419,10 +14418,10 @@
         "url": "https://rock.com.ar/discos/matias-kritz"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "los-videos"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "carneviva": {
     "name": "Carneviva",
@@ -15085,14 +15084,14 @@
     "mentioned_slugs": [
       "el-regreso",
       "la-beriso",
-      "leon-gieco"
+      "leon-gieco",
+      "resistencia-suburbana",
+      "sin-nombre"
     ],
     "mentioned_slugs_weak": [
       "dancing-mood",
       "la-renga",
-      "los-piojos",
-      "resistencia-suburbana",
-      "sin-nombre"
+      "los-piojos"
     ]
   },
   "chamanes": {
@@ -15654,11 +15653,11 @@
     "discography": [],
     "mentioned_slugs": [
       "buenas-tardes",
+      "cielo-razzo",
       "pepo-san-martin"
     ],
     "mentioned_slugs_weak": [
       "bersuit-vergarabat",
-      "cielo-razzo",
       "lisandro-aristimuno"
     ]
   },
@@ -15974,7 +15973,8 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "karamelo-santo"
+      "karamelo-santo",
+      "un-kuartito"
     ],
     "mentioned_slugs_weak": [
       "actitud-maria-marta",
@@ -15985,7 +15985,6 @@
       "las-manos-de-filippi",
       "resistencia-suburbana",
       "rey-kanibal",
-      "un-kuartito",
       "un-monton-de-lugares"
     ]
   },
@@ -15995,15 +15994,15 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "alejandro-lerner",
+      "ana-volena",
       "gabriel-carambula",
+      "jovenes-pordioseros",
       "la-gente",
       "memphis-la-blusera"
     ],
     "mentioned_slugs_weak": [
-      "alejandro-lerner",
-      "ana-volena",
-      "javier-calamaro",
-      "jovenes-pordioseros"
+      "javier-calamaro"
     ]
   },
   "clap": {
@@ -16710,16 +16709,16 @@
     "discography": [],
     "mentioned_slugs": [
       "bambi-moreno-charpentier",
+      "charly-garcia",
       "la-conexion",
-      "los-pericos"
+      "los-pericos",
+      "tan-bionica"
     ],
     "mentioned_slugs_weak": [
-      "charly-garcia",
       "fito-paez",
       "los-tipitos",
       "luis-alberto-spinetta",
-      "seru-giran",
-      "tan-bionica"
+      "seru-giran"
     ]
   },
   "confeti": {
@@ -16876,13 +16875,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-natty-combo",
       "los-umbanda",
       "pablo-molina",
       "resistencia-suburbana"
     ],
     "mentioned_slugs_weak": [
       "dread-mar-i",
-      "el-natty-combo",
       "las-cosas",
       "los-cafres",
       "onda-vaga"
@@ -16961,12 +16960,11 @@
     "discography": [],
     "mentioned_slugs": [
       "el-regreso",
+      "fabiana-cantilo",
       "los-twist",
       "pipo-cipolatti"
     ],
-    "mentioned_slugs_weak": [
-      "fabiana-cantilo"
-    ]
+    "mentioned_slugs_weak": []
   },
   "coralies": {
     "name": "Coralies",
@@ -17007,9 +17005,10 @@
     "url": "https://rock.com.ar/artistas/cordyceps/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "luis-alberto-spinetta"
+    ],
     "mentioned_slugs_weak": [
-      "luis-alberto-spinetta",
       "mariano-toziano",
       "seru-giran",
       "soda-stereo"
@@ -17032,6 +17031,7 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-portuaria",
       "lisandro-etala"
     ],
     "mentioned_slugs_weak": [
@@ -17039,7 +17039,6 @@
       "diego-torres",
       "garza-polaca",
       "gustavo-cerati",
-      "la-portuaria",
       "patricio-rey-y-sus-redonditos-de-ricota"
     ]
   },
@@ -17059,11 +17058,11 @@
     "url": "https://rock.com.ar/artistas/corpus-christi/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "de-raiz",
       "la-linea"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "cortesanos": {
     "name": "Cortesanos",
@@ -17172,11 +17171,10 @@
       }
     ],
     "mentioned_slugs": [
-      "la-trampa"
-    ],
-    "mentioned_slugs_weak": [
+      "la-trampa",
       "mes-de-mayo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "cosmopeluza": {
     "name": "Cosmopeluza",
@@ -17271,15 +17269,15 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-mato-a-un-policia-motorizado",
+      "flopa-manza-minimal",
       "mariano-manza-esain",
       "martes-menta",
       "menos-que-cero",
       "valle-de-munecas"
     ],
     "mentioned_slugs_weak": [
-      "el-mato-a-un-policia-motorizado",
       "fito-paez",
-      "flopa-manza-minimal",
       "la-celebracion",
       "patricio-rey-y-sus-redonditos-de-ricota"
     ]
@@ -17525,12 +17523,12 @@
       }
     ],
     "mentioned_slugs": [
+      "bersuit-vergarabat",
+      "juan-subira",
       "nahuel-piscitelli"
     ],
     "mentioned_slugs_weak": [
-      "bersuit-vergarabat",
       "dancing-mood",
-      "juan-subira",
       "los-autenticos-decadentes"
     ]
   },
@@ -17628,7 +17626,8 @@
       "fito-paez",
       "javier-calamaro",
       "la-renga",
-      "los-mentidores"
+      "los-mentidores",
+      "patricio-rey-y-sus-redonditos-de-ricota"
     ],
     "mentioned_slugs_weak": [
       "david-lebon",
@@ -17637,8 +17636,7 @@
       "la-gente",
       "leon-gieco",
       "los-caligaris",
-      "los-fabulosos-cadillacs",
-      "patricio-rey-y-sus-redonditos-de-ricota"
+      "los-fabulosos-cadillacs"
     ]
   },
   "cuatro-payasos-muertos": {
@@ -17833,9 +17831,10 @@
     "url": "https://rock.com.ar/artistas/cuerpo-2/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "dietrich"
+    ],
     "mentioned_slugs_weak": [
-      "dietrich",
       "leo-garcia"
     ]
   },
@@ -17946,10 +17945,10 @@
     "url": "https://rock.com.ar/artistas/cumulonimbus/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-linea"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "cumulus": {
     "name": "Cumulus",
@@ -18423,6 +18422,7 @@
     ],
     "mentioned_slugs": [
       "algo-mejor",
+      "fernando-samalea",
       "gabriel-carambula",
       "los-perros",
       "oscar-moro",
@@ -18431,7 +18431,6 @@
     "mentioned_slugs_weak": [
       "cosas-que-pasan",
       "el-sur",
-      "fernando-samalea",
       "la-gente",
       "la-huella",
       "rinaldo-rafanelli",
@@ -18447,12 +18446,13 @@
       "sancamaleon"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "los-brujos-mandioca",
-      "luis-alberto-spinetta",
-      "soda-stereo",
       "zeta-bosio"
+    ],
+    "mentioned_slugs_weak": [
+      "luis-alberto-spinetta",
+      "soda-stereo"
     ]
   },
   "feli-colina": {
@@ -18460,10 +18460,11 @@
     "url": "https://rock.com.ar/artistas/feli-colina/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-femme-dargent"
+    ],
     "mentioned_slugs_weak": [
       "gonzalo-aloras",
-      "la-femme-dargent",
       "la-linea"
     ]
   },
@@ -18599,10 +18600,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "antonio-birabent",
       "javier-martinez"
     ],
     "mentioned_slugs_weak": [
-      "antonio-birabent",
       "liliana-herrero",
       "lito-vitale"
     ]
@@ -18794,10 +18795,11 @@
         "url": "https://rock.com.ar/discos/de-la-cabeza-al-corazon-gustavo-cordera/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "mas-alla",
+    "mentioned_slugs": [
       "mex-urtizberea"
+    ],
+    "mentioned_slugs_weak": [
+      "mas-alla"
     ]
   },
   "ignacio-copani": {
@@ -18900,6 +18902,7 @@
       "claudia-puyo",
       "claudio-gabis",
       "david-lebon",
+      "el-clan",
       "el-reloj",
       "horacio-fontova",
       "javier-martinez",
@@ -18925,7 +18928,6 @@
       "vox-dei"
     ],
     "mentioned_slugs_weak": [
-      "el-clan",
       "la-negra"
     ]
   },
@@ -18975,12 +18977,12 @@
       }
     ],
     "mentioned_slugs": [
+      "el-cuarteto-de-nos",
       "jorge-drexler",
       "luciano-supervielle",
       "martin-rivero"
     ],
     "mentioned_slugs_weak": [
-      "el-cuarteto-de-nos",
       "el-peyote-asesino",
       "la-vela-puerca",
       "no-te-va-gustar"
@@ -19046,12 +19048,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "ruben-gaitan"
-    ],
-    "mentioned_slugs_weak": [
       "la-mississippi",
+      "ruben-gaitan",
       "vox-dei"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-cantera-de-mendez": {
     "name": "La Cantera de Méndez",
@@ -19076,13 +19077,13 @@
     "discography": [],
     "mentioned_slugs": [
       "abril-sosa",
+      "ivan-noble",
+      "leo-garcia",
       "palo-pandolfo",
       "tan-bionica"
     ],
     "mentioned_slugs_weak": [
-      "ivan-noble",
       "la-cara",
-      "leo-garcia",
       "los-videos"
     ]
   },
@@ -19106,10 +19107,10 @@
         "url": "https://rock.com.ar/discos/salir-a-patear-la-carga"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "hora-pico"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-casatta": {
     "name": "La Casatta",
@@ -19981,9 +19982,10 @@
     "url": "https://rock.com.ar/artistas/los-clotarios/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "cielo-razzo"
+    ],
     "mentioned_slugs_weak": [
-      "cielo-razzo",
       "la-mancha",
       "la-mancha-de-rolando"
     ]
@@ -20020,9 +20022,10 @@
     "url": "https://rock.com.ar/artistas/los-coholins/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "alfredo-casero"
+    ],
     "mentioned_slugs_weak": [
-      "alfredo-casero",
       "mas-alla"
     ]
   },
@@ -20318,11 +20321,11 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "jorge-fandermole",
       "tweety-gonzalez"
     ],
     "mentioned_slugs_weak": [
-      "intrepidos-navegantes",
-      "jorge-fandermole"
+      "intrepidos-navegantes"
     ]
   },
   "miguel-cantilo": {
@@ -20412,11 +20415,11 @@
       "el-kuelgue",
       "las-taradas",
       "loli-molina",
-      "miss-bolivia"
+      "miss-bolivia",
+      "rosario-blefari"
     ],
     "mentioned_slugs_weak": [
       "fernando-samalea",
-      "rosario-blefari",
       "tomas-amante"
     ]
   },
@@ -20434,6 +20437,7 @@
       "emilio-del-guercio",
       "horacio-fontova",
       "la-barraca",
+      "la-feria",
       "la-fuente",
       "la-murga",
       "leon-gieco",
@@ -20444,7 +20448,6 @@
     ],
     "mentioned_slugs_weak": [
       "jorge-senno",
-      "la-feria",
       "la-linea",
       "roberto-pettinato"
     ]
@@ -20524,13 +20527,13 @@
     ],
     "mentioned_slugs": [
       "alejandro-lerner",
+      "fernando-samalea",
       "leandro-fresco",
       "ulises-butron"
     ],
     "mentioned_slugs_weak": [
       "braulio-daguirre",
-      "celsa-mel-gowland",
-      "fernando-samalea"
+      "celsa-mel-gowland"
     ]
   },
   "roben-couso": {
@@ -20936,14 +20939,14 @@
     "discography": [],
     "mentioned_slugs": [
       "actitud-maria-marta",
+      "catupecu-machu",
       "karamelo-santo",
-      "la-vela-puerca"
+      "la-vela-puerca",
+      "las-pelotas"
     ],
     "mentioned_slugs_weak": [
-      "catupecu-machu",
       "el-otro-yo",
-      "fito-paez",
-      "las-pelotas"
+      "fito-paez"
     ]
   },
   "cristina-dall": {
@@ -21010,11 +21013,11 @@
       "javier-malosetti",
       "jorge-araujo",
       "la-zurda",
+      "leon-gieco",
       "luis-alberto-spinetta",
       "ricardo-iorio"
     ],
     "mentioned_slugs_weak": [
-      "leon-gieco",
       "litto-nebbia",
       "los-gardelitos"
     ]
@@ -21108,11 +21111,10 @@
     "mentioned_slugs": [
       "alejandro-medina",
       "ave-rock",
-      "madre-atomica"
-    ],
-    "mentioned_slugs_weak": [
+      "madre-atomica",
       "orions-beethoven"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "dados-cargados": {
     "name": "Dados Cargados",
@@ -21286,6 +21288,8 @@
     ],
     "mentioned_slugs": [
       "2-minutos",
+      "abed-nego",
+      "actitud-maria-marta",
       "deborah-dixon",
       "el-natty-combo",
       "fidel-nadal",
@@ -21294,13 +21298,10 @@
       "mimi-maura",
       "nuevas-raices",
       "satelite-kingston",
+      "un-kuartito",
       "viejas-locas"
     ],
-    "mentioned_slugs_weak": [
-      "abed-nego",
-      "actitud-maria-marta",
-      "un-kuartito"
-    ]
+    "mentioned_slugs_weak": []
   },
   "dangerous-garden": {
     "name": "Dangerous Garden",
@@ -21560,10 +21561,10 @@
     "url": "https://rock.com.ar/artistas/de-santo-nada/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "leslie-buron"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "de-souza": {
     "name": "De Souza",
@@ -21579,12 +21580,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "karamelo-santo"
+      "karamelo-santo",
+      "sick-porky"
     ],
     "mentioned_slugs_weak": [
       "lisandro-aristimuno",
       "luis-alberto-spinetta",
-      "sick-porky",
       "soda-stereo"
     ]
   },
@@ -21641,10 +21642,10 @@
     "url": "https://rock.com.ar/artistas/deborah-dixon/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "las-blacanblus"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "decameron": {
     "name": "Decamerón",
@@ -21668,12 +21669,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "charly-garcia"
+      "charly-garcia",
+      "fito-paez"
     ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
       "entre-rios",
-      "fito-paez",
       "mimi-maura",
       "soda-stereo",
       "totus-toss",
@@ -22087,14 +22088,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "fun-people",
       "la-cruz",
       "las-manos-de-filippi",
       "pappos-blues",
       "stukas-en-vuelo"
     ],
-    "mentioned_slugs_weak": [
-      "fun-people"
-    ]
+    "mentioned_slugs_weak": []
   },
   "derockados": {
     "name": "Derockados",
@@ -22144,11 +22144,11 @@
     "mentioned_slugs": [
       "don-cornelio-y-la-zona",
       "el-muro",
+      "el-otro-yo",
       "ivan-noble",
       "lito-vitale"
     ],
     "mentioned_slugs_weak": [
-      "el-otro-yo",
       "leo-garcia",
       "miguel-abuelo",
       "soda-stereo"
@@ -22226,10 +22226,10 @@
     "url": "https://rock.com.ar/artistas/deseo-y-muerte/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-forma"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "desertor": {
     "name": "Desertor",
@@ -22252,13 +22252,12 @@
     "discography": [],
     "mentioned_slugs": [
       "bersuit-vergarabat",
+      "el-plan-de-la-mariposa",
       "julio-y-agosto",
       "karamelo-santo",
       "la-quimera"
     ],
-    "mentioned_slugs_weak": [
-      "el-plan-de-la-mariposa"
-    ]
+    "mentioned_slugs_weak": []
   },
   "designio": {
     "name": "Designio",
@@ -22502,11 +22501,11 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "lions-in-love",
       "los-fabulosos-cadillacs",
       "los-pillos"
     ],
     "mentioned_slugs_weak": [
-      "lions-in-love",
       "los-violadores",
       "sergio-rotman"
     ]
@@ -22690,10 +22689,10 @@
     "url": "https://rock.com.ar/artistas/dime-miami/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "el-corte"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "dinossauro": {
     "name": "Dinossauro",
@@ -23049,13 +23048,12 @@
       "attaque-77",
       "cadena-perpetua",
       "ciro-pertusi",
+      "durango-95",
       "los-violadores",
       "mal-momento",
       "ricky-espinosa"
     ],
-    "mentioned_slugs_weak": [
-      "durango-95"
-    ]
+    "mentioned_slugs_weak": []
   },
   "doble-gota": {
     "name": "Doble Gota",
@@ -23278,10 +23276,10 @@
         "url": "https://rock.com.ar/discos/flor-de-ceibo-don-osvaldo/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "hugo-lobo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "don-paladar": {
     "name": "Don Paladar",
@@ -23344,11 +23342,10 @@
       "celeste-carballo",
       "ciro-fogliatta",
       "emmanuel-horvilleur",
-      "la-mississippi"
-    ],
-    "mentioned_slugs_weak": [
+      "la-mississippi",
       "reggae-rockers"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "dona-maria": {
     "name": "Doña María",
@@ -23399,15 +23396,15 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "nacho-rodriguez"
+      "liza-casullo",
+      "los-natas",
+      "nacho-rodriguez",
+      "rosario-blefari"
     ],
     "mentioned_slugs_weak": [
       "jaime-sin-tierra",
       "la-feria",
-      "liza-casullo",
-      "los-natas",
       "onda-vaga",
-      "rosario-blefari",
       "victoria-mil"
     ]
   },
@@ -23532,11 +23529,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "cielo-razzo",
       "pampa-yakuza"
     ],
-    "mentioned_slugs_weak": [
-      "cielo-razzo"
-    ]
+    "mentioned_slugs_weak": []
   },
   "dr-tole": {
     "name": "Dr. Tole",
@@ -23569,11 +23565,11 @@
     "mentioned_slugs": [
       "blues-motel",
       "el-soldado",
+      "los-abuelos-de-la-nada",
       "luis-robinson",
       "palo-pandolfo"
     ],
     "mentioned_slugs_weak": [
-      "los-abuelos-de-la-nada",
       "marcelo-roascio"
     ]
   },
@@ -23630,9 +23626,10 @@
     "url": "https://rock.com.ar/artistas/drakos/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "karamelo-santo"
+    ],
     "mentioned_slugs_weak": [
-      "karamelo-santo",
       "los-cafres"
     ]
   },
@@ -23841,17 +23838,16 @@
     "mentioned_slugs": [
       "botas-tejanas",
       "dj-nelson",
+      "entre-rios",
+      "eterna-inocencia",
       "infierno-18",
       "karamelo-santo",
       "los-gardelitos",
       "nine-lives",
+      "reggae-rockers",
       "resistencia-suburbana"
     ],
-    "mentioned_slugs_weak": [
-      "entre-rios",
-      "eterna-inocencia",
-      "reggae-rockers"
-    ]
+    "mentioned_slugs_weak": []
   },
   "dulce-pesadilla": {
     "name": "Dulce Pesadilla",
@@ -23892,17 +23888,17 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "fidel-nadal",
       "flavio-cianciarulo",
       "karamelo-santo",
+      "los-cafres",
       "los-fabulosos-cadillacs",
       "sergio-rotman",
       "willy-crook"
     ],
     "mentioned_slugs_weak": [
       "el-corte",
-      "fidel-nadal",
       "las-pelotas",
-      "los-cafres",
       "los-calzones",
       "radio-roots",
       "satelite-kingston"
@@ -24061,11 +24057,12 @@
     "url": "https://rock.com.ar/artistas/dzs/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "eruca-sativa"
+    ],
     "mentioned_slugs_weak": [
       "attaque-77",
-      "cadena-perpetua",
-      "eruca-sativa"
+      "cadena-perpetua"
     ]
   },
   "el-dependiente": {
@@ -24596,6 +24593,7 @@
       }
     ],
     "mentioned_slugs": [
+      "andres-calamaro",
       "charly-garcia",
       "fito-paez",
       "patricia-sosa",
@@ -24603,7 +24601,6 @@
       "viuda-e-hijas-de-roque-enroll"
     ],
     "mentioned_slugs_weak": [
-      "andres-calamaro",
       "ariel-rot",
       "claudio-gabis"
     ]
@@ -24617,14 +24614,13 @@
     "discography": [],
     "mentioned_slugs": [
       "hijos-del-oeste",
+      "javier-calamaro",
       "la-mississippi",
+      "los-autenticos-decadentes",
       "motor-loco",
       "rata-blanca"
     ],
-    "mentioned_slugs_weak": [
-      "javier-calamaro",
-      "los-autenticos-decadentes"
-    ]
+    "mentioned_slugs_weak": []
   },
   "mirtha-defilpo": {
     "name": "Mirtha Defilpo",
@@ -24703,13 +24699,13 @@
       "bestia-bebe",
       "ignacio-del-portico",
       "las-ligas-menores",
+      "limbo-junior",
       "los-andes",
       "los-reyes-del-falsete",
       "luciana-tagliapietra",
       "mi-nave"
     ],
     "mentioned_slugs_weak": [
-      "limbo-junior",
       "los-sintomas",
       "mi-amigo-invencible",
       "shaman-y-los-pilares-de-la-creacion"
@@ -24995,10 +24991,10 @@
     "url": "https://rock.com.ar/artistas/el-escudo-de-los-iriarte/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "buenos-aires-negro"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "el-estrellero": {
     "name": "El Estrellero",
@@ -25151,10 +25147,10 @@
     "url": "https://rock.com.ar/artistas/electricos-asesinos/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "mas-alla"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "electro-nomicon": {
     "name": "Electro Nomicon",
@@ -25449,12 +25445,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "karamelo-santo",
       "la-movida",
       "open-your-kantos"
     ],
-    "mentioned_slugs_weak": [
-      "karamelo-santo"
-    ]
+    "mentioned_slugs_weak": []
   },
   "embajada-boliviana": {
     "name": "Embajada boliviana",
@@ -25651,11 +25646,10 @@
       "benito-cerati",
       "javier-mareco",
       "lucas-marti",
-      "tweety-gonzalez"
-    ],
-    "mentioned_slugs_weak": [
+      "tweety-gonzalez",
       "ulises-butron"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "eneterno": {
     "name": "Eneterno",
@@ -25693,10 +25687,10 @@
     "mentioned_slugs": [
       "el-reloj",
       "javier-martinez",
+      "los-gatos",
       "pescado-rabioso"
     ],
     "mentioned_slugs_weak": [
-      "los-gatos",
       "marcelo-roascio"
     ]
   },
@@ -25766,10 +25760,10 @@
     "url": "https://rock.com.ar/artistas/entonces/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "charly-garcia"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "entre-cielos": {
     "name": "Entre cielos",
@@ -25801,10 +25795,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-otro-yo",
       "gustavo-cerati"
     ],
     "mentioned_slugs_weak": [
-      "el-otro-yo",
       "la-linea"
     ]
   },
@@ -25871,11 +25865,11 @@
     "mentioned_slugs": [
       "carlos-alberto-machi-rufino",
       "lito-epumer",
+      "lito-vitale",
       "luis-alberto-spinetta",
       "pedro-aznar"
     ],
     "mentioned_slugs_weak": [
-      "lito-vitale",
       "pappos-blues"
     ]
   },
@@ -26304,6 +26298,7 @@
     "discography": [],
     "mentioned_slugs": [
       "dancing-mood",
+      "eterna-inocencia",
       "flavio-cianciarulo",
       "hugo-lobo",
       "los-intocables",
@@ -26312,7 +26307,6 @@
     ],
     "mentioned_slugs_weak": [
       "entre-rios",
-      "eterna-inocencia",
       "santos-inocentes"
     ]
   },
@@ -26787,16 +26781,16 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-linea",
       "mariano-manza-esain",
-      "menos-que-cero"
+      "menos-que-cero",
+      "valle-de-munecas"
     ],
     "mentioned_slugs_weak": [
       "la-cara",
-      "la-linea",
       "la-perla-irregular",
       "los-campos-magneticos",
-      "sebastian-rubin",
-      "valle-de-munecas"
+      "sebastian-rubin"
     ]
   },
   "exdealer": {
@@ -26876,14 +26870,13 @@
     "discography": [],
     "mentioned_slugs": [
       "2-minutos",
-      "la-linea",
-      "mal-momento"
-    ],
-    "mentioned_slugs_weak": [
       "cadena-perpetua",
+      "la-linea",
       "los-violadores",
+      "mal-momento",
       "sin-ley"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "explicit": {
     "name": "Explicit",
@@ -26918,11 +26911,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-rosa-de-cobre",
       "los-subterraneos"
     ],
-    "mentioned_slugs_weak": [
-      "la-rosa-de-cobre"
-    ]
+    "mentioned_slugs_weak": []
   },
   "expulsados": {
     "name": "Expulsados",
@@ -27106,10 +27098,10 @@
       "rosal"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "maria-ezquiaga"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "flavio-etcheto": {
     "name": "Flavio Etcheto",
@@ -27279,12 +27271,12 @@
     "discography": [],
     "mentioned_slugs": [
       "alfredo-casero",
+      "de-raiz",
       "gringui-herrera",
       "gustavo-bazterrica",
       "mex-urtizberea"
     ],
     "mentioned_slugs_weak": [
-      "de-raiz",
       "juan-del-barrio"
     ]
   },
@@ -28095,11 +28087,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "jovenes-pordioseros"
+      "jovenes-pordioseros",
+      "los-ratones-paranoicos"
     ],
     "mentioned_slugs_weak": [
-      "la-mississippi",
-      "los-ratones-paranoicos"
+      "la-mississippi"
     ]
   },
   "fase-4": {
@@ -28157,12 +28149,12 @@
       "dancing-mood",
       "flavio-cianciarulo",
       "hugo-lobo",
+      "la-cara",
       "mimi-maura",
       "un-kuartito"
     ],
     "mentioned_slugs_weak": [
-      "fidel-nadal",
-      "la-cara"
+      "fidel-nadal"
     ]
   },
   "fe": {
@@ -28281,11 +28273,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "la-feria"
+      "la-feria",
+      "los-visitantes"
     ],
     "mentioned_slugs_weak": [
       "los-animales",
-      "los-visitantes",
       "mercado-negro"
     ]
   },
@@ -28503,21 +28495,21 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-dorado",
       "giuliano-romagnoli"
     ],
-    "mentioned_slugs_weak": [
-      "el-dorado"
-    ]
+    "mentioned_slugs_weak": []
   },
   "fision": {
     "name": "Fisión",
     "url": "https://rock.com.ar/artistas/fision/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "entre-rios",
+    "mentioned_slugs": [
       "la-torre"
+    ],
+    "mentioned_slugs_weak": [
+      "entre-rios"
     ]
   },
   "fisura2": {
@@ -28815,10 +28807,10 @@
       "virus"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "todo-vuelve"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "flormaleva": {
     "name": "Flormaleva",
@@ -29243,11 +29235,10 @@
       }
     ],
     "mentioned_slugs": [
+      "celsa-mel-gowland",
       "ulises-butron"
     ],
-    "mentioned_slugs_weak": [
-      "celsa-mel-gowland"
-    ]
+    "mentioned_slugs_weak": []
   },
   "frida": {
     "name": "Frida",
@@ -29537,11 +29528,11 @@
     "discography": [],
     "mentioned_slugs": [
       "a-rodar",
+      "carmina-burana",
       "kubero-diaz",
       "te-de-brujas"
     ],
     "mentioned_slugs_weak": [
-      "carmina-burana",
       "razones-concientes"
     ]
   },
@@ -29846,11 +29837,11 @@
     "mentioned_slugs": [
       "el-kuelgue",
       "ezequiel-borra",
+      "juana-molina",
       "onda-vaga",
       "pablo-dacal"
     ],
     "mentioned_slugs_weak": [
-      "juana-molina",
       "la-linea",
       "la-nave"
     ]
@@ -29973,12 +29964,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-nave",
       "las-pastillas-del-abuelo",
       "los-cafres"
     ],
     "mentioned_slugs_weak": [
-      "ida-y-vuelta",
-      "la-nave"
+      "ida-y-vuelta"
     ]
   },
   "laforma": {
@@ -30327,13 +30318,13 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "mariano-otero"
+      "esteban-sehinkman",
+      "mariano-otero",
+      "sergio-verdinelli"
     ],
     "mentioned_slugs_weak": [
-      "esteban-sehinkman",
       "javier-malosetti",
-      "nicolas-sorin",
-      "sergio-verdinelli"
+      "nicolas-sorin"
     ]
   },
   "raul-rulo-fernandez": {
@@ -30664,13 +30655,14 @@
       }
     ],
     "mentioned_slugs": [
-      "fernando-samalea",
-      "illya-kuryaki-the-valderramas",
-      "la-torre"
-    ],
-    "mentioned_slugs_weak": [
       "cachorro-lopez",
       "carlos-garcia-lopez",
+      "fernando-samalea",
+      "illya-kuryaki-the-valderramas",
+      "la-torre",
+      "willy-iturri"
+    ],
+    "mentioned_slugs_weak": [
       "el-corte",
       "el-regreso",
       "el-subte",
@@ -30682,8 +30674,7 @@
       "la-maga",
       "las-sombras",
       "maria-gabriela-epumer",
-      "rosario-ortega",
-      "willy-iturri"
+      "rosario-ortega"
     ]
   },
   "claudio-gabis": {
@@ -30789,10 +30780,11 @@
     "url": "https://rock.com.ar/artistas/el-grito-del-chaman/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "deja-vu-2",
+    "mentioned_slugs": [
       "el-grito"
+    ],
+    "mentioned_slugs_weak": [
+      "deja-vu-2"
     ]
   },
   "erica-garcia": {
@@ -30909,11 +30901,11 @@
     "discography": [],
     "mentioned_slugs": [
       "gatos-sucios",
+      "machy-madco",
       "tren-loco",
       "tristemente-celebres"
     ],
     "mentioned_slugs_weak": [
-      "machy-madco",
       "saul-blanch",
       "viviana-scaliza"
     ]
@@ -31255,11 +31247,10 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "la-chilinga"
-    ],
-    "mentioned_slugs_weak": [
+      "la-chilinga",
       "los-umbanda"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "gastro": {
     "name": "Gastro",
@@ -31296,13 +31287,13 @@
     "discography": [],
     "mentioned_slugs": [
       "las-pelotas",
+      "los-calzones",
       "maria-gabriela-epumer"
     ],
     "mentioned_slugs_weak": [
       "el-corte",
       "fabiana-cantilo",
       "javier-calamaro",
-      "los-calzones",
       "los-guarros"
     ]
   },
@@ -31546,13 +31537,13 @@
     ],
     "mentioned_slugs": [
       "las-pelotas",
+      "los-siete-delfines",
       "sui-generis",
       "willy-crook"
     ],
     "mentioned_slugs_weak": [
       "ariel-prat",
-      "los-gardelitos",
-      "los-siete-delfines"
+      "los-gardelitos"
     ]
   },
   "ginesta": {
@@ -31708,12 +31699,12 @@
     ],
     "mentioned_slugs": [
       "bombas-de-amor",
+      "cadena-perpetua",
       "fun-people",
       "minoria-activa",
       "soda-stereo"
     ],
     "mentioned_slugs_weak": [
-      "cadena-perpetua",
       "mambo-gratis"
     ]
   },
@@ -31926,13 +31917,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "los-alamos",
       "los-natas",
       "satan-dealers",
       "sergio-chotsourian"
     ],
-    "mentioned_slugs_weak": [
-      "los-alamos"
-    ]
+    "mentioned_slugs_weak": []
   },
   "guacho": {
     "name": "Güacho",
@@ -32137,11 +32127,12 @@
       "la-renga"
     ],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-zurda"
+    ],
     "mentioned_slugs_weak": [
       "la-fuente",
-      "la-vela-puerca",
-      "la-zurda"
+      "la-vela-puerca"
     ]
   },
   "gunner-sixx": {
@@ -32268,11 +32259,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "las-cosas"
-    ],
-    "mentioned_slugs_weak": [
+      "las-cosas",
       "pampa-yakuza"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-gente": {
     "name": "La Gente",
@@ -32304,11 +32294,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "la-murga",
       "las-pelotas",
       "los-piojos"
     ],
     "mentioned_slugs_weak": [
-      "la-murga",
       "la-tramoya"
     ]
   },
@@ -32346,10 +32336,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "el-regreso"
+      "el-regreso",
+      "los-cafres"
     ],
     "mentioned_slugs_weak": [
-      "los-cafres",
       "los-calzones"
     ]
   },
@@ -32665,6 +32655,7 @@
     ],
     "mentioned_slugs": [
       "andres-gimenez",
+      "el-surco",
       "la-gente",
       "la-linea",
       "oscar-moro",
@@ -32674,7 +32665,6 @@
       "andres-ciro-martinez",
       "daniel-melingo",
       "el-corte",
-      "el-surco",
       "fabiana-cantilo",
       "guillermo-vadala",
       "gustavo-cordera",
@@ -32869,10 +32859,10 @@
         "url": "https://rock.com.ar/discos/los-gatos-salvajes"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "oscar-moro"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "los-gauchos-alemanes": {
     "name": "Los Gauchos Alemanes",
@@ -33165,11 +33155,11 @@
       "la-secuela",
       "luis-salinas",
       "miguel-zavaleta",
-      "patricia-sosa"
+      "patricia-sosa",
+      "willy-crook"
     ],
     "mentioned_slugs_weak": [
-      "entre-rios",
-      "willy-crook"
+      "entre-rios"
     ]
   },
   "silvina-garre": {
@@ -33312,6 +33302,7 @@
       "fernando-scarcella",
       "gustavo-rowek",
       "la-asociacion",
+      "rata-blanca",
       "ricardo-iorio",
       "saul-blanch"
     ],
@@ -33319,8 +33310,7 @@
       "arco-iris",
       "el-reino",
       "hugo-bistolfi",
-      "la-llave",
-      "rata-blanca"
+      "la-llave"
     ]
   },
   "zelmar-garin": {
@@ -33555,6 +33545,7 @@
       }
     ],
     "mentioned_slugs": [
+      "gustavo-cerati",
       "illya-kuryaki-the-valderramas",
       "la-nave",
       "lucas-marti",
@@ -33563,7 +33554,6 @@
     ],
     "mentioned_slugs_weak": [
       "el-corte",
-      "gustavo-cerati",
       "tu-hermana"
     ]
   },
@@ -33871,9 +33861,10 @@
     "url": "https://rock.com.ar/artistas/heavy-stream/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "claudio-marciello"
+    ],
     "mentioned_slugs_weak": [
-      "claudio-marciello",
       "la-celebracion"
     ]
   },
@@ -34233,11 +34224,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "mas-alla"
+      "mas-alla",
+      "resistencia-suburbana"
     ],
     "mentioned_slugs_weak": [
-      "los-cafres",
-      "resistencia-suburbana"
+      "los-cafres"
     ]
   },
   "hijo-de-la-recesion": {
@@ -34347,11 +34338,11 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "infierno-18",
+      "jovenes-pordioseros",
       "la-mancha-de-rolando"
     ],
     "mentioned_slugs_weak": [
-      "infierno-18",
-      "jovenes-pordioseros",
       "los-piojos"
     ]
   },
@@ -34706,11 +34697,10 @@
     "discography": [],
     "mentioned_slugs": [
       "karamelo-santo",
+      "la-murga",
       "los-andes"
     ],
-    "mentioned_slugs_weak": [
-      "la-murga"
-    ]
+    "mentioned_slugs_weak": []
   },
   "hormigon-armado": {
     "name": "Hormigón Armado",
@@ -34779,14 +34769,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "andres-brisson",
       "catupecu-machu",
       "fito-paez",
-      "luis-alberto-spinetta"
-    ],
-    "mentioned_slugs_weak": [
-      "andres-brisson",
+      "luis-alberto-spinetta",
       "soda-stereo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "huarpes": {
     "name": "Huarpes",
@@ -35012,14 +35001,14 @@
     "discography": [],
     "mentioned_slugs": [
       "attaque-77",
+      "el-otro-extremo",
+      "el-otro-yo",
       "juan-terrenal",
       "las-pelotas",
       "timmy-otool"
     ],
     "mentioned_slugs_weak": [
-      "el-corte",
-      "el-otro-extremo",
-      "el-otro-yo"
+      "el-corte"
     ]
   },
   "hypnofon": {
@@ -35068,11 +35057,10 @@
       }
     ],
     "mentioned_slugs": [
-      "pablo-echaniz"
-    ],
-    "mentioned_slugs_weak": [
+      "pablo-echaniz",
       "rodrigo-soler"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-herencia": {
     "name": "La Herencia",
@@ -35167,14 +35155,13 @@
       }
     ],
     "mentioned_slugs": [
+      "bambi-moreno-charpentier",
       "chano-moreno-charpentier",
       "marcelo-moura",
       "palo-pandolfo",
       "pipo-cipolatti"
     ],
-    "mentioned_slugs_weak": [
-      "bambi-moreno-charpentier"
-    ]
+    "mentioned_slugs_weak": []
   },
   "los-helicopteros": {
     "name": "Los Helicópteros",
@@ -35191,12 +35178,12 @@
       }
     ],
     "mentioned_slugs": [
-      "maria-gabriela-epumer"
+      "el-corte",
+      "maria-gabriela-epumer",
+      "miguel-zavaleta"
     ],
     "mentioned_slugs_weak": [
-      "el-corte",
-      "flavio-cianciarulo",
-      "miguel-zavaleta"
+      "flavio-cianciarulo"
     ]
   },
   "los-hermanos-butaca": {
@@ -35205,11 +35192,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "cuatro-varas",
+      "dancing-mood",
       "las-manos-de-filippi"
     ],
     "mentioned_slugs_weak": [
-      "cuatro-varas",
-      "dancing-mood",
       "el-absurdo",
       "los-argentinos"
     ]
@@ -35308,11 +35295,10 @@
       "martes-menta",
       "michel-peyronel",
       "soda-stereo",
+      "stukapil",
       "stukas-en-vuelo"
     ],
-    "mentioned_slugs_weak": [
-      "stukapil"
-    ]
+    "mentioned_slugs_weak": []
   },
   "victor-hamudis": {
     "name": "Víctor Hamudis",
@@ -35377,14 +35363,14 @@
       "baltasar-comotto",
       "entre-rios",
       "la-mira",
+      "marcelo-torres",
+      "pablo-sbaraglia",
       "sergio-dawi"
     ],
     "mentioned_slugs_weak": [
       "bajo-cero",
       "ciudad-baigon",
-      "mala-suerte",
-      "marcelo-torres",
-      "pablo-sbaraglia"
+      "mala-suerte"
     ]
   },
   "connie-isla": {
@@ -35449,11 +35435,10 @@
     "mentioned_slugs": [
       "kevin-johansen",
       "los-latigos",
-      "panico-ramirez"
-    ],
-    "mentioned_slugs_weak": [
+      "panico-ramirez",
       "proyecto-verona"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "ideas-al-fuego": {
     "name": "Ideas al Fuego",
@@ -35721,10 +35706,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "gaby-kerpel"
+      "gaby-kerpel",
+      "karamelo-santo"
     ],
     "mentioned_slugs_weak": [
-      "karamelo-santo",
       "la-celebracion",
       "un-kuartito"
     ]
@@ -35818,10 +35803,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-aleman",
       "la-renga"
     ],
     "mentioned_slugs_weak": [
-      "el-aleman",
       "los-andes"
     ]
   },
@@ -36007,6 +35992,7 @@
     "discography": [],
     "mentioned_slugs": [
       "animal",
+      "cadena-perpetua",
       "cuentos-borgeanos",
       "gonzalo-aloras",
       "leon-gieco",
@@ -36016,7 +36002,6 @@
     "mentioned_slugs_weak": [
       "asesinos-cereales",
       "attaque-77",
-      "cadena-perpetua",
       "catupecu-machu",
       "historia-del-crimen",
       "la-gente",
@@ -36315,9 +36300,10 @@
         "url": "https://rock.com.ar/discos/otra-noche-el-la-luna-episodio-ii/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "felipe-barrozo"
+    ],
     "mentioned_slugs_weak": [
-      "felipe-barrozo",
       "las-cosas",
       "los-videos",
       "no-tengo"
@@ -36769,11 +36755,11 @@
       }
     ],
     "mentioned_slugs": [
+      "daniela-spalla",
       "gonzalo-aloras",
       "litto-nebbia"
     ],
     "mentioned_slugs_weak": [
-      "daniela-spalla",
       "leo-garcia",
       "rayos-laser"
     ]
@@ -36793,12 +36779,12 @@
     "discography": [],
     "mentioned_slugs": [
       "hermanos-de-la-calle",
-      "la-covacha"
+      "la-covacha",
+      "la-gente"
     ],
     "mentioned_slugs_weak": [
       "blues-motel",
       "el-bordo",
-      "la-gente",
       "la-mancha-de-rolando",
       "la-mississippi",
       "la-negra"
@@ -36929,10 +36915,10 @@
       "rata-blanca"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "gustavo-rowek"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "pablo-iglesias": {
     "name": "Pablo Iglesias",
@@ -37265,12 +37251,13 @@
     "url": "https://rock.com.ar/artistas/jauretche/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "andando-descalzo",
-      "bang-bang",
-      "el-corte",
       "las-cosas"
+    ],
+    "mentioned_slugs_weak": [
+      "bang-bang",
+      "el-corte"
     ]
   },
   "jaurienses": {
@@ -37455,10 +37442,10 @@
     "mentioned_slugs": [
       "baltasar-comotto",
       "la-mancha-de-rolando",
+      "la-mississippi",
       "los-twist"
     ],
     "mentioned_slugs_weak": [
-      "la-mississippi",
       "los-autenticos-decadentes"
     ]
   },
@@ -37531,11 +37518,10 @@
     "discography": [],
     "mentioned_slugs": [
       "all-the-hats",
+      "el-corte",
       "los-natas"
     ],
-    "mentioned_slugs_weak": [
-      "el-corte"
-    ]
+    "mentioned_slugs_weak": []
   },
   "jose-miel": {
     "name": "José Miel",
@@ -37704,12 +37690,12 @@
       "2-minutos",
       "cadena-perpetua",
       "entre-rios",
-      "los-violadores"
-    ],
-    "mentioned_slugs_weak": [
       "karamelo-santo",
       "las-manos-de-filippi",
-      "mal-momento",
+      "los-violadores",
+      "mal-momento"
+    ],
+    "mentioned_slugs_weak": [
       "mas-alla",
       "sin-ley"
     ]
@@ -37858,6 +37844,7 @@
     "mentioned_slugs": [
       "alejandro-lerner",
       "andres-calamaro",
+      "guillermo-vadala",
       "la-triple-nelson",
       "richard-coleman"
     ],
@@ -37865,7 +37852,6 @@
       "fernando-samalea",
       "gabriel-carambula",
       "gonzalo-aloras",
-      "guillermo-vadala",
       "ruben-gaitan"
     ]
   },
@@ -39129,12 +39115,12 @@
     "discography": [],
     "mentioned_slugs": [
       "hasta-las-manos",
+      "la-culpa",
       "la-saga"
     ],
     "mentioned_slugs_weak": [
       "cadena-perpetua",
-      "ciro-pertusi",
-      "la-culpa"
+      "ciro-pertusi"
     ]
   },
   "koxmoz": {
@@ -39197,11 +39183,11 @@
       "el-sur",
       "juana-la-loca",
       "panico-ramirez",
-      "soda-stereo"
+      "soda-stereo",
+      "tan-bionica"
     ],
     "mentioned_slugs_weak": [
-      "el-regreso",
-      "tan-bionica"
+      "el-regreso"
     ]
   },
   "krisis": {
@@ -39280,10 +39266,10 @@
     "mentioned_slugs": [
       "dancing-mood",
       "flavio-cianciarulo",
+      "hugo-lobo",
       "los-fabulosos-cadillacs"
     ],
     "mentioned_slugs_weak": [
-      "hugo-lobo",
       "she-devils"
     ]
   },
@@ -39391,6 +39377,7 @@
       "fernandez-pereyra",
       "gaby-kerpel",
       "ignacio-arigos",
+      "la-feria",
       "la-nieta-de-godar",
       "la-secuela",
       "luis-alberto-spinetta",
@@ -39406,7 +39393,6 @@
       "fito-paez",
       "gabo-ferro",
       "gonzalo-aloras",
-      "la-feria",
       "la-torre"
     ]
   },
@@ -39640,10 +39626,10 @@
         "url": "https://rock.com.ar/discos/yendo-de-la-cama-al-living-charly-garcia"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "miguel-mateos"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "chelo-lares": {
     "name": "Chelo Lares",
@@ -39681,13 +39667,13 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "blues-band"
+      "blues-band",
+      "julio-y-agosto",
+      "victor-hamudis"
     ],
     "mentioned_slugs_weak": [
       "black-amaya",
-      "el-soldado",
-      "julio-y-agosto",
-      "victor-hamudis"
+      "el-soldado"
     ]
   },
   "david-lebon": {
@@ -39802,6 +39788,7 @@
       "black-amaya",
       "ciro-fogliatta",
       "edelmiro-molinari",
+      "hector-starc",
       "la-experiencia",
       "oscar-moro",
       "rinaldo-rafanelli",
@@ -39811,7 +39798,6 @@
       "deja-vu-2",
       "dr-rock",
       "el-dragon",
-      "hector-starc",
       "la-gente",
       "la-mississippi",
       "las-cosas",
@@ -39995,16 +39981,15 @@
       "david-lebon",
       "fabiana-cantilo",
       "gustavo-santaolalla",
+      "juan-del-barrio",
       "leo-garcia",
       "lisandro-aristimuno",
       "lito-vitale",
+      "miguel-abuelo",
       "palo-pandolfo",
       "roque-narvaja"
     ],
-    "mentioned_slugs_weak": [
-      "juan-del-barrio",
-      "miguel-abuelo"
-    ]
+    "mentioned_slugs_weak": []
   },
   "hugo-lobo": {
     "name": "Hugo Lobo",
@@ -40059,6 +40044,7 @@
     "mentioned_slugs": [
       "diego-frenkel",
       "felipe-barrozo",
+      "fernandez-fierro",
       "las-taradas",
       "los-autenticos-decadentes",
       "lucas-marti",
@@ -40069,8 +40055,7 @@
       "varias-artistas"
     ],
     "mentioned_slugs_weak": [
-      "alfonso-barbieri",
-      "fernandez-fierro"
+      "alfonso-barbieri"
     ]
   },
   "joaquin-levinton": {
@@ -40092,11 +40077,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "diego-torres",
       "la-nave",
       "ulises-butron"
     ],
     "mentioned_slugs_weak": [
-      "diego-torres",
       "el-bordo",
       "jovenes-pordioseros",
       "la-mancha-de-rolando",
@@ -40632,9 +40617,10 @@
     "url": "https://rock.com.ar/artistas/le-temps/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-gente"
+    ],
     "mentioned_slugs_weak": [
-      "la-gente",
       "la-nave",
       "la-sangre",
       "los-natas",
@@ -41150,11 +41136,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "lavanda-fulton",
       "mi-amigo-invencible"
     ],
-    "mentioned_slugs_weak": [
-      "lavanda-fulton"
-    ]
+    "mentioned_slugs_weak": []
   },
   "lions-in-love": {
     "name": "Lions in Love",
@@ -41198,11 +41183,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "maria-rosa-yorio",
       "pipo-cipolatti"
     ],
-    "mentioned_slugs_weak": [
-      "maria-rosa-yorio"
-    ]
+    "mentioned_slugs_weak": []
   },
   "little-dorothy": {
     "name": "Little Dorothy",
@@ -41284,11 +41268,11 @@
     "discography": [],
     "mentioned_slugs": [
       "cadena-perpetua",
-      "celeste-carballo"
+      "celeste-carballo",
+      "de-raiz"
     ],
     "mentioned_slugs_weak": [
       "charly-garcia",
-      "de-raiz",
       "fito-paez",
       "las-cosas",
       "pescado-rabioso",
@@ -41365,12 +41349,11 @@
     "mentioned_slugs": [
       "catupecu-machu",
       "cuadros-invitados",
+      "el-siempreterno",
       "gran-martell",
       "las-pelotas"
     ],
-    "mentioned_slugs_weak": [
-      "el-siempreterno"
-    ]
+    "mentioned_slugs_weak": []
   },
   "locura-roquefort": {
     "name": "Locura Roquefort",
@@ -41802,14 +41785,14 @@
     "discography": [],
     "mentioned_slugs": [
       "avant-press",
+      "cadena-perpetua",
       "el-otro-yo",
       "fidel-nadal",
       "los-gardelitos",
       "los-visitantes"
     ],
     "mentioned_slugs_weak": [
-      "alto-voltaje",
-      "cadena-perpetua"
+      "alto-voltaje"
     ]
   },
   "lukas-en-guardia": {
@@ -41923,10 +41906,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "la-linea"
+      "la-linea",
+      "les-mentettes"
     ],
     "mentioned_slugs_weak": [
-      "les-mentettes",
       "los-alamos",
       "paula-maffia"
     ]
@@ -42014,10 +41997,10 @@
       "12452"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-gran-7"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "leone-mavi": {
     "name": "Mavi Leone",
@@ -42028,11 +42011,11 @@
     "discography": [],
     "mentioned_slugs": [
       "fabian-gallardo",
+      "los-leones",
       "luis-alberto-spinetta"
     ],
     "mentioned_slugs_weak": [
-      "javier-malosetti",
-      "los-leones"
+      "javier-malosetti"
     ]
   },
   "milton-lego": {
@@ -42053,13 +42036,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "eruca-sativa",
       "leo-garcia",
       "litto-nebbia",
       "luis-alberto-spinetta",
       "sandra-mihanovich"
     ],
     "mentioned_slugs_weak": [
-      "eruca-sativa",
       "mas-alla"
     ]
   },
@@ -42510,13 +42493,13 @@
       "cachorro-lopez",
       "juana-la-loca",
       "la-forma",
+      "los-brujos-mandioca",
       "los-latigos"
     ],
     "mentioned_slugs_weak": [
       "la-caja",
       "la-sed",
-      "leandro-fresco",
-      "los-brujos-mandioca"
+      "leandro-fresco"
     ]
   },
   "daniel-melingo": {
@@ -43101,10 +43084,11 @@
         "url": "https://rock.com.ar/discos/peliculas-la-maquina-de-hacer-pajaros/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "carlos-cutaia",
-      "jose-luis-fernandez",
+      "jose-luis-fernandez"
+    ],
+    "mentioned_slugs_weak": [
       "rinaldo-rafanelli"
     ]
   },
@@ -43170,12 +43154,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "ivan-noble",
       "la-experiencia",
       "miguel-cantilo"
     ],
-    "mentioned_slugs_weak": [
-      "ivan-noble"
-    ]
+    "mentioned_slugs_weak": []
   },
   "la-mejor-flor": {
     "name": "La Mejor flor",
@@ -43323,11 +43306,10 @@
       "beto-satragni",
       "blues-band",
       "los-piojos",
-      "luis-robinson"
-    ],
-    "mentioned_slugs_weak": [
+      "luis-robinson",
       "miguel-chucky-de-ipola"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-mistonga": {
     "name": "La Mistonga",
@@ -43516,13 +43498,14 @@
     "url": "https://rock.com.ar/artistas/la-moto/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "las-cosas"
+    ],
     "mentioned_slugs_weak": [
       "el-corte",
       "el-hombre",
       "entre-rios",
       "la-gente",
-      "las-cosas",
       "no-tengo"
     ]
   },
@@ -43531,10 +43514,11 @@
     "url": "https://rock.com.ar/artistas/la-movida/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "los-autenticos-decadentes",
+    "mentioned_slugs": [
       "pampa-yakuza"
+    ],
+    "mentioned_slugs_weak": [
+      "los-autenticos-decadentes"
     ]
   },
   "la-muda": {
@@ -43694,13 +43678,13 @@
       "cielo-razzo",
       "la-covacha",
       "la-favorita",
+      "la-gente",
       "la-mocosa",
       "las-pastillas-del-abuelo",
       "los-piojos"
     ],
     "mentioned_slugs_weak": [
       "karamelo-santo",
-      "la-gente",
       "la-movida",
       "la-sangre",
       "las-cosas",
@@ -43750,14 +43734,13 @@
     ],
     "mentioned_slugs": [
       "celeste-carballo",
+      "la-torre",
       "leon-gieco",
       "los-desconocidos-de-siempre",
       "nito-mestre",
       "soda-stereo"
     ],
-    "mentioned_slugs_weak": [
-      "la-torre"
-    ]
+    "mentioned_slugs_weak": []
   },
   "les-mentettes": {
     "name": "Les Mentettes",
@@ -43919,10 +43902,10 @@
       "pedro-aznar"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "bernardo-baraj"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "lucas-marti": {
     "name": "Lucas Martí",
@@ -43997,14 +43980,14 @@
       }
     ],
     "mentioned_slugs": [
+      "liliana-herrero",
       "mariana-baraj",
+      "palo-pandolfo",
       "perota-chingo"
     ],
     "mentioned_slugs_weak": [
       "fito-paez",
-      "liliana-herrero",
-      "los-animales",
-      "palo-pandolfo"
+      "los-animales"
     ]
   },
   "m-19": {
@@ -44066,6 +44049,7 @@
     "mentioned_slugs": [
       "black-amaya",
       "boff-serafine",
+      "hector-starc",
       "jorge-pinchevsky",
       "lito-vitale",
       "pappos-blues"
@@ -44073,7 +44057,6 @@
     "mentioned_slugs_weak": [
       "blues-band",
       "edelmiro-molinari",
-      "hector-starc",
       "leon-gieco"
     ]
   },
@@ -44327,10 +44310,10 @@
     "url": "https://rock.com.ar/artistas/magno/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "fabian-banner"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "magos-cuanticos": {
     "name": "Magos cuánticos",
@@ -44754,11 +44737,11 @@
     "url": "https://rock.com.ar/artistas/maleboux/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "catupecu-machu",
       "sick-porky"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "maleta-de-loca": {
     "name": "Maleta de Loca",
@@ -44972,10 +44955,10 @@
         "url": "https://rock.com.ar/discos/lo-ves-mam"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "mas-alla"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "mama-blues": {
     "name": "Mama Blues",
@@ -45006,10 +44989,10 @@
     "url": "https://rock.com.ar/artistas/mama-nos-pegaba/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "el-sotano"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "mama-perfecta": {
     "name": "Mama perfecta",
@@ -45204,15 +45187,14 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "2-minutos",
       "cadena-perpetua",
       "el-otro-yo",
       "juana-la-loca",
       "los-visitantes",
       "me-daras-mil-hijos"
     ],
-    "mentioned_slugs_weak": [
-      "2-minutos"
-    ]
+    "mentioned_slugs_weak": []
   },
   "mamut": {
     "name": "Mamut",
@@ -45516,11 +45498,11 @@
     "mentioned_slugs": [
       "claudia-puyo",
       "la-gente",
+      "luis-alberto-spinetta",
       "mes-de-mayo"
     ],
     "mentioned_slugs_weak": [
-      "fin-del-mundo",
-      "luis-alberto-spinetta"
+      "fin-del-mundo"
     ]
   },
   "manjar": {
@@ -45557,11 +45539,10 @@
     "mentioned_slugs": [
       "carlos-garcia-lopez",
       "fernando-samalea",
+      "maria-eva-albistur",
       "viejas-locas"
     ],
-    "mentioned_slugs_weak": [
-      "maria-eva-albistur"
-    ]
+    "mentioned_slugs_weak": []
   },
   "mantra": {
     "name": "Mantra",
@@ -45592,11 +45573,11 @@
     "url": "https://rock.com.ar/artistas/maperque/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "lucas-heredia",
       "marcos-luc"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "maple-azul": {
     "name": "Maple Azul",
@@ -45646,11 +45627,11 @@
     "mentioned_slugs": [
       "david-lebon",
       "gustavo-cerati",
-      "pedro-aznar"
+      "pedro-aznar",
+      "walter-giardino"
     ],
     "mentioned_slugs_weak": [
-      "soda-stereo",
-      "walter-giardino"
+      "soda-stereo"
     ]
   },
   "marcelo-mapelman": {
@@ -45741,7 +45722,9 @@
     "url": "https://rock.com.ar/artistas/mariscal/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "sui-generis"
+    ],
     "mentioned_slugs_weak": [
       "claudia-puyo",
       "el-corte",
@@ -45749,8 +45732,7 @@
       "juana-la-loca",
       "las-pastillas-del-abuelo",
       "marcelo-moura",
-      "piti-fernandez",
-      "sui-generis"
+      "piti-fernandez"
     ]
   },
   "mariscal-de-campo": {
@@ -45896,11 +45878,11 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "jovenes-pordioseros"
+      "jovenes-pordioseros",
+      "la-mississippi"
     ],
     "mentioned_slugs_weak": [
       "el-dorado",
-      "la-mississippi",
       "los-perros"
     ]
   },
@@ -45910,11 +45892,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "gustavo-cerati",
       "soda-stereo"
     ],
     "mentioned_slugs_weak": [
-      "catupecu-machu",
-      "gustavo-cerati"
+      "catupecu-machu"
     ]
   },
   "mas-que-unx": {
@@ -46275,10 +46257,10 @@
       }
     ],
     "mentioned_slugs": [
+      "don-nadie",
       "no-te-va-gustar"
     ],
     "mentioned_slugs_weak": [
-      "don-nadie",
       "ruben-rada"
     ]
   },
@@ -46295,14 +46277,15 @@
     "url": "https://rock.com.ar/artistas/mathagonia/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "soda-stereo"
+    ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
       "charly-garcia",
       "el-corte",
       "la-mississippi",
-      "las-pelotas",
-      "soda-stereo"
+      "las-pelotas"
     ]
   },
   "matheu": {
@@ -46381,12 +46364,12 @@
       "giuliano-romagnoli",
       "javier-malosetti",
       "julio-franchi",
-      "leone-mavi"
-    ],
-    "mentioned_slugs_weak": [
-      "gonzalo-aloras",
+      "leone-mavi",
       "los-leones",
       "luis-alberto-spinetta"
+    ],
+    "mentioned_slugs_weak": [
+      "gonzalo-aloras"
     ]
   },
   "mavirock": {
@@ -46562,11 +46545,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "la-escena-del-crimen"
+      "la-escena-del-crimen",
+      "la-nave"
     ],
     "mentioned_slugs_weak": [
-      "ciro-y-los-persas",
-      "la-nave"
+      "ciro-y-los-persas"
     ]
   },
   "media-tonelada-de-rockyroll": {
@@ -46750,12 +46733,13 @@
         "url": "https://rock.com.ar/discos/25-aniversario-memphis-la-blusera"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "lucas-sedler"
+    ],
     "mentioned_slugs_weak": [
       "black-amaya",
       "el-hombre",
-      "el-regreso",
-      "lucas-sedler"
+      "el-regreso"
     ]
   },
   "menashatrua": {
@@ -46887,10 +46871,11 @@
     "url": "https://rock.com.ar/artistas/mermel/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "juan-ravioli"
+    ],
     "mentioned_slugs_weak": [
       "el-reino",
-      "juan-ravioli",
       "mariano-manza-esain"
     ]
   },
@@ -47190,11 +47175,10 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "onda-vaga"
-    ],
-    "mentioned_slugs_weak": [
+      "onda-vaga",
       "tomas-justo-gaggero"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "micosis": {
     "name": "Micosis",
@@ -47290,6 +47274,7 @@
     ],
     "mentioned_slugs": [
       "cachorro-lopez",
+      "carlos-garcia-lopez",
       "ciro-fogliatta",
       "guillermo-vadala",
       "javier-malosetti",
@@ -47298,7 +47283,6 @@
       "sebastian-schon"
     ],
     "mentioned_slugs_weak": [
-      "carlos-garcia-lopez",
       "en-coma",
       "la-ley",
       "las-armas",
@@ -47343,11 +47327,11 @@
     ],
     "mentioned_slugs": [
       "dancing-mood",
-      "hugo-lobo"
+      "hugo-lobo",
+      "pablo-sbaraglia"
     ],
     "mentioned_slugs_weak": [
-      "los-umbanda",
-      "pablo-sbaraglia"
+      "los-umbanda"
     ]
   },
   "mil-hombres": {
@@ -47367,12 +47351,12 @@
     "discography": [],
     "mentioned_slugs": [
       "attaque-77",
+      "la-sangre",
       "los-piojos"
     ],
     "mentioned_slugs_weak": [
       "el-cuerpo",
-      "el-suburbio",
-      "la-sangre"
+      "el-suburbio"
     ]
   },
   "mil-razones-ciertas": {
@@ -48149,10 +48133,11 @@
     "url": "https://rock.com.ar/artistas/mono-luve/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "de-raiz",
+    "mentioned_slugs": [
       "fernandez-fierro"
+    ],
+    "mentioned_slugs_weak": [
+      "de-raiz"
     ]
   },
   "mono-moncho": {
@@ -48509,10 +48494,10 @@
     ],
     "mentioned_slugs": [
       "alejandro-medina",
+      "gustavo-cerati",
       "lucas-finocchi"
     ],
     "mentioned_slugs_weak": [
-      "gustavo-cerati",
       "la-trampa",
       "soda-stereo"
     ]
@@ -48544,10 +48529,10 @@
     "mentioned_slugs": [
       "cielo-razzo",
       "diego-mizrahi",
+      "eruca-sativa",
       "la-mississippi"
     ],
     "mentioned_slugs_weak": [
-      "eruca-sativa",
       "la-franela",
       "las-pastillas-del-abuelo"
     ]
@@ -48587,11 +48572,10 @@
       "historia-del-crimen",
       "hugo-lobo",
       "juana-la-loca",
+      "mariano-manza-esain",
       "valle-de-munecas"
     ],
-    "mentioned_slugs_weak": [
-      "mariano-manza-esain"
-    ]
+    "mentioned_slugs_weak": []
   },
   "motorblues": {
     "name": "Motorblues",
@@ -49201,13 +49185,13 @@
       }
     ],
     "mentioned_slugs": [
+      "ciro-fogliatta",
+      "juan-carlos-mono-fontana",
       "oveja-negra"
     ],
     "mentioned_slugs_weak": [
-      "ciro-fogliatta",
       "el-sur",
-      "fin-del-mundo",
-      "juan-carlos-mono-fontana"
+      "fin-del-mundo"
     ]
   },
   "omar-mollo": {
@@ -49245,12 +49229,12 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "jose-luis-fernandez"
+      "ciro-fogliatta",
+      "jose-luis-fernandez",
+      "sui-generis"
     ],
     "mentioned_slugs_weak": [
-      "ciro-fogliatta",
-      "mas-alla",
-      "sui-generis"
+      "mas-alla"
     ]
   },
   "pablo-molina": {
@@ -49317,11 +49301,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "lucas-marti",
       "varias-artistas"
     ],
     "mentioned_slugs_weak": [
-      "entre-rios",
-      "lucas-marti"
+      "entre-rios"
     ]
   },
   "pol-medina": {
@@ -49510,16 +49494,16 @@
       }
     ],
     "mentioned_slugs": [
+      "fito-paez",
       "illya-kuryaki-the-valderramas",
       "javier-malosetti",
       "jorge-drexler",
       "juana-molina",
+      "lisandro-aristimuno",
       "pedro-aznar"
     ],
     "mentioned_slugs_weak": [
-      "andres-calamaro",
-      "fito-paez",
-      "lisandro-aristimuno"
+      "andres-calamaro"
     ]
   },
   "amilcar-nadal": {
@@ -49578,6 +49562,7 @@
       "fito-paez",
       "guillermo-vadala",
       "gustavo-cerati",
+      "hilda-lizarazu",
       "los-latigos",
       "soda-stereo"
     ],
@@ -49586,7 +49571,6 @@
       "daniel-melero",
       "fernando-kabusacki",
       "fernando-samalea",
-      "hilda-lizarazu",
       "illya-kuryaki-the-valderramas",
       "leo-garcia",
       "lucas-marti"
@@ -49781,12 +49765,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "fito-paez",
       "juan-carlos-baglietto",
       "leon-gieco",
       "nito-mestre"
     ],
     "mentioned_slugs_weak": [
-      "fito-paez",
       "la-naranja-2",
       "la-sangre"
     ]
@@ -49896,10 +49880,10 @@
     "url": "https://rock.com.ar/artistas/la-nieta-de-godar/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "eruca-sativa"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-noche-de-garufa": {
     "name": "La Noche de Garufa",
@@ -50348,6 +50332,7 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "charly-garcia",
       "el-regreso",
       "javier-calamaro",
       "la-maquina-de-hacer-pajaros",
@@ -50356,7 +50341,6 @@
     ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
-      "charly-garcia",
       "santos-inocentes",
       "seru-giran"
     ]
@@ -50747,9 +50731,10 @@
     "url": "https://rock.com.ar/artistas/narices-rotas/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "jovenes-pordioseros"
+    ],
     "mentioned_slugs_weak": [
-      "jovenes-pordioseros",
       "los-gardelitos"
     ]
   },
@@ -50849,13 +50834,13 @@
       "ciro-pertusi",
       "gustavo-rowek",
       "la-renga",
+      "los-pericos",
       "soda-stereo"
     ],
     "mentioned_slugs_weak": [
       "el-duelo",
       "la-fuga",
       "la-trampa",
-      "los-pericos",
       "santos-inocentes",
       "ultimo-dia"
     ]
@@ -50959,10 +50944,11 @@
         "url": "https://rock.com.ar/discos/se-feliz-navidad-en-agosto"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "catupecu-machu"
+    ],
     "mentioned_slugs_weak": [
       "abril-sosa",
-      "catupecu-machu",
       "cuentos-borgeanos"
     ]
   },
@@ -51016,10 +51002,10 @@
       }
     ],
     "mentioned_slugs": [
-      "2-minutos"
+      "2-minutos",
+      "jesus-martyr"
     ],
     "mentioned_slugs_weak": [
-      "jesus-martyr",
       "restos-fosiles",
       "totus-toss"
     ]
@@ -51197,6 +51183,7 @@
     "discography": [],
     "mentioned_slugs": [
       "gustavo-cerati",
+      "karamelo-santo",
       "miguel-abuelo",
       "pablo-krantz",
       "peligrosos-gorriones",
@@ -51204,7 +51191,6 @@
       "rosario-blefari"
     ],
     "mentioned_slugs_weak": [
-      "karamelo-santo",
       "martin-cuervo-karakachoff",
       "zeta-bosio"
     ]
@@ -51493,12 +51479,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "cuentos-borgeanos",
       "d-mente",
-      "javier-calamaro"
+      "javier-calamaro",
+      "juana-la-loca"
     ],
     "mentioned_slugs_weak": [
-      "cuentos-borgeanos",
-      "juana-la-loca",
       "volador-g"
     ]
   },
@@ -51831,11 +51817,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "los-tipitos"
-    ],
-    "mentioned_slugs_weak": [
+      "los-tipitos",
       "sergio-alvarez"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "no-ves-nada": {
     "name": "No ves nada",
@@ -51926,14 +51911,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "hermanos-de-la-calle",
       "hurlingham-reggae-band",
       "julio-moura",
       "pedro-aznar",
       "reggae-rockers"
     ],
-    "mentioned_slugs_weak": [
-      "hermanos-de-la-calle"
-    ]
+    "mentioned_slugs_weak": []
   },
   "noise": {
     "name": "Noise",
@@ -52078,11 +52062,10 @@
       }
     ],
     "mentioned_slugs": [
-      "ciro-pertusi"
-    ],
-    "mentioned_slugs_weak": [
+      "ciro-pertusi",
       "el-sur"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "nonphysical-damage": {
     "name": "Nonphysical damage",
@@ -52211,10 +52194,10 @@
         "url": "https://rock.com.ar/discos/blanco-movil-fernando-blanco"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-gente"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "nubes-en-mi-casa": {
     "name": "Nubes en mi casa",
@@ -52241,11 +52224,11 @@
       }
     ],
     "mentioned_slugs": [
-      "matias-chavez-mendez"
+      "matias-chavez-mendez",
+      "nicolas-martin"
     ],
     "mentioned_slugs_weak": [
-      "el-corte",
-      "nicolas-martin"
+      "el-corte"
     ]
   },
   "nuch": {
@@ -52314,20 +52297,20 @@
     "url": "https://rock.com.ar/artistas/nueva-luz-reggae/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "paella-virgen"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "nuevas-raices": {
     "name": "Nuevas raíces",
     "url": "https://rock.com.ar/artistas/nuevas-raices/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "de-raiz"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "nueve-millas": {
     "name": "Nueve millas",
@@ -52365,10 +52348,10 @@
     "url": "https://rock.com.ar/artistas/nuitilfait/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "entre-rios"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "numeral": {
     "name": "Numeral",
@@ -52461,6 +52444,8 @@
     "discography": [],
     "mentioned_slugs": [
       "ariel-prat",
+      "ella-es-tan-cargosa",
+      "fito-paez",
       "ivan-noble",
       "la-chicana",
       "la-chilinga",
@@ -52469,9 +52454,7 @@
     ],
     "mentioned_slugs_weak": [
       "el-horreo",
-      "ella-es-tan-cargosa",
       "esencia-vudu",
-      "fito-paez",
       "javier-calamaro",
       "la-renga",
       "los-cafres",
@@ -52642,13 +52625,13 @@
       }
     ],
     "mentioned_slugs": [
+      "el-sur",
       "los-brujos-mandioca",
       "maria-fernanda-aldana",
       "she-devils",
       "sugar-tampaxxx"
     ],
     "mentioned_slugs_weak": [
-      "el-sur",
       "revolucion-humana"
     ]
   },
@@ -52728,13 +52711,13 @@
     "discography": [],
     "mentioned_slugs": [
       "juan-subira",
-      "los-perez-garcia"
+      "los-perez-garcia",
+      "tienda-de-rarezas"
     ],
     "mentioned_slugs_weak": [
       "jovenes-pordioseros",
       "la-mississippi",
-      "la-propina",
-      "tienda-de-rarezas"
+      "la-propina"
     ]
   },
   "la-otra-cara-de-la-nada": {
@@ -52810,11 +52793,10 @@
     "discography": [],
     "mentioned_slugs": [
       "javier-malosetti",
+      "liliana-herrero",
       "luis-alberto-spinetta"
     ],
-    "mentioned_slugs_weak": [
-      "liliana-herrero"
-    ]
+    "mentioned_slugs_weak": []
   },
   "martin-oliver": {
     "name": "Martín Oliver",
@@ -53223,11 +53205,11 @@
     "discography": [],
     "mentioned_slugs": [
       "charly-garcia",
+      "gringui-herrera",
       "luis-alberto-spinetta",
       "rata-blanca"
     ],
     "mentioned_slugs_weak": [
-      "gringui-herrera",
       "silvio-furmanski"
     ]
   },
@@ -53282,10 +53264,11 @@
     "url": "https://rock.com.ar/artistas/omar/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "jorge-drexler"
+    ],
     "mentioned_slugs_weak": [
       "gustavo-cerati",
-      "jorge-drexler",
       "juan-campodonico"
     ]
   },
@@ -53560,10 +53543,10 @@
     "url": "https://rock.com.ar/artistas/orquesta-de-perros/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "lautaro-barcelo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "orquesta-de-salon": {
     "name": "Orquesta de Salón",
@@ -53663,6 +53646,7 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "23-otonos",
       "cuentos-borgeanos",
       "d-mente",
       "eruca-sativa",
@@ -53670,7 +53654,6 @@
       "infierno-18"
     ],
     "mentioned_slugs_weak": [
-      "23-otonos",
       "anima-triple",
       "connor-questa",
       "volador-g"
@@ -53991,14 +53974,14 @@
     "discography": [],
     "mentioned_slugs": [
       "bersuit-vergarabat",
+      "la-chicana",
       "la-chilinga",
       "leon-gieco",
       "lito-vitale"
     ],
     "mentioned_slugs_weak": [
       "jorge-drexler",
-      "juan-subira",
-      "la-chicana"
+      "juan-subira"
     ]
   },
   "ciro-pertusi": {
@@ -54020,10 +54003,10 @@
       "punch"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "vox-dei"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "claudio-pedreira": {
     "name": "Claudio Pedreira",
@@ -54242,11 +54225,10 @@
       "don-cornelio-y-la-zona",
       "los-visitantes",
       "pablo-guerra",
-      "palo-pandolfo"
-    ],
-    "mentioned_slugs_weak": [
+      "palo-pandolfo",
       "viviana-scaliza"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "el-porton": {
     "name": "El Portón",
@@ -54305,12 +54287,12 @@
       }
     ],
     "mentioned_slugs": [
+      "abril-sosa",
       "catupecu-machu",
       "cuentos-borgeanos",
       "mariana-baraj"
     ],
     "mentioned_slugs_weak": [
-      "abril-sosa",
       "el-aguijon",
       "el-clan",
       "el-huevo"
@@ -54321,10 +54303,11 @@
     "url": "https://rock.com.ar/artistas/fernando-pareta/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "la-caverna",
+    "mentioned_slugs": [
       "la-linea"
+    ],
+    "mentioned_slugs_weak": [
+      "la-caverna"
     ]
   },
   "fito-paez": {
@@ -54632,10 +54615,12 @@
       "alejandro-medina",
       "charly-garcia",
       "el-adoquin",
+      "jovenes-pordioseros",
       "la-napolitana",
       "la-rusa",
       "leon-gieco",
       "los-romeos",
+      "luis-alberto-spinetta",
       "luis-robinson",
       "mario-ian",
       "miguel-cantilo",
@@ -54647,8 +54632,6 @@
     "mentioned_slugs_weak": [
       "color-humano",
       "hilda-lizarazu",
-      "jovenes-pordioseros",
-      "luis-alberto-spinetta",
       "miguel-zavaleta",
       "rinaldo-rafanelli",
       "sui-generis"
@@ -54660,11 +54643,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "eruca-sativa",
       "nicolas-bereciartua"
     ],
-    "mentioned_slugs_weak": [
-      "eruca-sativa"
-    ]
+    "mentioned_slugs_weak": []
   },
   "javier-punga": {
     "name": "Javier Punga",
@@ -54797,14 +54779,14 @@
     ],
     "mentioned_slugs": [
       "ciro-pertusi",
+      "palo-pandolfo",
       "ricardo-iorio"
     ],
     "mentioned_slugs_weak": [
       "attaque-77",
       "blues-motel",
       "juana-la-loca",
-      "los-visitantes",
-      "palo-pandolfo"
+      "los-visitantes"
     ]
   },
   "la-pandilla-del-verano": {
@@ -54894,13 +54876,13 @@
     "discography": [],
     "mentioned_slugs": [
       "blues-band",
-      "la-torre"
+      "la-torre",
+      "vox-dei"
     ],
     "mentioned_slugs_weak": [
       "alejandro-medina",
       "chevy-rockets",
-      "la-buenos-ayres-blues-band",
-      "vox-dei"
+      "la-buenos-ayres-blues-band"
     ]
   },
   "la-peloncha": {
@@ -55034,10 +55016,10 @@
       "memphis-la-blusera"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "el-corte"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-picada": {
     "name": "La Picada",
@@ -55076,10 +55058,10 @@
     "url": "https://rock.com.ar/artistas/la-planta-reggae/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-gente"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "la-ponderosa": {
     "name": "La Ponderosa",
@@ -55471,10 +55453,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "los-cafres"
+      "los-cafres",
+      "los-fabulosos-cadillacs"
     ],
     "mentioned_slugs_weak": [
-      "los-fabulosos-cadillacs",
       "los-intocables"
     ]
   },
@@ -55700,11 +55682,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "los-gatos-salvajes",
       "los-mockers"
     ],
     "mentioned_slugs_weak": [
-      "los-gatos",
-      "los-gatos-salvajes"
+      "los-gatos"
     ]
   },
   "los-pichones": {
@@ -55769,11 +55751,10 @@
     "discography": [],
     "mentioned_slugs": [
       "celeste-carballo",
-      "juan-carlos-mono-fontana"
-    ],
-    "mentioned_slugs_weak": [
+      "juan-carlos-mono-fontana",
       "sandra-mihanovich"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "los-pinguos": {
     "name": "Los Pinguos",
@@ -55852,6 +55833,7 @@
       }
     ],
     "mentioned_slugs": [
+      "el-farolito",
       "la-renga",
       "piti-fernandez",
       "viejas-locas"
@@ -55860,7 +55842,6 @@
       "burkina-faso",
       "daniel-buira",
       "el-corte",
-      "el-farolito",
       "el-regreso",
       "la-murga",
       "pablo-guerra"
@@ -55885,12 +55866,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "alejandro-schanzenbach",
       "las-pelotas",
       "los-gansos",
       "mama-vaca"
     ],
     "mentioned_slugs_weak": [
-      "alejandro-schanzenbach",
       "andres-calamaro",
       "charly-garcia",
       "fernando-samalea",
@@ -55936,10 +55917,10 @@
     "discography": [],
     "mentioned_slugs": [
       "gabriel-carambula",
+      "hijos-del-oeste",
       "marcelo-mapelman"
     ],
     "mentioned_slugs_weak": [
-      "hijos-del-oeste",
       "jovenes-pordioseros"
     ]
   },
@@ -56075,12 +56056,13 @@
       "francisco-bochaton"
     ],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "maria-ezquiaga"
+    ],
     "mentioned_slugs_weak": [
       "charly-garcia",
       "fernando-nale",
-      "fernando-samalea",
-      "maria-ezquiaga"
+      "fernando-samalea"
     ]
   },
   "mariano-prover": {
@@ -56096,10 +56078,10 @@
     "url": "https://rock.com.ar/artistas/martin-pastor/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "marcelo-mapelman"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "maxi-pardo": {
     "name": "Maxi Pardo",
@@ -56196,11 +56178,10 @@
       "4to-espacio",
       "gonzalo-aloras",
       "la-terminal",
-      "los-tekis"
-    ],
-    "mentioned_slugs_weak": [
+      "los-tekis",
       "pol-medina"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "pels": {
     "name": "P.E.L.S.",
@@ -56369,11 +56350,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "esteban-sehinkman"
-    ],
-    "mentioned_slugs_weak": [
+      "esteban-sehinkman",
       "nicolas-sorin"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "pajaro-diablo": {
     "name": "Pájaro Diablo",
@@ -56789,6 +56769,7 @@
     ],
     "mentioned_slugs": [
       "javier-martinez",
+      "la-gente",
       "las-blacanblus",
       "luis-robinson",
       "michel-peyronel"
@@ -56800,7 +56781,6 @@
       "de-cerca",
       "el-corte",
       "el-hombre",
-      "la-gente",
       "litto-nebbia",
       "oscar-moro"
     ]
@@ -56934,12 +56914,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "connor-questa",
       "dos-caballos-y-una-flor",
       "luces-blancas"
     ],
-    "mentioned_slugs_weak": [
-      "connor-questa"
-    ]
+    "mentioned_slugs_weak": []
   },
   "paramo": {
     "name": "Páramo",
@@ -57042,10 +57021,10 @@
     "url": "https://rock.com.ar/artistas/paris-1980/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "juan-ravioli"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "paris-paris-musique": {
     "name": "París París Musique",
@@ -57055,12 +57034,11 @@
     "mentioned_slugs": [
       "capuchas-de-hop",
       "francisco-bochaton",
+      "juana-la-loca",
       "leo-garcia",
       "pablo-dacal"
     ],
-    "mentioned_slugs_weak": [
-      "juana-la-loca"
-    ]
+    "mentioned_slugs_weak": []
   },
   "parlantes": {
     "name": "Parlantes",
@@ -57671,11 +57649,11 @@
     "url": "https://rock.com.ar/artistas/pegha/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "animal",
       "fun-people"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "pelado": {
     "name": "Pelado",
@@ -58001,12 +57979,14 @@
       "el-bordo",
       "la-covacha",
       "la-experiencia",
+      "la-mancha-de-rolando",
       "la-mississippi",
       "la-portuaria",
       "las-pelotas",
       "leon-gieco",
       "los-autenticos-decadentes",
       "los-cafres",
+      "los-fabulosos-cadillacs",
       "los-gardelitos",
       "los-pericos",
       "los-piojos",
@@ -58015,9 +57995,7 @@
     ],
     "mentioned_slugs_weak": [
       "el-corte",
-      "la-caldera-2",
-      "la-mancha-de-rolando",
-      "los-fabulosos-cadillacs"
+      "la-caldera-2"
     ]
   },
   "perro-loco": {
@@ -58290,15 +58268,15 @@
     ],
     "mentioned_slugs": [
       "ariel-minimal",
-      "la-hermana-menor"
+      "la-hermana-menor",
+      "sin-nombre"
     ],
     "mentioned_slugs_weak": [
       "el-cuerpo",
       "el-hombre",
       "humo-del-cairo",
       "la-montana-2",
-      "pablo-iglesias",
-      "sin-nombre"
+      "pablo-iglesias"
     ]
   },
   "pez-dorado-trio": {
@@ -58324,6 +58302,7 @@
     "discography": [],
     "mentioned_slugs": [
       "chevy-rockets",
+      "dancing-mood",
       "hugo-lobo",
       "karamelo-santo",
       "la-mosca",
@@ -58332,7 +58311,6 @@
       "tony-70"
     ],
     "mentioned_slugs_weak": [
-      "dancing-mood",
       "la-renga"
     ]
   },
@@ -58823,13 +58801,13 @@
     "mentioned_slugs": [
       "fin-del-mundo",
       "miguel-abuelo",
-      "morbo-y-mambo"
+      "morbo-y-mambo",
+      "nikita-nipone"
     ],
     "mentioned_slugs_weak": [
       "107-faunos",
       "ave-tierra",
       "las-cosas",
-      "nikita-nipone",
       "tal-banda",
       "un-dia-perfecto-para-el-pez-banana",
       "valle-de-munecas",
@@ -58875,10 +58853,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "boas-teitas"
+      "boas-teitas",
+      "cuentos-borgeanos"
     ],
     "mentioned_slugs_weak": [
-      "cuentos-borgeanos",
       "juan-terrenal",
       "la-coca-fernandez"
     ]
@@ -59157,10 +59135,10 @@
         "url": "https://rock.com.ar/discos/feliz-polaris"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "gabriel-carambula"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "polaroid": {
     "name": "Polaroid",
@@ -59434,10 +59412,10 @@
       "yang"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "ricardo-pegnotti"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "postdata": {
     "name": "Postdata",
@@ -59484,10 +59462,10 @@
     "url": "https://rock.com.ar/artistas/power-of-soul/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "animal"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "pr1mo": {
     "name": "PR1MO",
@@ -59691,12 +59669,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "dani-umpi"
+      "dani-umpi",
+      "leo-garcia"
     ],
     "mentioned_slugs_weak": [
       "actitud-maria-marta",
       "dancing-mood",
-      "leo-garcia",
       "pablo-molina",
       "resistencia-suburbana",
       "valeria-goberna",
@@ -60159,15 +60137,14 @@
       "ezequiel-borra",
       "juana-molina",
       "karamelo-santo",
+      "kevin-johansen",
       "la-filarmonica-cosmica",
       "la-grande",
       "les-amateurs",
       "los-natas",
       "puente-celeste"
     ],
-    "mentioned_slugs_weak": [
-      "kevin-johansen"
-    ]
+    "mentioned_slugs_weak": []
   },
   "puerto-maluco": {
     "name": "Puerto Maluco",
@@ -60335,13 +60312,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "adrian-barilari",
       "hugo-bistolfi",
+      "la-nave",
       "rata-blanca"
     ],
-    "mentioned_slugs_weak": [
-      "adrian-barilari",
-      "la-nave"
-    ]
+    "mentioned_slugs_weak": []
   },
   "purma": {
     "name": "Purma",
@@ -60748,12 +60724,12 @@
     "discography": [],
     "mentioned_slugs": [
       "bersuit-vergarabat",
+      "dancing-mood",
       "gustavo-rowek",
       "juan-subira",
       "rata-blanca"
     ],
     "mentioned_slugs_weak": [
-      "dancing-mood",
       "el-cartel-de-buenos-aires",
       "gustavo-cordera",
       "palo-pandolfo",
@@ -61110,10 +61086,12 @@
       "liliana-vitale",
       "lions-in-love",
       "lisandro-aristimuno",
+      "lito-vitale",
       "los-abuelos-de-la-nada",
       "los-twist",
       "luciano-supervielle",
       "mes-de-mayo",
+      "pablo-dacal",
       "pedro-aznar",
       "ruben-goldin"
     ],
@@ -61124,11 +61102,9 @@
       "jorge-drexler",
       "juan-campodonico",
       "kevin-johansen",
-      "lito-vitale",
       "litto-nebbia",
       "mas-alla",
       "omar-mollo",
-      "pablo-dacal",
       "pasto-verde"
     ]
   },
@@ -61635,15 +61611,15 @@
       }
     ],
     "mentioned_slugs": [
+      "actitud-maria-marta",
       "animal",
+      "attaque-77",
       "las-pelotas",
       "leon-gieco",
       "todos-tus-muertos"
     ],
     "mentioned_slugs_weak": [
-      "actitud-maria-marta",
       "alto-blues",
-      "attaque-77",
       "edelmiro-molinari",
       "el-hombre",
       "el-rito",
@@ -61842,11 +61818,11 @@
       "adrian-otero",
       "david-lebon",
       "gabriel-carambula",
+      "la-celebracion",
       "los-tekis",
       "los-tipitos"
     ],
     "mentioned_slugs_weak": [
-      "la-celebracion",
       "litto-nebbia"
     ]
   },
@@ -62092,11 +62068,12 @@
         "url": "https://rock.com.ar/discos/viviendo-al-limite-los-robertones"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "daniel-yalo-lopez",
+    "mentioned_slugs": [
       "luis-robinson",
       "machy-madco"
+    ],
+    "mentioned_slugs_weak": [
+      "daniel-yalo-lopez"
     ]
   },
   "los-rodriguez": {
@@ -62259,10 +62236,10 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "ezequiel-borra",
       "onda-vaga"
     ],
     "mentioned_slugs_weak": [
-      "ezequiel-borra",
       "nacho-y-los-caracoles"
     ]
   },
@@ -62415,11 +62392,11 @@
     "discography": [],
     "mentioned_slugs": [
       "che-sudaka",
-      "dancing-mood"
+      "dancing-mood",
+      "las-manos-de-filippi"
     ],
     "mentioned_slugs_weak": [
       "karamelo-santo",
-      "las-manos-de-filippi",
       "los-cafres"
     ]
   },
@@ -62606,11 +62583,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "fito-paez",
       "rata-blanca"
     ],
-    "mentioned_slugs_weak": [
-      "fito-paez"
-    ]
+    "mentioned_slugs_weak": []
   },
   "random": {
     "name": "Random",
@@ -62786,6 +62762,7 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "fede-cabral",
       "miss-bolivia",
       "nito-mestre",
       "pablo-dacal",
@@ -62793,7 +62770,6 @@
       "tomi-lebrero"
     ],
     "mentioned_slugs_weak": [
-      "fede-cabral",
       "los-grillos",
       "onda-vaga"
     ]
@@ -62866,16 +62842,16 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "cajale-cazazo",
       "chicos-de-fabrica",
       "cola-de-pato",
+      "dancing-mood",
       "emiliano-brancciari",
       "hugo-lobo",
       "no-tan-distintos",
       "no-te-va-gustar"
     ],
     "mentioned_slugs_weak": [
-      "cajale-cazazo",
-      "dancing-mood",
       "la-mosca"
     ]
   },
@@ -62996,11 +62972,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "la-beriso"
+      "la-beriso",
+      "la-mancha-de-rolando"
     ],
     "mentioned_slugs_weak": [
-      "jovenes-pordioseros",
-      "la-mancha-de-rolando"
+      "jovenes-pordioseros"
     ]
   },
   "reggae-rockers": {
@@ -63408,13 +63384,13 @@
       "los-natas",
       "los-tipitos",
       "luis-alberto-spinetta",
+      "no-lo-soporto",
       "spinetta-jade"
     ],
     "mentioned_slugs_weak": [
       "andres-gimenez",
       "hilda-lizarazu",
-      "la-resistencia",
-      "no-lo-soporto"
+      "la-resistencia"
     ]
   },
   "retorno-cero": {
@@ -63814,10 +63790,10 @@
       }
     ],
     "mentioned_slugs": [
+      "boff-serafine",
       "oscar-moro"
     ],
     "mentioned_slugs_weak": [
-      "boff-serafine",
       "danny-peyronel",
       "heroes-del-asfalto"
     ]
@@ -64077,23 +64053,23 @@
     "discography": [],
     "mentioned_slugs": [
       "color-humano",
-      "pappos-blues"
-    ],
-    "mentioned_slugs_weak": [
+      "pappos-blues",
       "vox-dei"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "rodadores": {
     "name": "Rodadores",
     "url": "https://rock.com.ar/artistas/rodadores/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "motor-loco"
+    ],
     "mentioned_slugs_weak": [
       "jovenes-pordioseros",
       "las-pastillas-del-abuelo",
-      "los-tipitos",
-      "motor-loco"
+      "los-tipitos"
     ]
   },
   "rodia": {
@@ -64127,10 +64103,11 @@
     "url": "https://rock.com.ar/artistas/rolo-y-los-fackin-adictos/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "andres-calamaro",
-      "attaque-77",
+      "attaque-77"
+    ],
+    "mentioned_slugs_weak": [
       "el-otro-yo"
     ]
   },
@@ -64229,10 +64206,11 @@
     "url": "https://rock.com.ar/artistas/rosacruz/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-nave"
+    ],
     "mentioned_slugs_weak": [
       "la-ley",
-      "la-nave",
       "rata-blanca",
       "walter-giardino"
     ]
@@ -64624,12 +64602,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "alfonso-el-pintor"
-    ],
-    "mentioned_slugs_weak": [
+      "alfonso-el-pintor",
       "emmanuel-horvilleur",
       "juana-la-loca"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "ruster": {
     "name": "Ruster",
@@ -64900,12 +64877,11 @@
     "discography": [],
     "mentioned_slugs": [
       "diego-torres",
+      "entre-rios",
       "la-mancha-de-rolando",
       "tan-bionica"
     ],
-    "mentioned_slugs_weak": [
-      "entre-rios"
-    ]
+    "mentioned_slugs_weak": []
   },
   "daniel-sacroisky": {
     "name": "Daniel Sacroisky",
@@ -65101,11 +65077,12 @@
         "url": "https://rock.com.ar/discos/el-sueno-de-la-mariposa-el-soldado/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "fernando-rusconi",
+      "pedro-conde"
+    ],
     "mentioned_slugs_weak": [
       "el-secreto",
-      "fernando-rusconi",
-      "pedro-conde",
       "sin-ley"
     ]
   },
@@ -65183,6 +65160,7 @@
     "discography": [],
     "mentioned_slugs": [
       "la-bomba-de-tiempo",
+      "liliana-herrero",
       "litto-nebbia",
       "mariana-bianchini",
       "pajaro-de-fuego",
@@ -65190,7 +65168,6 @@
       "sergio-alvarez"
     ],
     "mentioned_slugs_weak": [
-      "liliana-herrero",
       "los-lunes",
       "sergio-verdinelli"
     ]
@@ -65244,15 +65221,15 @@
     "discography": [],
     "mentioned_slugs": [
       "fernando-nale",
-      "javier-malosetti"
+      "javier-malosetti",
+      "rosario-ortega"
     ],
     "mentioned_slugs_weak": [
       "fernando-kabusacki",
       "gustavo-cerati",
       "illya-kuryaki-the-valderramas",
       "maria-eva-albistur",
-      "richard-coleman",
-      "rosario-ortega"
+      "richard-coleman"
     ]
   },
   "fernando-scarcella": {
@@ -65344,6 +65321,7 @@
     "mentioned_slugs": [
       "claudio-gabis",
       "deborah-de-corral",
+      "eduardo-skay-beilinson",
       "juan-carlos-baglietto",
       "la-portuaria",
       "las-pastillas-del-abuelo",
@@ -65351,18 +65329,17 @@
       "leon-gieco",
       "lito-vitale",
       "los-caligaris",
-      "los-tipitos"
+      "los-tipitos",
+      "pampa-yakuza"
     ],
     "mentioned_slugs_weak": [
       "charly-garcia",
-      "eduardo-skay-beilinson",
       "entre-rios",
       "fito-paez",
       "jorge-drexler",
       "jorge-fandermole",
       "lisandro-aristimuno",
       "los-andes",
-      "pampa-yakuza",
       "patricio-rey-y-sus-redonditos-de-ricota",
       "ruben-rada"
     ]
@@ -65385,10 +65362,10 @@
     "url": "https://rock.com.ar/artistas/javier-syd/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "javier-syd-2"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "javier-syd-2": {
     "name": "Javier Syd",
@@ -65456,14 +65433,14 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "brian-storming",
+      "el-robot-bajo-el-agua",
       "grand-prix",
+      "jaime-sin-tierra",
       "valle-de-munecas"
     ],
     "mentioned_slugs_weak": [
       "blues-motel",
-      "brian-storming",
-      "el-robot-bajo-el-agua",
-      "jaime-sin-tierra",
       "las-cosas",
       "los-peyotes",
       "marcelo-ezquiaga"
@@ -65513,10 +65490,11 @@
     "url": "https://rock.com.ar/artistas/la-saga/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "la-experiencia",
+    "mentioned_slugs": [
       "la-vela-puerca"
+    ],
+    "mentioned_slugs_weak": [
+      "la-experiencia"
     ]
   },
   "la-saga-de-sayweke": {
@@ -65659,14 +65637,14 @@
     ],
     "mentioned_slugs": [
       "los-autenticos-decadentes",
-      "los-caligaris"
+      "los-caligaris",
+      "zona-ganjah"
     ],
     "mentioned_slugs_weak": [
       "bersuit-vergarabat",
       "karamelo-santo",
       "la-nave",
-      "los-cafres",
-      "zona-ganjah"
+      "los-cafres"
     ]
   },
   "la-sobrecarga": {
@@ -66666,10 +66644,10 @@
     "url": "https://rock.com.ar/artistas/saiko/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "animal"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "saimons": {
     "name": "Saimons",
@@ -66723,6 +66701,7 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "cecilia-grammatico",
       "ciro-y-los-persas",
       "el-bordo",
       "la-vela-puerca",
@@ -66730,7 +66709,6 @@
       "las-pelotas"
     ],
     "mentioned_slugs_weak": [
-      "cecilia-grammatico",
       "la-bohemia",
       "la-movida",
       "vieja-cepa"
@@ -66918,10 +66896,10 @@
       "humo-del-cairo"
     ],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "viaje-a-ixtlan"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "sanandino": {
     "name": "Sanandino",
@@ -67178,10 +67156,10 @@
     "url": "https://rock.com.ar/artistas/santoro/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "sergio-chotsourian"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "santos-caracoles": {
     "name": "Santos caracoles",
@@ -67215,12 +67193,12 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "el-corte"
+      "el-corte",
+      "entre-rios"
     ],
     "mentioned_slugs_weak": [
       "a-rodar",
       "el-sitio",
-      "entre-rios",
       "soda-stereo"
     ]
   },
@@ -67292,11 +67270,12 @@
         "url": "https://rock.com.ar/discos/mar-dulce-bajofondo"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "juan-campodonico"
+    ],
     "mentioned_slugs_weak": [
       "gustavo-cerati",
       "jorge-drexler",
-      "juan-campodonico",
       "la-vela-puerca",
       "soda-stereo"
     ]
@@ -67804,14 +67783,14 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "charly-garcia"
+      "charly-garcia",
+      "jorge-pinchevsky",
+      "los-calzones"
     ],
     "mentioned_slugs_weak": [
       "alejandro-medina",
       "blues-band",
       "fernando-blanco",
-      "jorge-pinchevsky",
-      "los-calzones",
       "pajarito-zaguri"
     ]
   },
@@ -67845,6 +67824,7 @@
       }
     ],
     "mentioned_slugs": [
+      "fabiana-cantilo",
       "gringui-herrera",
       "gustavo-cerati",
       "jorge-serrano",
@@ -67858,7 +67838,6 @@
       "zeta-bosio"
     ],
     "mentioned_slugs_weak": [
-      "fabiana-cantilo",
       "tweety-gonzalez"
     ]
   },
@@ -68070,10 +68049,10 @@
         "url": "https://rock.com.ar/discos/el-primer-album-setnova"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "pato-lange"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "sevelhumano": {
     "name": "Sevelhumano",
@@ -68363,12 +68342,12 @@
     "mentioned_slugs": [
       "ariel-minimal",
       "demonios-de-tasmania",
+      "erica-garcia",
       "jovenes-pordioseros",
       "kevin-johansen"
     ],
     "mentioned_slugs_weak": [
       "andres-calamaro",
-      "erica-garcia",
       "la-gente",
       "las-cosas",
       "los-brujos-mandioca",
@@ -68566,10 +68545,10 @@
     "discography": [],
     "mentioned_slugs": [
       "diego-torres",
-      "el-cuarteto-de-nos"
+      "el-cuarteto-de-nos",
+      "jorge-drexler"
     ],
     "mentioned_slugs_weak": [
-      "jorge-drexler",
       "no-te-va-gustar"
     ]
   },
@@ -69102,12 +69081,12 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "banda-de-turistas"
+      "banda-de-turistas",
+      "la-cara"
     ],
     "mentioned_slugs_weak": [
       "andres-calamaro",
       "charly-garcia",
-      "la-cara",
       "lado-sur",
       "las-cosas",
       "litto-nebbia",
@@ -69165,12 +69144,11 @@
     "mentioned_slugs": [
       "ciro-y-los-persas",
       "gustavo-cordera",
+      "la-gente",
       "leon-gieco",
       "mas-de-lo-mismo"
     ],
-    "mentioned_slugs_weak": [
-      "la-gente"
-    ]
+    "mentioned_slugs_weak": []
   },
   "skunk-dojo": {
     "name": "Skunk Dojo",
@@ -69224,11 +69202,11 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "fun-people"
+      "fun-people",
+      "patrick-steve"
     ],
     "mentioned_slugs_weak": [
       "el-corte",
-      "patrick-steve",
       "patrick-steve-and-the-baileys"
     ]
   },
@@ -69677,12 +69655,11 @@
     "discography": [],
     "mentioned_slugs": [
       "catupecu-machu",
+      "entre-rios",
       "eruca-sativa",
       "la-mississippi"
     ],
-    "mentioned_slugs_weak": [
-      "entre-rios"
-    ]
+    "mentioned_slugs_weak": []
   },
   "somnia": {
     "name": "Somnia",
@@ -69847,12 +69824,12 @@
     "discography": [],
     "mentioned_slugs": [
       "baltasar-comotto",
+      "don-cornelio-y-la-zona",
       "francisco-bochaton",
       "fun-people",
       "luis-alberto-spinetta"
     ],
     "mentioned_slugs_weak": [
-      "don-cornelio-y-la-zona",
       "los-brujos-mandioca",
       "peligrosos-gorriones",
       "santos-inocentes"
@@ -69863,11 +69840,12 @@
     "url": "https://rock.com.ar/artistas/sotamanga/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "pedro-aznar"
+    ],
     "mentioned_slugs_weak": [
       "jorge-araujo",
-      "la-experiencia",
-      "pedro-aznar"
+      "la-experiencia"
     ]
   },
   "sotavento-big-band": {
@@ -69906,12 +69884,12 @@
       "chala-rasta",
       "cuentos-borgeanos",
       "javier-calamaro",
-      "la-mancha"
+      "la-mancha",
+      "la-mancha-de-rolando"
     ],
     "mentioned_slugs_weak": [
       "d-mente",
       "infierno-18",
-      "la-mancha-de-rolando",
       "panico-ramirez",
       "virgin-pancakes"
     ]
@@ -69953,10 +69931,10 @@
     "url": "https://rock.com.ar/artistas/sowflap/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "gustavo-cerati"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "speranthas": {
     "name": "Speranthas",
@@ -70030,15 +70008,15 @@
       }
     ],
     "mentioned_slugs": [
+      "juan-del-barrio",
       "la-electrica-rioplatense",
-      "leo-sujatovich"
+      "leo-sujatovich",
+      "lito-vitale"
     ],
     "mentioned_slugs_weak": [
       "el-hombre",
       "el-mendigo",
-      "juan-del-barrio",
       "la-gente",
-      "lito-vitale",
       "los-alamos",
       "resumen-porteno",
       "ultimo-dia"
@@ -70069,10 +70047,10 @@
     "url": "https://rock.com.ar/artistas/spiritual-reggae-band/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "todos-tus-muertos"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "spleen": {
     "name": "Spleen",
@@ -70126,11 +70104,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "dread-mar-i"
+      "dread-mar-i",
+      "el-hombre"
     ],
     "mentioned_slugs_weak": [
       "dancing-mood",
-      "el-hombre",
       "el-natty-combo",
       "la-forma",
       "los-cafres",
@@ -70247,13 +70225,12 @@
       "catupecu-machu",
       "el-corte",
       "fernando-ruiz-diaz",
+      "la-torre",
       "la-zimbabwe",
       "los-violadores",
       "stukas-en-vuelo"
     ],
-    "mentioned_slugs_weak": [
-      "la-torre"
-    ]
+    "mentioned_slugs_weak": []
   },
   "stereopop": {
     "name": "Stereopop",
@@ -70371,11 +70348,10 @@
       }
     ],
     "mentioned_slugs": [
-      "las-diferencias"
-    ],
-    "mentioned_slugs_weak": [
+      "las-diferencias",
       "pil-trafa"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "suarez": {
     "name": "Suárez",
@@ -70500,11 +70476,11 @@
     "discography": [],
     "mentioned_slugs": [
       "dancing-mood",
+      "hugo-lobo",
       "los-encargados"
     ],
     "mentioned_slugs_weak": [
       "holy-piby",
-      "hugo-lobo",
       "resistencia-suburbana"
     ]
   },
@@ -70801,6 +70777,7 @@
     ],
     "mentioned_slugs": [
       "daniel-melingo",
+      "fernando-samalea",
       "hilda-lizarazu",
       "jorge-minissale",
       "juan-del-barrio",
@@ -70809,7 +70786,6 @@
     ],
     "mentioned_slugs_weak": [
       "celsa-mel-gowland",
-      "fernando-samalea",
       "no-tengo"
     ]
   },
@@ -71170,10 +71146,10 @@
     "discography": [],
     "mentioned_slugs": [
       "cuentos-borgeanos",
-      "la-experiencia"
+      "la-experiencia",
+      "las-cosas"
     ],
     "mentioned_slugs_weak": [
-      "las-cosas",
       "mas-alla",
       "tercer-ojo"
     ]
@@ -71185,12 +71161,11 @@
     "discography": [],
     "mentioned_slugs": [
       "las-pelotas",
+      "los-argentinos",
       "luis-alberto-spinetta",
       "pescado-rabioso"
     ],
-    "mentioned_slugs_weak": [
-      "los-argentinos"
-    ]
+    "mentioned_slugs_weak": []
   },
   "superfan-del-reino-regio": {
     "name": "Superfan del Reino Regio",
@@ -71223,13 +71198,13 @@
       }
     ],
     "mentioned_slugs": [
-      "abril-sosa"
+      "abril-sosa",
+      "lucas-marti"
     ],
     "mentioned_slugs_weak": [
       "fito-paez",
       "juana-la-loca",
-      "la-gente",
-      "lucas-marti"
+      "la-gente"
     ]
   },
   "superheroes": {
@@ -71371,15 +71346,15 @@
     "mentioned_slugs": [
       "2-minutos",
       "bien-desocupados",
+      "cadena-perpetua",
       "ciro-pertusi",
       "doble-fuerza",
+      "el-otro-yo",
       "mala-suerte"
     ],
     "mentioned_slugs_weak": [
       "attaque-77",
-      "cadena-perpetua",
       "el-hombre",
-      "el-otro-yo",
       "la-cara",
       "la-movida",
       "los-violadores",
@@ -71445,12 +71420,12 @@
     ],
     "discography": [],
     "mentioned_slugs": [
+      "entre-rios",
       "la-mancha-de-rolando",
       "los-ratones-paranoicos",
       "los-tipitos"
     ],
     "mentioned_slugs_weak": [
-      "entre-rios",
       "resistencia-chaco"
     ]
   },
@@ -71543,11 +71518,11 @@
     "discography": [],
     "mentioned_slugs": [
       "catupecu-machu",
+      "la-beriso",
       "las-pastillas-del-abuelo"
     ],
     "mentioned_slugs_weak": [
       "d-mente",
-      "la-beriso",
       "la-gente"
     ]
   },
@@ -71566,12 +71541,12 @@
     "discography": [],
     "mentioned_slugs": [
       "charly-garcia",
+      "cuatro-pesos-de-propina",
       "salta-la-banca"
     ],
     "mentioned_slugs_weak": [
       "cielo-razzo",
       "cientificos-del-palo",
-      "cuatro-pesos-de-propina",
       "eruca-sativa"
     ]
   },
@@ -71599,11 +71574,11 @@
     "mentioned_slugs": [
       "cientificos-del-palo",
       "la-mississippi",
+      "los-fabulosos-cadillacs",
       "no-tengo"
     ],
     "mentioned_slugs_weak": [
       "las-pelotas",
-      "los-fabulosos-cadillacs",
       "mas-de-lo-mismo"
     ]
   },
@@ -71798,12 +71773,12 @@
     "discography": [],
     "mentioned_slugs": [
       "cachorro-lopez",
+      "javier-malosetti",
       "sebastian-schon"
     ],
     "mentioned_slugs_weak": [
       "charly-garcia",
       "fito-paez",
-      "javier-malosetti",
       "leon-gieco",
       "luis-alberto-spinetta",
       "ruben-rada"
@@ -71972,13 +71947,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-ombligo",
+      "gran-martell",
       "la-portuaria",
       "las-pastillas-del-abuelo",
       "sergio-dawi"
     ],
     "mentioned_slugs_weak": [
-      "el-ombligo",
-      "gran-martell",
       "jorge-araujo"
     ]
   },
@@ -72093,12 +72068,12 @@
     "discography": [],
     "mentioned_slugs": [
       "cadaveres-ilustres",
-      "no-te-va-gustar"
+      "no-te-va-gustar",
+      "santa-rosa"
     ],
     "mentioned_slugs_weak": [
       "el-grito",
-      "los-ojos",
-      "santa-rosa"
+      "los-ojos"
     ]
   },
   "la-tregua": {
@@ -72204,9 +72179,10 @@
         "url": "https://rock.com.ar/discos/de-amor-de-locura-y-de-guerra-la-triple-nelson"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-sed"
+    ],
     "mentioned_slugs_weak": [
-      "la-sed",
       "ultimo-dia"
     ]
   },
@@ -72354,11 +72330,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "michel-peyronel"
+      "michel-peyronel",
+      "ricardo-iorio"
     ],
     "mentioned_slugs_weak": [
-      "primera-junta",
-      "ricardo-iorio"
+      "primera-junta"
     ]
   },
   "los-tancredos": {
@@ -72404,6 +72380,8 @@
     "mentioned_slugs": [
       "el-otro-yo",
       "la-celebracion",
+      "leo-garcia",
+      "los-muchachos-de-la-secta",
       "martes-menta",
       "soda-stereo",
       "tweety-gonzalez"
@@ -72411,9 +72389,7 @@
     "mentioned_slugs_weak": [
       "charly-garcia",
       "el-dorado",
-      "la-secta",
-      "leo-garcia",
-      "los-muchachos-de-la-secta"
+      "la-secta"
     ]
   },
   "los-tipitos": {
@@ -72600,11 +72576,10 @@
     "discography": [],
     "mentioned_slugs": [
       "andrea-alvarez",
-      "boom-boom-kid"
-    ],
-    "mentioned_slugs_weak": [
+      "boom-boom-kid",
       "d-mente"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "los-traidores": {
     "name": "Los Traidores",
@@ -72771,11 +72746,10 @@
       }
     ],
     "mentioned_slugs": [
-      "andres-calamaro"
-    ],
-    "mentioned_slugs_weak": [
+      "andres-calamaro",
       "javier-garcia"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "tabu": {
     "name": "Tabú",
@@ -72793,11 +72767,12 @@
       "babasonicos"
     ],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "tan-bionica"
+    ],
     "mentioned_slugs_weak": [
       "los-tipitos",
-      "soda-stereo",
-      "tan-bionica"
+      "soda-stereo"
     ]
   },
   "tachangou": {
@@ -73044,11 +73019,10 @@
       "la-beriso",
       "las-pastillas-del-abuelo",
       "los-autenticos-decadentes",
+      "los-sultanes",
       "piti-fernandez"
     ],
-    "mentioned_slugs_weak": [
-      "los-sultanes"
-    ]
+    "mentioned_slugs_weak": []
   },
   "tanta-trampa": {
     "name": "Tanta Trampa",
@@ -73191,12 +73165,12 @@
     ],
     "discography": [],
     "mentioned_slugs": [
-      "dios-los-cria"
+      "dios-los-cria",
+      "sugar-tampaxxx"
     ],
     "mentioned_slugs_weak": [
       "boom-boom-kid",
       "she-devils",
-      "sugar-tampaxxx",
       "titan-flor"
     ]
   },
@@ -73240,13 +73214,13 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "el-secreto",
       "fernandez-fierro",
       "miguel-abuelo"
     ],
     "mentioned_slugs_weak": [
       "catupecu-machu",
-      "charly-garcia",
-      "el-secreto"
+      "charly-garcia"
     ]
   },
   "telescopios": {
@@ -73403,12 +73377,11 @@
     "mentioned_slugs": [
       "2-minutos",
       "catupecu-machu",
+      "el-sotano",
       "mes-de-mayo",
       "mimi-maura"
     ],
-    "mentioned_slugs_weak": [
-      "el-sotano"
-    ]
+    "mentioned_slugs_weak": []
   },
   "tercer-ojo": {
     "name": "Tercer ojo",
@@ -73538,14 +73511,13 @@
     "discography": [],
     "mentioned_slugs": [
       "andrea-alvarez",
+      "los-cafres",
       "los-natas",
+      "mercado-negro",
       "nuevas-raices",
       "satelite-kingston"
     ],
-    "mentioned_slugs_weak": [
-      "los-cafres",
-      "mercado-negro"
-    ]
+    "mentioned_slugs_weak": []
   },
   "thc-syrah": {
     "name": "Thc Syrah",
@@ -73581,9 +73553,10 @@
     "url": "https://rock.com.ar/artistas/the-alvears/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "el-reino"
+    ],
     "mentioned_slugs_weak": [
-      "el-reino",
       "los-videos"
     ]
   },
@@ -73955,10 +73928,10 @@
     "url": "https://rock.com.ar/artistas/the-rooster/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-experiencia"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "the-sacados": {
     "name": "The Sacados",
@@ -74030,10 +74003,10 @@
     "url": "https://rock.com.ar/artistas/the-tristes/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-cosa"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "the-truman-show-band": {
     "name": "The Truman Show Band",
@@ -74168,10 +74141,11 @@
     "url": "https://rock.com.ar/artistas/tiatrementina/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
-      "entre-rios",
+    "mentioned_slugs": [
       "la-forma"
+    ],
+    "mentioned_slugs_weak": [
+      "entre-rios"
     ]
   },
   "tick-toper": {
@@ -74198,11 +74172,11 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
-      "los-natas"
+      "los-natas",
+      "negro-can"
     ],
     "mentioned_slugs_weak": [
       "la-movida",
-      "negro-can",
       "sur-oculto"
     ]
   },
@@ -74625,11 +74599,10 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "mas-alla",
       "resistencia-chaco"
     ],
-    "mentioned_slugs_weak": [
-      "mas-alla"
-    ]
+    "mentioned_slugs_weak": []
   },
   "tony-70": {
     "name": "Tony 70",
@@ -74854,10 +74827,10 @@
     "url": "https://rock.com.ar/artistas/traetormenta/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "corto-plazo"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "traidores": {
     "name": "Traidores",
@@ -74991,9 +74964,10 @@
         "url": "https://rock.com.ar/discos/carrera-del-tiempo-trebolares"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "cielo-razzo"
+    ],
     "mentioned_slugs_weak": [
-      "cielo-razzo",
       "salta-la-banca"
     ]
   },
@@ -75039,18 +75013,17 @@
     "mentioned_slugs": [
       "barrios-bajos",
       "cielo-razzo",
+      "diego-torres",
       "dread-mar-i",
+      "jovenes-pordioseros",
       "juan-long",
+      "la-gente",
       "la-mocosa",
       "los-piojos",
       "motor-loco",
       "resistencia-suburbana"
     ],
-    "mentioned_slugs_weak": [
-      "diego-torres",
-      "jovenes-pordioseros",
-      "la-gente"
-    ]
+    "mentioned_slugs_weak": []
   },
   "tren-loco": {
     "name": "Tren Loco",
@@ -75240,9 +75213,10 @@
     "url": "https://rock.com.ar/artistas/trigger/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-fuente"
+    ],
     "mentioned_slugs_weak": [
-      "la-fuente",
       "la-rocka"
     ]
   },
@@ -75414,10 +75388,11 @@
     "url": "https://rock.com.ar/artistas/trotsky-vengaran/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "la-sangre"
+    ],
     "mentioned_slugs_weak": [
       "la-movida",
-      "la-sangre",
       "mas-alla"
     ]
   },
@@ -75439,11 +75414,11 @@
     "discography": [],
     "mentioned_slugs": [
       "karamelo-santo",
-      "she-devils"
+      "she-devils",
+      "totus-toss"
     ],
     "mentioned_slugs_weak": [
-      "cerebros-vacios",
-      "totus-toss"
+      "cerebros-vacios"
     ]
   },
   "tsunami": {
@@ -75477,7 +75452,9 @@
     "url": "https://rock.com.ar/artistas/tu-kalavera/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "karamelo-santo"
+    ],
     "mentioned_slugs_weak": [
       "alcohol-etilico",
       "andando-descalzo",
@@ -75486,7 +75463,6 @@
       "el-natty-combo",
       "escuela-de-la-calle",
       "fidel-nadal",
-      "karamelo-santo",
       "la-gente",
       "los-intocables",
       "pablo-iglesias",
@@ -75536,13 +75512,13 @@
     "discography": [],
     "mentioned_slugs": [
       "pajarito-zaguri",
+      "pescado-rabioso",
       "vox-dei"
     ],
     "mentioned_slugs_weak": [
       "billy-bond",
       "color-humano",
-      "la-cofradia-de-la-flor-solar",
-      "pescado-rabioso"
+      "la-cofradia-de-la-flor-solar"
     ]
   },
   "turbocoopers": {
@@ -76616,8 +76592,11 @@
       "baltasar-comotto",
       "david-lebon",
       "leo-sujatovich",
+      "leon-gieco",
       "liliana-herrero",
-      "lito-epumer"
+      "lito-epumer",
+      "luis-salinas",
+      "madre-atomica"
     ],
     "mentioned_slugs_weak": [
       "alejandro-lerner",
@@ -76625,9 +76604,6 @@
       "celeste-carballo",
       "diego-torres",
       "fabian-gallardo",
-      "leon-gieco",
-      "luis-salinas",
-      "madre-atomica",
       "manuel-wirzt",
       "ruben-goldin",
       "sandra-mihanovich",
@@ -76679,7 +76655,9 @@
     "mentioned_slugs": [
       "david-lebon",
       "fito-paez",
-      "luis-alberto-spinetta"
+      "litto-nebbia",
+      "luis-alberto-spinetta",
+      "luis-salinas"
     ],
     "mentioned_slugs_weak": [
       "andres-calamaro",
@@ -76688,8 +76666,6 @@
       "leo-garcia",
       "leon-gieco",
       "lito-vitale",
-      "litto-nebbia",
-      "luis-salinas",
       "pedro-aznar",
       "sandra-mihanovich"
     ]
@@ -76824,7 +76800,8 @@
       }
     ],
     "mentioned_slugs": [
-      "juan-campodonico"
+      "juan-campodonico",
+      "los-piojos"
     ],
     "mentioned_slugs_weak": [
       "el-limbo",
@@ -76832,8 +76809,7 @@
       "el-regreso",
       "el-soldado",
       "la-gente",
-      "la-sangre",
-      "los-piojos"
+      "la-sangre"
     ]
   },
   "la-vena": {
@@ -76879,11 +76855,11 @@
     "discography": [],
     "mentioned_slugs": [
       "durazno-de-gala",
+      "la-suburbana",
       "memphis-la-blusera"
     ],
     "mentioned_slugs_weak": [
       "la-ley",
-      "la-suburbana",
       "rinaldo-rafanelli"
     ]
   },
@@ -76928,10 +76904,10 @@
     "url": "https://rock.com.ar/artistas/las-vin-up/",
     "bio_links": [],
     "discography": [],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "la-huella"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "lea-vovchuk": {
     "name": "Lea Vovchuk",
@@ -76947,17 +76923,17 @@
     "bio_links": [],
     "discography": [],
     "mentioned_slugs": [
+      "emmanuel-horvilleur",
       "juliana-gattas",
       "la-portuaria",
       "los-ojos",
       "max-capote",
-      "mes-de-mayo"
-    ],
-    "mentioned_slugs_weak": [
-      "el-corte",
-      "emmanuel-horvilleur",
+      "mes-de-mayo",
       "soda-stereo",
       "zeta-bosio"
+    ],
+    "mentioned_slugs_weak": [
+      "el-corte"
     ]
   },
   "liliana-vitale": {
@@ -77301,10 +77277,10 @@
       "dante-spinetta",
       "emmanuel-horvilleur",
       "fito-paez",
+      "juan-carlos-baglietto",
       "luis-alberto-spinetta"
     ],
     "mentioned_slugs_weak": [
-      "juan-carlos-baglietto",
       "mariana-baraj",
       "mariano-otero",
       "ramiro-flores"
@@ -77447,15 +77423,15 @@
     ],
     "mentioned_slugs": [
       "gustavo-bazterrica",
+      "luis-alberto-spinetta",
       "once-tiros",
-      "rinaldo-rafanelli"
+      "rinaldo-rafanelli",
+      "sui-generis"
     ],
     "mentioned_slugs_weak": [
       "la-feria",
       "la-maquina-de-hacer-pajaros",
-      "luis-alberto-spinetta",
-      "seru-giran",
-      "sui-generis"
+      "seru-giran"
     ]
   },
   "vados": {
@@ -77779,7 +77755,8 @@
       }
     ],
     "mentioned_slugs": [
-      "el-corte"
+      "el-corte",
+      "pablo-molina"
     ],
     "mentioned_slugs_weak": [
       "el-natty-combo",
@@ -77789,7 +77766,6 @@
       "las-pelotas",
       "los-cafres",
       "los-umbanda",
-      "pablo-molina",
       "zona-ganjah"
     ]
   },
@@ -78141,12 +78117,12 @@
     ],
     "mentioned_slugs": [
       "blues-motel",
-      "francisco-bochaton"
+      "francisco-bochaton",
+      "heroicos-sobrevivientes"
     ],
     "mentioned_slugs_weak": [
       "alejandro-medina",
-      "gabriel-carambula",
-      "heroicos-sobrevivientes"
+      "gabriel-carambula"
     ]
   },
   "venecia": {
@@ -78182,13 +78158,12 @@
     ],
     "mentioned_slugs": [
       "javier-malosetti",
+      "leon-gieco",
       "los-autenticos-decadentes",
       "los-tipitos",
       "luis-alberto-spinetta"
     ],
-    "mentioned_slugs_weak": [
-      "leon-gieco"
-    ]
+    "mentioned_slugs_weak": []
   },
   "ventousa-wins": {
     "name": "Ventousa Wins",
@@ -78482,13 +78457,13 @@
       }
     ],
     "mentioned_slugs": [
+      "catupecu-machu",
       "eruca-sativa",
       "jaque-reina",
       "las-pelotas",
       "marilina-bertoldi"
     ],
     "mentioned_slugs_weak": [
-      "catupecu-machu",
       "daniel-semilla-bucciarelli",
       "soda-stereo",
       "tiempo-perdido"
@@ -78548,17 +78523,17 @@
     ],
     "mentioned_slugs": [
       "andres-calamaro",
+      "daniel-melingo",
       "fito-paez",
+      "jimena-lopez-chaplin",
       "jorge-serrano",
+      "juan-jacinto",
       "litto-nebbia",
       "marcelo-moura",
+      "miguel-cantilo",
       "miguel-zavaleta"
     ],
     "mentioned_slugs_weak": [
-      "daniel-melingo",
-      "jimena-lopez-chaplin",
-      "juan-jacinto",
-      "miguel-cantilo",
       "palo-pandolfo"
     ]
   },
@@ -78584,10 +78559,10 @@
         "url": "https://rock.com.ar/discos/calma-ii-viaje-a-ixtlan/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "los-natas"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "viaje-a-venus": {
     "name": "Viaje a Venus",
@@ -78889,10 +78864,10 @@
     ],
     "mentioned_slugs": [
       "el-regreso",
-      "julio-moura"
+      "julio-moura",
+      "la-mosca"
     ],
     "mentioned_slugs_weak": [
-      "la-mosca",
       "los-ojos",
       "muy-lejos"
     ]
@@ -79548,11 +79523,10 @@
       }
     ],
     "mentioned_slugs": [
+      "actitud-maria-marta",
       "fito-paez"
     ],
-    "mentioned_slugs_weak": [
-      "actitud-maria-marta"
-    ]
+    "mentioned_slugs_weak": []
   },
   "viniloss-blues": {
     "name": "Vinilos’s Blues",
@@ -79656,9 +79630,10 @@
         "url": "https://rock.com.ar/discos/indio-virgem/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "eduardo-rogatti"
+    ],
     "mentioned_slugs_weak": [
-      "eduardo-rogatti",
       "el-hombre",
       "el-regreso",
       "la-feria",
@@ -79813,12 +79788,12 @@
       }
     ],
     "mentioned_slugs": [
+      "ciro-pertusi",
       "la-gente",
       "marcelo-moura",
       "tiempo-perdido"
     ],
     "mentioned_slugs_weak": [
-      "ciro-pertusi",
       "cruz-del-sur",
       "julio-moura",
       "la-cruz",
@@ -79912,10 +79887,10 @@
         "url": "https://rock.com.ar/discos/no-se-si-voy-a-volver-vitico/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "billy-bond"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "viticus": {
     "name": "Viticus",
@@ -80263,12 +80238,11 @@
       "a-rodar",
       "bersuit-vergarabat",
       "catupecu-machu",
+      "el-corte",
       "juana-la-loca",
       "zeta-bosio"
     ],
-    "mentioned_slugs_weak": [
-      "el-corte"
-    ]
+    "mentioned_slugs_weak": []
   },
   "volantines": {
     "name": "Volantines",
@@ -80297,10 +80271,10 @@
       }
     ],
     "mentioned_slugs": [
+      "color-azul",
       "los-tipitos"
     ],
     "mentioned_slugs_weak": [
-      "color-azul",
       "gatos-sucios"
     ]
   },
@@ -80385,6 +80359,7 @@
     "mentioned_slugs": [
       "cadena-perpetua",
       "dulce-pesadilla",
+      "la-experiencia",
       "no-ser"
     ],
     "mentioned_slugs_weak": [
@@ -80393,7 +80368,6 @@
       "contenido-neto",
       "dc-kilibrio",
       "el-sotano",
-      "la-experiencia",
       "la-linea",
       "los-lunes",
       "zona-84"
@@ -81597,10 +81571,10 @@
         "url": "https://rock.com.ar/discos/tu-biologia-esta-rara-yang/"
       }
     ],
-    "mentioned_slugs": [],
-    "mentioned_slugs_weak": [
+    "mentioned_slugs": [
       "ricardo-pegnotti"
-    ]
+    ],
+    "mentioned_slugs_weak": []
   },
   "yanimer": {
     "name": "Yanimer",
@@ -81811,12 +81785,12 @@
     "discography": [],
     "mentioned_slugs": [
       "fabiana-cantilo",
+      "gustavo-cerati",
       "luis-alberto-spinetta",
       "velenio-funk"
     ],
     "mentioned_slugs_weak": [
       "charly-garcia",
-      "gustavo-cerati",
       "la-gente"
     ]
   },
@@ -82085,13 +82059,13 @@
       }
     ],
     "mentioned_slugs": [
+      "la-groovisima",
       "la-renga",
       "saul-blanch"
     ],
     "mentioned_slugs_weak": [
       "el-otro-yo",
       "la-fuente",
-      "la-groovisima",
       "los-cafres",
       "peligrosos-gorriones"
     ]
@@ -82308,18 +82282,19 @@
     ],
     "mentioned_slugs": [
       "andres-calamaro",
+      "attaque-77",
       "charly-garcia",
+      "ciro-y-los-persas",
       "fernando-samalea",
       "gustavo-cerati",
       "jorge-drexler",
       "la-beriso",
+      "la-mancha-de-rolando",
       "los-caligaris",
       "los-fabulosos-cadillacs"
     ],
     "mentioned_slugs_weak": [
       "adrian-abonizio",
-      "attaque-77",
-      "ciro-y-los-persas",
       "claudia-puyo",
       "daniela-herrero",
       "diego-torres",
@@ -82329,7 +82304,6 @@
       "javier-calamaro",
       "juan-carlos-baglietto",
       "la-mancha",
-      "la-mancha-de-rolando",
       "la-nave",
       "la-renga",
       "la-vela-puerca",
@@ -82661,10 +82635,11 @@
         "url": "https://rock.com.ar/discos/10-anos-zona-84/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "el-sotano"
+    ],
     "mentioned_slugs_weak": [
       "attaque-77",
-      "el-sotano",
       "fun-people",
       "los-violadores"
     ]
@@ -82877,12 +82852,11 @@
     "mentioned_slugs": [
       "emiliano-brancciari",
       "fernando-ruiz-diaz",
+      "jorge-serrano",
       "luis-alberto-spinetta",
       "richard-coleman"
     ],
-    "mentioned_slugs_weak": [
-      "jorge-serrano"
-    ]
+    "mentioned_slugs_weak": []
   },
   "zzz": {
     "name": "Zzz",
@@ -83003,11 +82977,10 @@
     "mentioned_slugs": [
       "julio-moura",
       "la-secta",
+      "las-canoplas",
       "sin-nombre"
     ],
-    "mentioned_slugs_weak": [
-      "las-canoplas"
-    ]
+    "mentioned_slugs_weak": []
   },
   "107-faunos": {
     "name": "107 Faunos",
@@ -83047,10 +83020,10 @@
       }
     ],
     "mentioned_slugs": [
+      "las-ligas-menores",
       "santiago-motorizado"
     ],
     "mentioned_slugs_weak": [
-      "las-ligas-menores",
       "los-ojos",
       "peligrosos-gorriones"
     ]
@@ -83374,10 +83347,10 @@
       }
     ],
     "mentioned_slugs": [
+      "claudio-oconnor",
       "la-vela-puerca"
     ],
     "mentioned_slugs_weak": [
-      "claudio-oconnor",
       "el-corte",
       "el-regreso",
       "la-gente",
@@ -83443,13 +83416,13 @@
       "cobra-sarli",
       "el-triangulo",
       "jaque-reina",
+      "la-nave",
       "le-temps",
       "marilina-bertoldi",
       "pulpo-negro",
       "sick-porky"
     ],
     "mentioned_slugs_weak": [
-      "la-nave",
       "las-manos-de-filippi",
       "tren-loco",
       "vox-dei"
@@ -83585,10 +83558,10 @@
       "attaque-77",
       "cadena-perpetua",
       "el-otro-yo",
-      "juan-terrenal"
+      "juan-terrenal",
+      "los-bastarddos"
     ],
     "mentioned_slugs_weak": [
-      "los-bastarddos",
       "nunca-es-tarde"
     ]
   },
@@ -83953,9 +83926,10 @@
         "url": "https://rock.com.ar/discos/ensayo-feliz-90-sapos/"
       }
     ],
-    "mentioned_slugs": [],
+    "mentioned_slugs": [
+      "avant-press"
+    ],
     "mentioned_slugs_weak": [
-      "avant-press",
       "mata-violeta"
     ]
   },
