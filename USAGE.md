@@ -111,18 +111,47 @@ No pasa nada — tanto `cache/` (HTML crudo) como `data/artists.json` /
 mismo comando y retoma donde quedó, sin volver a bajar lo ya cacheado ni
 perder el ritmo acumulado.
 
-## 3. Analizar el grafo
+## 3. Detectar menciones en texto plano (opcional, pero recomendado)
+
+```bash
+python3 scraper.py mentions
+```
+
+Reprocesa las páginas de artista **ya cacheadas** (no genera ningún request
+nuevo, corre en minutos) buscando nombres de otros artistas mencionados en
+texto plano dentro de la biografía, sin hipervínculo. Esto captura
+colaboraciones que `bio_links` se pierde — típicamente músicos de sesión
+(bajistas, tecladistas, invitados) que se mencionan por nombre pero rara
+vez se linkean.
+
+Para contar como colaboración real (no una simple mención de influencia,
+como "tuvo como influencia a X"), exige una palabra de colaboración cerca
+del nombre (`grabó`, `tocó`, `integrante`, `invitado`, `convocado`,
+`productor`, etc. — ver `COLLAB_CONTEXT_KEYWORDS_RAW` en `scraper.py`).
+
+**Ojo con las colisiones de nombre genérico**: algunos artistas de la
+enciclopedia tienen nombres que también son frases comunes del español
+("La Banda", "Buenos Aires", "El Resto"), que aparecen todo el tiempo sin
+referirse a ese artista específico. El comando imprime automáticamente un
+top 8 de los nombres más mencionados al terminar — revisalo, y si aparece
+algo con un salto sospechoso (mucho más alto que el resto), agregalo a
+`STOPLIST_NAMES_RAW` en `scraper.py` y volvé a correr. Ya están cargados
+los casos encontrados durante el desarrollo de este proyecto.
+
+## 4. Analizar el grafo
 
 ```bash
 python3 analyze.py
 ```
 
-Construye el grafo combinando menciones de biografía y créditos de disco,
-calcula métricas (densidad, componentes, clustering, hubs por
-grado/betweenness/PageRank, comunidades) y exporta `data/report.md`,
-`data/nodes.csv`, `data/edges.csv`, `data/graph.gexf`, `data/graph.graphml`.
+Construye el grafo combinando links de biografía, créditos de disco, y
+menciones en texto plano (si corriste el paso 3), calcula métricas
+(densidad, componentes, clustering, hubs por grado/betweenness/PageRank,
+comunidades) y exporta `data/report.md`, `data/nodes.csv`, `data/edges.csv`,
+`data/graph.gexf`, `data/graph.graphml`. Usá `--no-mentions` si preferís
+un grafo sólo con links reales y créditos de disco, sin menciones de texto.
 
-## 4. Visualizar
+## 5. Visualizar
 
 ```bash
 python3 visualize.py --min-degree 2

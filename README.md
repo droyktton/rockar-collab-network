@@ -4,7 +4,7 @@
 
 **[👉 Explorá la red interactiva](https://droyktton.github.io/rockar-collab-network/)**
 
-*(la red completa tiene 5.778 nodos — en celular puede tardar unos segundos
+*(la red completa tiene 6.187 nodos — en celular puede tardar unos segundos
 en acomodarse o sentirse menos fluida; el timeline, el heatmap y los
 ego-networks son más livianos y andan bien en cualquier dispositivo)*
 
@@ -23,10 +23,16 @@ explorarla.
 
 1. **Scraping respetuoso** de la enciclopedia (con caché en disco y rate
    limiting) para armar el índice completo de artistas, sus biografías y
-   discografías — **5.778 artistas** en la corrida completa.
-2. **Construcción del grafo** de colaboración, combinando dos señales:
+   discografías — **5.778 artistas** indexados de la enciclopedia. El grafo
+   final tiene **6.187 nodos** y **6.632 aristas** (incluye además algunos
+   artistas mencionados/acreditados que no tienen ficha propia scrapeada).
+2. **Construcción del grafo** de colaboración, combinando tres señales:
    - Links entre artistas mencionados en sus propias biografías
    - Créditos compartidos de disco (ej: *"Charly García y Pedro Aznar"*)
+   - Menciones en texto plano sin link (ej: *"grabó junto a X"*), exigiendo
+     una palabra de colaboración cerca del nombre para descartar simples
+     menciones de influencia — esto es clave para capturar a músicos de
+     sesión muy activos que rara vez están linkeados (ver hallazgos)
 3. **Análisis de red** con [NetworkX](https://networkx.org/): densidad,
    componentes conexas, clustering, hubs por grado / betweenness / PageRank,
    detección de comunidades.
@@ -38,23 +44,26 @@ explorarla.
 
 ## 🔍 Algunos hallazgos
 
-- **Charly García** encabeza la comunidad más grande de la red (265 artistas
-  más) y es la más activa en casi todas las décadas — el nodo más central
-  por lejos.
-- La comunidad de **Gustavo Santaolalla** recién se vuelve dominante en los
-  2000s-2010s, coincidiendo con su rol como productor de una nueva
-  generación (Bajofondo, bandas de sonido) más que con su carrera como
-  artista de los 70s-80s.
-- La comunidad de **Cielo Razzo** aparece únicamente a partir de los 2010s
-  — la fecha real de formación de la banda —, una buena señal de que la
-  detección de comunidades está capturando estructura real y no ruido.
-- El grado (cantidad de colaboraciones documentadas) cae fuerte para los
-  artistas que debutaron después de 2010. Es tentador leer esto como
-  "el rock viejo conectaba más gente", pero es más probable que sea un
-  **efecto de acumulación**: un artista que debutó en 1970 tuvo 50 años
-  para sumar colaboraciones documentadas; uno que debutó en 2018, apenas
-  unos pocos. También puede influir que la cobertura editorial de la
-  enciclopedia sea más profunda para las figuras clásicas.
+- **Charly García** es el hub más conectado de la red por lejos: 124
+  colaboraciones directas, primero en el ranking de grado y de PageRank.
+  **León Gieco** lo supera en intermediación (betweenness) — es quien más
+  actúa de puente entre escenas que, si no fuera por él, quedarían
+  desconectadas entre sí.
+- Sumar menciones en texto plano (no sólo links) resolvió un problema real:
+  músicos de sesión muy activos pero raramente linkeados quedaban casi
+  invisibles en la red. **Marcelo Torres** (bajista que tocó con Spinetta,
+  el Indio Solari y otros) pasó de estar prácticamente aislado a tener
+  grado 6; **Jorge Capello** (guitarrista de sesión con 50 años de carrera)
+  quedó con grado 28, reflejando mucho mejor su rol real en la escena.
+- Detectar estas menciones en texto libre trajo su propio desafío: nombres
+  de artistas que también son frases comunes del español ("La Banda",
+  "Buenos Aires", "El Resto") generaban miles de falsos positivos. Quedan
+  documentados en `STOPLIST_NAMES_RAW` (`scraper.py`) junto con un chequeo
+  automático que avisa si aparece un caso nuevo en corridas futuras.
+- El grado (cantidad de colaboraciones documentadas) tiende a ser mayor
+  para artistas con carreras más largas — es esperable: más años activos
+  significan más oportunidades de colaboración documentada, no
+  necesariamente mayor "importancia" en términos absolutos.
 
 ## 📸 Ejemplos: dos monstruos, dos vecindarios
 
@@ -82,7 +91,7 @@ Versiones interactivas (navegables, con hover): [Charly García](https://droyktt
 | `data/nodes.csv` / `edges.csv` | Tablas planas con centralidades y pesos |
 | `data/graph.gexf` / `.graphml` | El grafo, para abrir en [Gephi](https://gephi.org/) |
 | `data/network_static.png` | Imagen coloreada por comunidad |
-| `data/network_interactive.html` | Red completa navegable en el browser (5.778 nodos — más liviana en desktop que en celular) |
+| `data/network_interactive.html` | Red completa navegable en el browser (6.187 nodos — más liviana en desktop que en celular) |
 | `data/timeline_interactive.html` | Año de debut vs. grado, por comunidad |
 | `data/heatmap_comunidad_decada.png` | Actividad discográfica por comunidad/década |
 | `data/ego_<artista>.png` / `.html` | Red de colaboración de un artista puntual |
