@@ -38,26 +38,26 @@
 
 ## Hubs por intermediación (betweenness) — conectan escenas distintas
 
-- León Gieco: 0.0882
-- Andrés Calamaro: 0.0740
-- Charly García: 0.0739
-- Luis Alberto Spinetta: 0.0684
-- Fito Páez: 0.0648
-- Attaque 77: 0.0591
-- Karamelo Santo: 0.0518
-- Soda Stereo: 0.0473
-- Litto Nebbia: 0.0416
-- Los Auténticos Decadentes: 0.0366
-- Las Pelotas: 0.0358
-- La Renga: 0.0339
-- No te va gustar: 0.0314
-- Los Fabulosos Cadillacs: 0.0295
-- Gustavo Cerati: 0.0293
-- Bersuit Vergarabat: 0.0263
-- Gustavo Santaolalla: 0.0259
-- Palo Pandolfo: 0.0249
-- David Lebon: 0.0241
-- Lito Vitale: 0.0229
+- León Gieco: 0.0842
+- Charly García: 0.0776
+- Fito Páez: 0.0734
+- Andrés Calamaro: 0.0711
+- Luis Alberto Spinetta: 0.0693
+- Soda Stereo: 0.0480
+- Karamelo Santo: 0.0458
+- Attaque 77: 0.0420
+- Litto Nebbia: 0.0372
+- La Renga: 0.0352
+- Los Fabulosos Cadillacs: 0.0351
+- Las Pelotas: 0.0326
+- Los Auténticos Decadentes: 0.0300
+- No te va gustar: 0.0298
+- Gustavo Cerati: 0.0282
+- Bersuit Vergarabat: 0.0270
+- Los Piojos: 0.0263
+- Todos Tus Muertos: 0.0253
+- Lito Vitale: 0.0232
+- Los Cafres: 0.0232
 
 ## Hubs por PageRank
 
@@ -84,8 +84,8 @@
 
 ## Comunidades más grandes (muestra de integrantes)
 
-- Tamaño 496: 450, Turf, Zelen, La Simona, Los Animalitos, La Fanfarria del Capitán, Spiritual Reggae Band, El Vuelto S.A....
-- Tamaño 459: Destroyer, Malos aires, Literal, Sacramento, Sujetos, Los Ojos, Moro-Satragni, Ciro Fogliatta...
-- Tamaño 390: 385, La Orquesta De Salon, Fernando Samalea, Delta Venus, El Otro Yo, 2600, Todo vuelve, Juguetes en el VIP...
-- Tamaño 229: Nuca, Los Umbanda, 19574, Indio Brujo, El Peyote asesino, Escalando peldaños, La Sonora del Plata, Abelardos...
-- Tamaño 184: Felipe Staiti, Rulo Menayé, Los Enanitos Verdes, 225, Ascensor, Superchería, Conexionistas, Tabaquito Marroquí...
+- Tamaño 496: Hotel Rush, El Majebri, Omar Mollo, Duendes vagos, Los Intocables, Capitán Tifus, 18985, Sin Semilla...
+- Tamaño 459: Los Mentidores, Los Desconocidos de Siempre, La Barraca, Sacramento, Talles espaciales, RimanBloom, Epumer Machi Judurcha, Ariel Leira...
+- Tamaño 390: Maxi Pardo, Retorno Cero, Viuda E Hijas De Roque Enrol, Les Amateurs, Pat Coria y Los Susceptibles, Martín Cuervo Karakachoff, Angela Tullida, Polaris...
+- Tamaño 229: 7656, No Ta Va Gustar, Chapones, Ella es tan Cargosa, Juan Campodónico, 368, 4968, Árbol...
+- Tamaño 184: Gonza Nehuén, Ascensor, Mariana Baraj, 7040, Pablo Di Nardo, Niño Azul, Super Yo, Furia Genética...
