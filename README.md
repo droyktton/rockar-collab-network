@@ -24,7 +24,7 @@ explorarla.
 1. **Scraping respetuoso** de la enciclopedia (con caché en disco y rate
    limiting) para armar el índice completo de artistas, sus biografías y
    discografías — **5.778 artistas** indexados de la enciclopedia. El grafo
-   final tiene **6.187 nodos** y **6.632 aristas** (incluye además algunos
+   final tiene **6.187 nodos** y **7.132 aristas** (incluye además algunos
    artistas mencionados/acreditados que no tienen ficha propia scrapeada).
 2. **Construcción del grafo** de colaboración, combinando tres señales:
    - Links entre artistas mencionados en sus propias biografías
@@ -44,7 +44,7 @@ explorarla.
 
 ## 🔍 Algunos hallazgos
 
-- **Charly García** es el hub más conectado de la red por lejos: 124
+- **Charly García** es el hub más conectado de la red por lejos: 128
   colaboraciones directas, primero en el ranking de grado y de PageRank.
   **León Gieco** lo supera en intermediación (betweenness) — es quien más
   actúa de puente entre escenas que, si no fuera por él, quedarían
@@ -53,8 +53,10 @@ explorarla.
   músicos de sesión muy activos pero raramente linkeados quedaban casi
   invisibles en la red. **Marcelo Torres** (bajista que tocó con Spinetta,
   el Indio Solari y otros) pasó de estar prácticamente aislado a tener
-  grado 6; **Jorge Capello** (guitarrista de sesión con 50 años de carrera)
-  quedó con grado 28, reflejando mucho mejor su rol real en la escena.
+  grado 7 — incluyendo detectar automáticamente el patrón "Nombre en
+  instrumento" típico de listas de formación de banda (ej. *"Marcelo Torres
+  en bajo, Hernán Arramberri en batería..."*), que resolvió casos donde el
+  nombre aparecía lejos de cualquier verbo de colaboración explícito.
 - Detectar estas menciones en texto libre trajo su propio desafío: nombres
   de artistas que también son frases comunes del español ("La Banda",
   "Buenos Aires", "El Resto") generaban miles de falsos positivos. Quedan
