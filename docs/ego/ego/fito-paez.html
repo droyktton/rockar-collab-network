@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "baglietto-vitale", "label": "Baglietto-Vitale", "shape": "dot", "size": 18, "title": "Baglietto-Vitale \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "cuatro-al-hilo", "label": "Cuatro al Hilo", "shape": "dot", "size": 21, "title": "Cuatro al Hilo \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "carlos-alberto-machi-rufino", "label": "Carlos Alberto Machi Rufino", "shape": "dot", "size": 21, "title": "Carlos Alberto Machi Rufino \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "rosal", "label": "Rosal", "shape": "dot", "size": 21, "title": "Rosal \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "los-abuelos-de-la-nada", "label": "Los Abuelos de la Nada", "shape": "dot", "size": 27, "title": "Los Abuelos de la Nada \u2014 5 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "pushit", "label": "Pushit", "shape": "dot", "size": 15, "title": "Pushit \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "silvina-garre", "label": "Silvina Garr\u00e9", "shape": "dot", "size": 33, "title": "Silvina Garr\u00e9 \u2014 7 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "tweety-gonzalez", "label": "Tweety Gonz\u00e1lez", "shape": "dot", "size": 30, "title": "Tweety Gonz\u00e1lez \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "daniel-tuerto-wirzt", "label": "Daniel Tuerto Wirtz", "shape": "dot", "size": 24, "title": "Daniel Tuerto Wirtz \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "hector-pomo-lorenzo", "label": "H\u00e9ctor Pomo Lorenzo", "shape": "dot", "size": 21, "title": "H\u00e9ctor Pomo Lorenzo \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "los-perros", "label": "Los Perros", "shape": "dot", "size": 24, "title": "Los Perros \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "liliana-vitale", "label": "Liliana Vitale", "shape": "dot", "size": 18, "title": "Liliana Vitale \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "claudia-puyo", "label": "Claudia Puy\u00f3", "shape": "dot", "size": 21, "title": "Claudia Puy\u00f3 \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "juan-absatz", "label": "Juan Absatz", "shape": "dot", "size": 15, "title": "Juan Absatz \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "sistematica", "label": "Sistem\u00e1tica", "shape": "dot", "size": 15, "title": "Sistem\u00e1tica \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "virus", "label": "Virus", "shape": "dot", "size": 36, "title": "Virus \u2014 8 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "nicolas-ammi", "label": "Nicol\u00e1s Ammi", "shape": "dot", "size": 15, "title": "Nicol\u00e1s Ammi \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "palo-pandolfo", "label": "Palo Pandolfo", "shape": "dot", "size": 21, "title": "Palo Pandolfo \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "eruca-sativa", "label": "Eruca Sativa", "shape": "dot", "size": 18, "title": "Eruca Sativa \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "zona-purpura", "label": "Zona P\u00farpura", "shape": "dot", "size": 18, "title": "Zona P\u00farpura \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "victoria-maurette", "label": "Victoria Maurette", "shape": "dot", "size": 15, "title": "Victoria Maurette \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "gabriel-carambula", "label": "Gabriel Car\u00e1mbula", "shape": "dot", "size": 21, "title": "Gabriel Car\u00e1mbula \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "vinilo", "label": "Vinilo", "shape": "dot", "size": 18, "title": "Vinilo \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "la-naranja", "label": "La Naranja", "shape": "dot", "size": 24, "title": "La Naranja \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "andres-calamaro", "label": "Andr\u00e9s Calamaro", "shape": "dot", "size": 72, "title": "Andr\u00e9s Calamaro \u2014 20 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "atlante", "label": "Atlante", "shape": "dot", "size": 15, "title": "Atlante \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "ariel-rot", "label": "Ariel Rot", "shape": "dot", "size": 18, "title": "Ariel Rot \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "illya-kuryaki", "label": "Illya Kuryaki", "shape": "dot", "size": 18, "title": "Illya Kuryaki \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "pol-neiman", "label": "Pol Neiman", "shape": "dot", "size": 18, "title": "Pol Neiman \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "alina-gandini", "label": "Alina Gandini", "shape": "dot", "size": 24, "title": "Alina Gandini \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "antonio-birabent", "label": "Antonio Birabent", "shape": "dot", "size": 24, "title": "Antonio Birabent \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "decenadores", "label": "Decenadores", "shape": "dot", "size": 18, "title": "Decenadores \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "fernando-nale", "label": "Fernando Nal\u00e9", "shape": "dot", "size": 18, "title": "Fernando Nal\u00e9 \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "intrepidos-navegantes", "label": "Intr\u00e9pidos navegantes", "shape": "dot", "size": 21, "title": "Intr\u00e9pidos navegantes \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "charly-garcia", "label": "Charly Garc\u00eda", "shape": "dot", "size": 75, "title": "Charly Garc\u00eda \u2014 21 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "sergio-verdinelli", "label": "Sergio Verdinelli", "shape": "dot", "size": 21, "title": "Sergio Verdinelli \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "francisca-y-les-exploradores", "label": "Francisca y Les Exploradores", "shape": "dot", "size": 21, "title": "Francisca y Les Exploradores \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "ivan-noble", "label": "Iv\u00e1n Noble", "shape": "dot", "size": 18, "title": "Iv\u00e1n Noble \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "juan-carlos-baglietto", "label": "Juan Carlos Baglietto", "shape": "dot", "size": 48, "title": "Juan Carlos Baglietto \u2014 12 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "the-pelos", "label": "The Pelos", "shape": "dot", "size": 15, "title": "The Pelos \u2014 1 colaboraciones"}, {"borderWidth": 3, "color": "#ffffff", "font": {"color": "white"}, "id": "fito-paez", "label": "Fito P\u00e1ez", "shape": "dot", "size": 40, "title": "Fito P\u00e1ez \u2014 91 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "funka", "label": "Funka", "shape": "dot", "size": 15, "title": "Funka \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "liliana-herrero", "label": "Liliana Herrero", "shape": "dot", "size": 18, "title": "Liliana Herrero \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "gonzalo-aloras", "label": "Gonzalo Aloras", "shape": "dot", "size": 36, "title": "Gonzalo Aloras \u2014 8 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "luca-prodan", "label": "Luca Prodan", "shape": "dot", "size": 21, "title": "Luca Prodan \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "la-tregua", "label": "La Tregua", "shape": "dot", "size": 18, "title": "La Tregua \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "seru-giran", "label": "Seru Giran", "shape": "dot", "size": 30, "title": "Seru Giran \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "los-demoledores", "label": "Los Demoledores", "shape": "dot", "size": 18, "title": "Los Demoledores \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "ruben-goldin", "label": "Rub\u00e9n Gold\u00edn", "shape": "dot", "size": 42, "title": "Rub\u00e9n Gold\u00edn \u2014 10 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "celsa-mel-gowland", "label": "Celsa Mel Gowland", "shape": "dot", "size": 18, "title": "Celsa Mel Gowland \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#911eb4", "font": {"color": "white"}, "id": "pablo-dacal", "label": "Pablo Dacal", "shape": "dot", "size": 18, "title": "Pablo Dacal \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "los-musicos-del-centro", "label": "Los M\u00fasicos del Centro", "shape": "dot", "size": 15, "title": "Los M\u00fasicos del Centro \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "guillermo-vadala", "label": "Guillermo Vadal\u00e1", "shape": "dot", "size": 30, "title": "Guillermo Vadal\u00e1 \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "mavi-diaz", "label": "Mavi D\u00edaz", "shape": "dot", "size": 21, "title": "Mavi D\u00edaz \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "fruta-deliciosa", "label": "Fruta Deliciosa", "shape": "dot", "size": 18, "title": "Fruta Deliciosa \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "gringui-herrera", "label": "Gringui Herrera", "shape": "dot", "size": 27, "title": "Gringui Herrera \u2014 5 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "spinetta-paez", "label": "Spinetta-P\u00e1ez", "shape": "dot", "size": 21, "title": "Spinetta-P\u00e1ez \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "sandra-y-celeste", "label": "Sandra y Celeste", "shape": "dot", "size": 21, "title": "Sandra y Celeste \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "tan-bionica", "label": "Tan Bi\u00f3nica", "shape": "dot", "size": 30, "title": "Tan Bi\u00f3nica \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "el-cuatriyo", "label": "El Cuatriyo", "shape": "dot", "size": 18, "title": "El Cuatriyo \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "lalo-de-los-santos", "label": "Lalo De los Santos", "shape": "dot", "size": 27, "title": "Lalo De los Santos \u2014 5 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "jeronimo-verdun", "label": "Jer\u00f3nimo Verdun", "shape": "dot", "size": 18, "title": "Jer\u00f3nimo Verdun \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "todos-tus-muertos", "label": "Todos Tus Muertos", "shape": "dot", "size": 24, "title": "Todos Tus Muertos \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "fabian-gallardo", "label": "Fabi\u00e1n Gallardo", "shape": "dot", "size": 30, "title": "Fabi\u00e1n Gallardo \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "orsaid", "label": "Orsaid", "shape": "dot", "size": 15, "title": "Orsaid \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#911eb4", "font": {"color": "white"}, "id": "miguel-zavaleta", "label": "Miguel Zavaleta", "shape": "dot", "size": 21, "title": "Miguel Zavaleta \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "actitud-maria-marta", "label": "Actitud Mar\u00eda Marta", "shape": "dot", "size": 24, "title": "Actitud Mar\u00eda Marta \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "los-fabulosos-cadillacs", "label": "Los Fabulosos Cadillacs", "shape": "dot", "size": 24, "title": "Los Fabulosos Cadillacs \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "nito-mestre", "label": "Nito Mestre", "shape": "dot", "size": 39, "title": "Nito Mestre \u2014 9 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "los-chanchos", "label": "Los Chanchos", "shape": "dot", "size": 15, "title": "Los Chanchos \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "leon-gieco", "label": "Le\u00f3n Gieco", "shape": "dot", "size": 54, "title": "Le\u00f3n Gieco \u2014 14 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "git", "label": "G.I.T.", "shape": "dot", "size": 30, "title": "G.I.T. \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#911eb4", "font": {"color": "white"}, "id": "viajantes", "label": "Viajantes", "shape": "dot", "size": 24, "title": "Viajantes \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "fena-della-maggiora", "label": "Fena Della Maggiora", "shape": "dot", "size": 24, "title": "Fena Della Maggiora \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "bosnia", "label": "Bosnia", "shape": "dot", "size": 15, "title": "Bosnia \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "el-jardin-de-la-esquina", "label": "El Jard\u00edn de la Esquina", "shape": "dot", "size": 18, "title": "El Jard\u00edn de la Esquina \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "los-gatos", "label": "Los Gatos", "shape": "dot", "size": 33, "title": "Los Gatos \u2014 7 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "fabiana-cantilo", "label": "Fabiana Cantilo", "shape": "dot", "size": 48, "title": "Fabiana Cantilo \u2014 12 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "hts", "label": "HTS", "shape": "dot", "size": 18, "title": "HTS \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "vox-dei", "label": "Vox Dei", "shape": "dot", "size": 24, "title": "Vox Dei \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "ideas-al-fuego", "label": "Ideas al Fuego", "shape": "dot", "size": 18, "title": "Ideas al Fuego \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "rocco-posca", "label": "Rocco Posca", "shape": "dot", "size": 15, "title": "Rocco Posca \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "proceso-a-ricutti", "label": "Proceso a Ricutti", "shape": "dot", "size": 15, "title": "Proceso a Ricutti \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "guillermo-beresnak", "label": "Guillermo Beres\u00f1ak", "shape": "dot", "size": 18, "title": "Guillermo Beres\u00f1ak \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "luis-alberto-spinetta", "label": "Luis Alberto Spinetta", "shape": "dot", "size": 66, "title": "Luis Alberto Spinetta \u2014 18 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "ulises-butron", "label": "Ulises Butr\u00f3n", "shape": "dot", "size": 21, "title": "Ulises Butr\u00f3n \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "mortadela-rancia", "label": "Mortadela Rancia", "shape": "dot", "size": 18, "title": "Mortadela Rancia \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "ranas-toro", "label": "Ranas Toro", "shape": "dot", "size": 15, "title": "Ranas Toro \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "agosto-2", "label": "Agosto", "shape": "dot", "size": 18, "title": "Agosto \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "zoe-gotusso", "label": "Zoe Gotusso", "shape": "dot", "size": 15, "title": "Zoe Gotusso \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "osiris", "label": "Osiris", "shape": "dot", "size": 18, "title": "Osiris \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "onda-vaga", "label": "Onda Vaga", "shape": "dot", "size": 18, "title": "Onda Vaga \u2014 2 colaboraciones"}]);
+                  edges = new vis.DataSet([{"color": "#666666", "from": "baglietto-vitale", "title": "bio", "to": "juan-carlos-baglietto", "value": 2.0}, {"color": "#ff5555", "from": "baglietto-vitale", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "cuatro-al-hilo", "title": "mention", "to": "andres-calamaro", "value": 1.0}, {"color": "#666666", "from": "cuatro-al-hilo", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "cuatro-al-hilo", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "carlos-alberto-machi-rufino", "title": "bio", "to": "ruben-goldin", "value": 1.0}, {"color": "#ff5555", "from": "carlos-alberto-machi-rufino", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "carlos-alberto-machi-rufino", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "rosal", "title": "mention", "to": "onda-vaga", "value": 1.0}, {"color": "#ff5555", "from": "rosal", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "rosal", "title": "mention", "to": "palo-pandolfo", "value": 1.0}, {"color": "#666666", "from": "los-abuelos-de-la-nada", "title": "bio", "to": "andres-calamaro", "value": 2.0}, {"color": "#666666", "from": "los-abuelos-de-la-nada", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "los-abuelos-de-la-nada", "title": "bio,mention", "to": "gringui-herrera", "value": 2.0}, {"color": "#666666", "from": "los-abuelos-de-la-nada", "title": "bio", "to": "los-fabulosos-cadillacs", "value": 1.0}, {"color": "#ff5555", "from": "los-abuelos-de-la-nada", "title": "bio,mention", "to": "fito-paez", "value": 2.0}, {"color": "#ff5555", "from": "pushit", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "bio", "to": "lalo-de-los-santos", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "bio", "to": "fabian-gallardo", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "mention", "to": "ruben-goldin", "value": 1.0}, {"color": "#666666", "from": "silvina-garre", "title": "bio", "to": "nito-mestre", "value": 1.0}, {"color": "#ff5555", "from": "silvina-garre", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "tweety-gonzalez", "title": "mention", "to": "agosto-2", "value": 1.0}, {"color": "#666666", "from": "tweety-gonzalez", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "tweety-gonzalez", "title": "mention", "to": "alina-gandini", "value": 1.0}, {"color": "#ff5555", "from": "tweety-gonzalez", "title": "bio", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "tweety-gonzalez", "title": "bio", "to": "zona-purpura", "value": 1.0}, {"color": "#666666", "from": "tweety-gonzalez", "title": "mention", "to": "sandra-y-celeste", "value": 1.0}, {"color": "#666666", "from": "daniel-tuerto-wirzt", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#ff5555", "from": "daniel-tuerto-wirzt", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "daniel-tuerto-wirzt", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "daniel-tuerto-wirzt", "title": "bio", "to": "spinetta-paez", "value": 1.0}, {"color": "#666666", "from": "hector-pomo-lorenzo", "title": "mention", "to": "andres-calamaro", "value": 1.0}, {"color": "#666666", "from": "hector-pomo-lorenzo", "title": "bio,mention", "to": "luis-alberto-spinetta", "value": 2.0}, {"color": "#ff5555", "from": "hector-pomo-lorenzo", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "los-perros", "title": "bio", "to": "andres-calamaro", "value": 1.0}, {"color": "#666666", "from": "los-perros", "title": "bio,mention", "to": "fabiana-cantilo", "value": 2.0}, {"color": "#666666", "from": "los-perros", "title": "bio", "to": "gabriel-carambula", "value": 1.0}, {"color": "#ff5555", "from": "los-perros", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "liliana-vitale", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "liliana-vitale", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "claudia-puyo", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#ff5555", "from": "claudia-puyo", "title": "bio,mention", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "claudia-puyo", "title": "mention", "to": "vox-dei", "value": 1.0}, {"color": "#ff5555", "from": "juan-absatz", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "sistematica", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "andres-calamaro", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"color": "#ff5555", "from": "virus", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "luca-prodan", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "virus", "title": "bio", "to": "seru-giran", "value": 1.0}, {"color": "#ff5555", "from": "nicolas-ammi", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "palo-pandolfo", "title": "mention", "to": "gringui-herrera", "value": 1.0}, {"color": "#ff5555", "from": "palo-pandolfo", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "eruca-sativa", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "eruca-sativa", "title": "mention", "to": "osiris", "value": 1.0}, {"color": "#ff5555", "from": "zona-purpura", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "victoria-maurette", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "gabriel-carambula", "title": "mention", "to": "fabiana-cantilo", "value": 2.0}, {"color": "#ff5555", "from": "gabriel-carambula", "title": "mention", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "vinilo", "title": "mention", "to": "actitud-maria-marta", "value": 1.0}, {"color": "#ff5555", "from": "vinilo", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "la-naranja", "title": "mention", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#666666", "from": "la-naranja", "title": "mention", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "la-naranja", "title": "mention", "to": "nito-mestre", "value": 1.0}, {"color": "#ff5555", "from": "la-naranja", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "antonio-birabent", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "ariel-rot", "value": 2.0}, {"color": "#ff5555", "from": "andres-calamaro", "title": "bio", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "los-fabulosos-cadillacs", "value": 2.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "luca-prodan", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "vox-dei", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "gringui-herrera", "value": 2.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "mavi-diaz", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "alina-gandini", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "sandra-y-celeste", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "tan-bionica", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "viajantes", "value": 1.0}, {"color": "#ff5555", "from": "atlante", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "ariel-rot", "title": "bio", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "illya-kuryaki", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "illya-kuryaki", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "pol-neiman", "title": "mention", "to": "ivan-noble", "value": 1.0}, {"color": "#ff5555", "from": "pol-neiman", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "alina-gandini", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "alina-gandini", "title": "mention", "to": "fito-paez", "value": 2.0}, {"color": "#ff5555", "from": "antonio-birabent", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "antonio-birabent", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "antonio-birabent", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "decenadores", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "decenadores", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "fernando-nale", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "fernando-nale", "title": "mention", "to": "guillermo-vadala", "value": 1.0}, {"color": "#666666", "from": "intrepidos-navegantes", "title": "mention", "to": "gonzalo-aloras", "value": 1.0}, {"color": "#ff5555", "from": "intrepidos-navegantes", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "intrepidos-navegantes", "title": "mention", "to": "tan-bionica", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "gonzalo-aloras", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "guillermo-beresnak", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "fabiana-cantilo", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "fena-della-maggiora", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "mavi-diaz", "value": 1.0}, {"color": "#ff5555", "from": "charly-garcia", "title": "bio", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "leon-gieco", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio,mention", "to": "luis-alberto-spinetta", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "nito-mestre", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "seru-giran", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "git", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "ideas-al-fuego", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "tan-bionica", "value": 1.0}, {"color": "#666666", "from": "sergio-verdinelli", "title": "mention", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#ff5555", "from": "sergio-verdinelli", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "sergio-verdinelli", "title": "mention", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "francisca-y-les-exploradores", "title": "mention", "to": "gonzalo-aloras", "value": 1.0}, {"color": "#ff5555", "from": "francisca-y-les-exploradores", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "francisca-y-les-exploradores", "title": "mention", "to": "tan-bionica", "value": 1.0}, {"color": "#ff5555", "from": "ivan-noble", "title": "mention", "to": "fito-paez", "value": 1.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio", "to": "fabian-gallardo", "value": 2.0}, {"color": "#ff5555", "from": "juan-carlos-baglietto", "title": "bio", "to": "fito-paez", "value": 2.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio", "to": "leon-gieco", "value": 2.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio", "to": "nito-mestre", "value": 2.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio,mention", "to": "ruben-goldin", "value": 2.0}, {"color": "#666666", "from": "juan-carlos-baglietto", "title": "bio", "to": "lalo-de-los-santos", "value": 1.0}, {"color": "#ff5555", "from": "the-pelos", "title": "bio", "to": "fito-paez", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "actitud-maria-marta", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "agosto-2", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio,mention", "to": "gonzalo-aloras", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "bosnia", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "guillermo-beresnak", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio,mention", "to": "ulises-butron", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "el-cuatriyo", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "fabiana-cantilo", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "los-chanchos", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "fena-della-maggiora", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "lalo-de-los-santos", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "los-demoledores", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "mavi-diaz", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "pablo-dacal", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "fruta-deliciosa", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "funka", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "los-fabulosos-cadillacs", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "fabian-gallardo", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "git", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio,mention", "to": "ruben-goldin", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "zoe-gotusso", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio,mention", "to": "gringui-herrera", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "hts", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "liliana-herrero", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "ideas-al-fuego", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "el-jardin-de-la-esquina", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "celsa-mel-gowland", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "los-musicos-del-centro", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "mortadela-rancia", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "nito-mestre", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "onda-vaga", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "orsaid", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "osiris", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "guillermo-vadala", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "luca-prodan", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "luis-alberto-spinetta", "value": 2.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "seru-giran", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "todos-tus-muertos", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "spinetta-paez", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "la-tregua", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "bio", "to": "vox-dei", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "miguel-zavaleta", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "proceso-a-ricutti", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "rocco-posca", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "ranas-toro", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "sandra-y-celeste", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "tan-bionica", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "jeronimo-verdun", "value": 1.0}, {"color": "#ff5555", "from": "fito-paez", "title": "mention", "to": "viajantes", "value": 1.0}, {"color": "#666666", "from": "liliana-herrero", "title": "mention", "to": "guillermo-vadala", "value": 1.0}, {"color": "#666666", "from": "gonzalo-aloras", "title": "bio", "to": "mortadela-rancia", "value": 2.0}, {"color": "#666666", "from": "gonzalo-aloras", "title": "mention", "to": "fabian-gallardo", "value": 1.0}, {"color": "#666666", "from": "gonzalo-aloras", "title": "mention", "to": "guillermo-vadala", "value": 1.0}, {"color": "#666666", "from": "gonzalo-aloras", "title": "mention", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "la-tregua", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "seru-giran", "title": "bio", "to": "fabiana-cantilo", "value": 2.0}, {"color": "#666666", "from": "seru-giran", "title": "mention", "to": "ruben-goldin", "value": 1.0}, {"color": "#666666", "from": "seru-giran", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "los-demoledores", "title": "mention", "to": "ulises-butron", "value": 1.0}, {"color": "#666666", "from": "ruben-goldin", "title": "bio,mention", "to": "lalo-de-los-santos", "value": 2.0}, {"color": "#666666", "from": "ruben-goldin", "title": "mention", "to": "fabian-gallardo", "value": 1.0}, {"color": "#666666", "from": "ruben-goldin", "title": "mention", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "ruben-goldin", "title": "mention", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "ruben-goldin", "title": "mention", "to": "nito-mestre", "value": 1.0}, {"color": "#666666", "from": "celsa-mel-gowland", "title": "mention", "to": "git", "value": 1.0}, {"color": "#666666", "from": "pablo-dacal", "title": "bio", "to": "viajantes", "value": 2.0}, {"color": "#666666", "from": "guillermo-vadala", "title": "mention", "to": "fruta-deliciosa", "value": 1.0}, {"color": "#666666", "from": "guillermo-vadala", "title": "mention", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "gringui-herrera", "title": "bio", "to": "nito-mestre", "value": 1.0}, {"color": "#666666", "from": "spinetta-paez", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "tan-bionica", "title": "mention", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "el-cuatriyo", "title": "mention", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "lalo-de-los-santos", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "jeronimo-verdun", "title": "mention", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "todos-tus-muertos", "title": "mention", "to": "actitud-maria-marta", "value": 1.0}, {"color": "#666666", "from": "todos-tus-muertos", "title": "bio", "to": "los-fabulosos-cadillacs", "value": 2.0}, {"color": "#666666", "from": "todos-tus-muertos", "title": "bio", "to": "leon-gieco", "value": 2.0}, {"color": "#666666", "from": "fabian-gallardo", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "miguel-zavaleta", "title": "mention", "to": "fena-della-maggiora", "value": 1.0}, {"color": "#666666", "from": "miguel-zavaleta", "title": "mention", "to": "viajantes", "value": 1.0}, {"color": "#666666", "from": "actitud-maria-marta", "title": "mention", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "nito-mestre", "title": "bio", "to": "git", "value": 2.0}, {"color": "#666666", "from": "nito-mestre", "title": "bio", "to": "leon-gieco", "value": 1.0}, {"color": "#666666", "from": "leon-gieco", "title": "bio", "to": "git", "value": 1.0}, {"color": "#666666", "from": "git", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "fena-della-maggiora", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "el-jardin-de-la-esquina", "title": "bio", "to": "los-gatos", "value": 1.0}, {"color": "#666666", "from": "fabiana-cantilo", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "hts", "title": "mention", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "vox-dei", "title": "bio", "to": "luis-alberto-spinetta", "value": 1.0}, {"color": "#666666", "from": "luis-alberto-spinetta", "title": "bio", "to": "ulises-butron", "value": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150, "fit": true}, "solver": "barnesHut"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+      network.once("stabilizationIterationsDone", function () {
+        network.setOptions({ physics: false });
+      });
+    </script>
+    </body>
+</html>

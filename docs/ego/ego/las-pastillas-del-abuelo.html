@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "viejo-paranoico", "label": "Viejo Paranoico", "shape": "dot", "size": 15, "title": "Viejo Paranoico \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "las-pelotas", "label": "Las Pelotas", "shape": "dot", "size": 24, "title": "Las Pelotas \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "piti-fernandez", "label": "Piti Fern\u00e1ndez", "shape": "dot", "size": 33, "title": "Piti Fern\u00e1ndez \u2014 7 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-todo-mal-orquesta", "label": "La Todo mal orquesta", "shape": "dot", "size": 15, "title": "La Todo mal orquesta \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-furia-de-petruza", "label": "La Furia de Petruza", "shape": "dot", "size": 15, "title": "La Furia de Petruza \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "surrebire", "label": "Surrebire", "shape": "dot", "size": 15, "title": "Surrebire \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-chusma", "label": "La Chusma", "shape": "dot", "size": 18, "title": "La Chusma \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "el-atolon-de-funafuti", "label": "El Atol\u00f3n de Funafuti", "shape": "dot", "size": 18, "title": "El Atol\u00f3n de Funafuti \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "josefita", "label": "Josefita", "shape": "dot", "size": 18, "title": "Josefita \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "escalando-peldanos", "label": "Escalando pelda\u00f1os", "shape": "dot", "size": 18, "title": "Escalando pelda\u00f1os \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "ases-muertos", "label": "Ases Muertos", "shape": "dot", "size": 18, "title": "Ases Muertos \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "ivan-salo", "label": "Iv\u00e1n Salo", "shape": "dot", "size": 18, "title": "Iv\u00e1n Salo \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-perra-que-los-pario", "label": "La Perra Que Los Pari\u00f3", "shape": "dot", "size": 15, "title": "La Perra Que Los Pari\u00f3 \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-caldera-2", "label": "La Caldera", "shape": "dot", "size": 15, "title": "La Caldera \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-de-mora", "label": "La de Mora", "shape": "dot", "size": 15, "title": "La de Mora \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "locos-de-nacimiento", "label": "Locos de Nacimiento", "shape": "dot", "size": 15, "title": "Locos de Nacimiento \u2014 1 colaboraciones"}, {"borderWidth": 3, "color": "#ffffff", "font": {"color": "white"}, "id": "las-pastillas-del-abuelo", "label": "Las Pastillas del Abuelo", "shape": "dot", "size": 40, "title": "Las Pastillas del Abuelo \u2014 24 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "los-piojos", "label": "Los Piojos", "shape": "dot", "size": 27, "title": "Los Piojos \u2014 5 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "el-viejo-puber", "label": "El Viejo P\u00faber", "shape": "dot", "size": 18, "title": "El Viejo P\u00faber \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "abelardos", "label": "Abelardos", "shape": "dot", "size": 18, "title": "Abelardos \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "la-franela", "label": "La Franela", "shape": "dot", "size": 21, "title": "La Franela \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "enviados-de-thot", "label": "Enviados de Thot", "shape": "dot", "size": 15, "title": "Enviados de Thot \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "imperio-maltes", "label": "Imperio malt\u00e9s", "shape": "dot", "size": 15, "title": "Imperio malt\u00e9s \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "las-morochas", "label": "Las Morochas", "shape": "dot", "size": 21, "title": "Las Morochas \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "tango-party", "label": "Tango Party", "shape": "dot", "size": 18, "title": "Tango Party \u2014 2 colaboraciones"}]);
+                  edges = new vis.DataSet([{"color": "#ff5555", "from": "viejo-paranoico", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#666666", "from": "las-pelotas", "title": "mention", "to": "abelardos", "value": 1.0}, {"color": "#ff5555", "from": "las-pelotas", "title": "bio", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#666666", "from": "las-pelotas", "title": "bio", "to": "los-piojos", "value": 2.0}, {"color": "#666666", "from": "las-pelotas", "title": "mention", "to": "ivan-salo", "value": 1.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "escalando-peldanos", "value": 1.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "la-franela", "value": 1.0}, {"color": "#ff5555", "from": "piti-fernandez", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 2.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "josefita", "value": 1.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "los-piojos", "value": 1.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "tango-party", "value": 1.0}, {"color": "#666666", "from": "piti-fernandez", "title": "mention", "to": "el-viejo-puber", "value": 1.0}, {"color": "#ff5555", "from": "la-todo-mal-orquesta", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "la-furia-de-petruza", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "surrebire", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#666666", "from": "la-chusma", "title": "mention", "to": "ases-muertos", "value": 1.0}, {"color": "#ff5555", "from": "la-chusma", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#666666", "from": "el-atolon-de-funafuti", "title": "mention", "to": "las-morochas", "value": 1.0}, {"color": "#ff5555", "from": "el-atolon-de-funafuti", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "josefita", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "escalando-peldanos", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "ases-muertos", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "ivan-salo", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "la-perra-que-los-pario", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "la-caldera-2", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "la-de-mora", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "locos-de-nacimiento", "title": "mention", "to": "las-pastillas-del-abuelo", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "abelardos", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "enviados-de-thot", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "la-franela", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "imperio-maltes", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "las-morochas", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "los-piojos", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "tango-party", "value": 1.0}, {"color": "#ff5555", "from": "las-pastillas-del-abuelo", "title": "mention", "to": "el-viejo-puber", "value": 1.0}, {"color": "#666666", "from": "los-piojos", "title": "bio", "to": "la-franela", "value": 2.0}, {"color": "#666666", "from": "los-piojos", "title": "mention", "to": "las-morochas", "value": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150, "fit": true}, "solver": "barnesHut"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+      network.once("stabilizationIterationsDone", function () {
+        network.setOptions({ physics: false });
+      });
+    </script>
+    </body>
+</html>

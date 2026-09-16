@@ -236,6 +236,131 @@ def _extract_bio_text(soup) -> str:
     return soup.get_text(" ", strip=True)
 
 
+def _extract_bio_node(soup):
+    """Igual que _extract_bio_text pero devuelve el nodo del DOM (no el
+    texto plano), para poder ubicar los <a> dentro de él y mirar su
+    contexto local exacto en el árbol HTML."""
+    for sel in CONTENT_SELECTORS:
+        node = soup.select_one(sel)
+        if node and len(node.get_text(strip=True)) > 200:
+            return node
+    return soup
+
+
+# Frases que indican que dos artistas comparten sólo un mismo evento/cartel
+# (festival, gira con muchos actos), no necesariamente colaboración musical
+# real. Ej: "también estuvieron INXS, Nina Hagen, ... y Sumo, entre otros"
+# — el sitio linkea a todos los mencionados, pero eso no implica que hayan
+# tocado juntos ni que exista relación musical directa entre ellos.
+EVENT_CONTEXT_KEYWORDS_RAW = [
+    "festival", "cartel", "line up", "lineup", "tambien estuvieron",
+    "tambien actuaron", "entre otros", "se presentaron", "compartieron escenario",
+    "comparte cartel", "compartio cartel", "coincidieron en", "mismo escenario",
+]
+
+
+def _split_sentences(text: str):
+    """Separador simple de oraciones: corta después de . ! ? seguido de
+    espacio. No es perfecto (no maneja abreviaturas como 'Sr.'), pero
+    alcanza para distinguir hechos distintos dentro del mismo párrafo."""
+    return re.split(r"(?<=[.!?])\s+", text)
+
+
+def classify_bio_links(soup, self_slug: str):
+    """Separa los links reales de biografía (<a href> a otros artistas) en
+    dos grupos, mirando el texto de la ORACIÓN donde vive cada link (no
+    todo el párrafo — un párrafo puede mezclar un hecho de "evento
+    compartido" con una colaboración real distinta en otra oración; usar
+    todo el párrafo contaminaría la segunda con la palabra clave de la
+    primera):
+      - kept: se mantienen como bio_links (colaboración real presumible)
+      - evento: el contexto sugiere que sólo comparten un mismo evento/cartel
+        (festival, gira con muchos actos) — se guardan aparte, no entran al
+        grafo por default.
+
+    A diferencia del filtro de menciones en texto plano (que inventa la
+    heurística de cero), acá el link YA lo puso el sitio; sólo estamos
+    re-clasificando su intención probable según el contexto inmediato.
+    """
+    node = _extract_bio_node(soup)
+    kept, evento = [], []
+    seen = set()
+    keywords_norm = [normalize_name(k) for k in EVENT_CONTEXT_KEYWORDS_RAW]
+
+    for a in node.find_all("a", href=True):
+        m = ARTIST_URL_RE.match(_abs_url(a["href"]))
+        if not m or m.group(1) == self_slug:
+            continue
+        slug = m.group(1)
+        if slug in seen:
+            continue
+        seen.add(slug)
+
+        block = a.find_parent(["p", "li", "div"]) or a.parent
+        block_text = block.get_text(" ", strip=True) if block else ""
+        anchor_text = a.get_text(strip=True)
+
+        # ubicar en qué oración específica del párrafo cae este link; si
+        # no se puede determinar (caso raro), usar el párrafo completo
+        # como respaldo conservador
+        context_text = block_text
+        if anchor_text:
+            for sent in _split_sentences(block_text):
+                if anchor_text in sent:
+                    context_text = sent
+                    break
+
+        context_norm = normalize_name(context_text)
+        if any(kw in context_norm for kw in keywords_norm):
+            evento.append(slug)
+        else:
+            kept.append(slug)
+
+    return sorted(set(kept)), sorted(set(evento))
+
+
+def rescan_bio_link_context(limit=None):
+    """Reprocesa las páginas de artista YA CACHEADAS (no genera ningún
+    request nuevo) para re-clasificar los bio_links existentes: separa los
+    que probablemente sean colaboración real de los que sólo reflejan haber
+    compartido un mismo evento/festival (ver EVENT_CONTEXT_KEYWORDS_RAW).
+
+    Actualiza 'bio_links' (ahora filtrado) y agrega 'bio_links_evento'
+    (excluido del grafo por default, pero disponible para inspección)."""
+    artists = load_json(DATA_DIR / "artists.json", {})
+    if not artists:
+        print("No hay artists.json. Corré primero 'scraper.py artists'.")
+        sys.exit(1)
+
+    slugs = list(artists.keys())
+    if limit:
+        slugs = slugs[:limit]
+
+    total_movidos = 0
+    for i, slug in enumerate(slugs, 1):
+        info = artists[slug]
+        try:
+            html = fetch(info["url"])  # cacheado, no genera request real
+        except Exception as e:
+            print(f"  ! error en {slug}: {e}")
+            continue
+        if not html:
+            continue
+        soup = BeautifulSoup(html, "html.parser")
+        kept, evento = classify_bio_links(soup, self_slug=slug)
+        info["bio_links"] = kept
+        info["bio_links_evento"] = evento
+        total_movidos += len(evento)
+        if i % 500 == 0 or i == len(slugs):
+            save_json(artists, DATA_DIR / "artists.json")
+            print(f"  {i}/{len(slugs)} biografías re-clasificadas "
+                  f"({total_movidos} links movidos a 'evento compartido' hasta ahora)")
+
+    save_json(artists, DATA_DIR / "artists.json")
+    print(f"\nListo: {total_movidos} links re-clasificados como 'evento compartido' "
+          f"(sacados de bio_links, guardados en bio_links_evento).")
+
+
 # Algunos artistas de la enciclopedia tienen nombres que también son frases
 # genéricas muy comunes en español ("la banda", "buenos aires"), que
 # aparecen todo el tiempo en cualquier biografía SIN referirse a ese artista
@@ -565,7 +690,7 @@ def main():
                "explícito del sitio para ir más rápido, usá "
                "--override-robots-delay junto con --i-have-permission.",
     )
-    parser.add_argument("cmd", choices=["index", "artists", "discs", "mentions", "all"])
+    parser.add_argument("cmd", choices=["index", "artists", "discs", "mentions", "bio-context", "all"])
     parser.add_argument("--limit", type=int, default=None,
                          help="límite de artistas/discos a procesar (para pruebas; "
                               "no evita el rate limiting, solo acorta la lista)")
@@ -609,6 +734,11 @@ def main():
         # aparte y revisar los resultados antes de sumarlos al análisis.
         print("== Re-escaneando biografías cacheadas por menciones en texto plano ==")
         rescan_bio_mentions(limit=args.limit)
+    if args.cmd == "bio-context":
+        # Tampoco forma parte de "all": re-clasifica los bio_links YA
+        # existentes, separando colaboración real de "mismo evento/festival".
+        print("== Re-clasificando bio_links por contexto (colaboración vs. evento compartido) ==")
+        rescan_bio_link_context(limit=args.limit)
     print(f"\nListo en {time.time()-t0:.1f}s")
 
 

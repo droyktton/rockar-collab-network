@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "rosario-ortega", "label": "Rosario Ortega", "shape": "dot", "size": 18, "title": "Rosario Ortega \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "rosal", "label": "Rosal", "shape": "dot", "size": 21, "title": "Rosal \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "andres-calamaro", "label": "Andr\u00e9s Calamaro", "shape": "dot", "size": 33, "title": "Andr\u00e9s Calamaro \u2014 7 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "maria-eva-albistur", "label": "Mar\u00eda Eva Albistur", "shape": "dot", "size": 24, "title": "Mar\u00eda Eva Albistur \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "mauro-conforti", "label": "Mauro Conforti", "shape": "dot", "size": 21, "title": "Mauro Conforti \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "siga-la-flecha", "label": "Siga la flecha", "shape": "dot", "size": 15, "title": "Siga la flecha \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "fabiana-cantilo", "label": "Fabiana Cantilo", "shape": "dot", "size": 30, "title": "Fabiana Cantilo \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "illya-kuryaki-the-valderramas", "label": "Illya Kuryaki \u0026 The Valderramas", "shape": "dot", "size": 18, "title": "Illya Kuryaki \u0026 The Valderramas \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "sueter", "label": "Su\u00e9ter", "shape": "dot", "size": 21, "title": "Su\u00e9ter \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "willy-crook", "label": "Willy Crook", "shape": "dot", "size": 21, "title": "Willy Crook \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "manto", "label": "Manto", "shape": "dot", "size": 18, "title": "Manto \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "marcelo-mapelman", "label": "Marcelo Mapelman", "shape": "dot", "size": 18, "title": "Marcelo Mapelman \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "bel-mondo", "label": "Bel Mondo", "shape": "dot", "size": 21, "title": "Bel Mondo \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "a-tirador-laser", "label": "A-Tirador L\u00e1ser", "shape": "dot", "size": 18, "title": "A-Tirador L\u00e1ser \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "juan-jacinto", "label": "Juan Jacinto", "shape": "dot", "size": 15, "title": "Juan Jacinto \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "fernando-nale", "label": "Fernando Nal\u00e9", "shape": "dot", "size": 18, "title": "Fernando Nal\u00e9 \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "instruccion-civica", "label": "Instrucci\u00f3n C\u00edvica", "shape": "dot", "size": 18, "title": "Instrucci\u00f3n C\u00edvica \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "estelares", "label": "Estelares", "shape": "dot", "size": 18, "title": "Estelares \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "friccion", "label": "Fricci\u00f3n", "shape": "dot", "size": 27, "title": "Fricci\u00f3n \u2014 5 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "maria-gabriela-epumer", "label": "Mar\u00eda Gabriela Epumer", "shape": "dot", "size": 21, "title": "Mar\u00eda Gabriela Epumer \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "charly-garcia", "label": "Charly Garc\u00eda", "shape": "dot", "size": 69, "title": "Charly Garc\u00eda \u2014 19 colaboraciones"}, {"borderWidth": 1, "color": "#f58231", "font": {"color": "white"}, "id": "santiago-gonella", "label": "Santiago Gonella", "shape": "dot", "size": 18, "title": "Santiago Gonella \u2014 2 colaboraciones"}, {"borderWidth": 3, "color": "#ffffff", "font": {"color": "white"}, "id": "fernando-samalea", "label": "Fernando Samalea", "shape": "dot", "size": 40, "title": "Fernando Samalea \u2014 36 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "axel-krygier", "label": "Axel Krygier", "shape": "dot", "size": 24, "title": "Axel Krygier \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "no-lo-soporto", "label": "No lo soporto", "shape": "dot", "size": 18, "title": "No lo soporto \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "montecarlo-jazz-ensamble", "label": "Montecarlo Jazz Ensamble", "shape": "dot", "size": 21, "title": "Montecarlo Jazz Ensamble \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "samalea-kabusacki", "label": "Samalea \u0026 Kabusacki", "shape": "dot", "size": 15, "title": "Samalea \u0026 Kabusacki \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "zelen", "label": "Zelen", "shape": "dot", "size": 24, "title": "Zelen \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "richard-coleman", "label": "Richard Coleman", "shape": "dot", "size": 33, "title": "Richard Coleman \u2014 7 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "marcelo-ezquiaga", "label": "Marcelo Ezquiaga", "shape": "dot", "size": 18, "title": "Marcelo Ezquiaga \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "javier-malosetti", "label": "Javier Malosetti", "shape": "dot", "size": 18, "title": "Javier Malosetti \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "hal9000", "label": "Hal9000", "shape": "dot", "size": 15, "title": "Hal9000 \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "clap", "label": "Clap", "shape": "dot", "size": 30, "title": "Clap \u2014 6 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "julio-moura", "label": "Julio Moura", "shape": "dot", "size": 15, "title": "Julio Moura \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "sebastian-volco", "label": "Sebasti\u00e1n Volco", "shape": "dot", "size": 15, "title": "Sebasti\u00e1n Volco \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "gustavo-cerati", "label": "Gustavo Cerati", "shape": "dot", "size": 42, "title": "Gustavo Cerati \u2014 10 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "daniela-herrero", "label": "Daniela Herrero", "shape": "dot", "size": 21, "title": "Daniela Herrero \u2014 3 colaboraciones"}]);
+                  edges = new vis.DataSet([{"color": "#666666", "from": "rosario-ortega", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "rosario-ortega", "title": "mention", "to": "fernando-samalea", "value": 2.0}, {"color": "#666666", "from": "rosal", "title": "mention", "to": "marcelo-ezquiaga", "value": 1.0}, {"color": "#666666", "from": "rosal", "title": "mention", "to": "axel-krygier", "value": 1.0}, {"color": "#ff5555", "from": "rosal", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#ff5555", "from": "andres-calamaro", "title": "bio", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "gustavo-cerati", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "richard-coleman", "value": 2.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "fabiana-cantilo", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "estelares", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "andres-calamaro", "title": "mention", "to": "zelen", "value": 1.0}, {"color": "#666666", "from": "maria-eva-albistur", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "maria-eva-albistur", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "maria-eva-albistur", "title": "mention", "to": "javier-malosetti", "value": 1.0}, {"color": "#666666", "from": "maria-eva-albistur", "title": "mention", "to": "manto", "value": 1.0}, {"color": "#666666", "from": "mauro-conforti", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "mauro-conforti", "title": "mention", "to": "daniela-herrero", "value": 1.0}, {"color": "#ff5555", "from": "mauro-conforti", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#ff5555", "from": "siga-la-flecha", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "fabiana-cantilo", "title": "bio", "to": "charly-garcia", "value": 2.0}, {"color": "#666666", "from": "fabiana-cantilo", "title": "bio", "to": "gustavo-cerati", "value": 1.0}, {"color": "#666666", "from": "fabiana-cantilo", "title": "bio", "to": "richard-coleman", "value": 2.0}, {"color": "#666666", "from": "fabiana-cantilo", "title": "bio", "to": "sueter", "value": 2.0}, {"color": "#ff5555", "from": "fabiana-cantilo", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "illya-kuryaki-the-valderramas", "title": "bio,mention", "to": "charly-garcia", "value": 2.0}, {"color": "#ff5555", "from": "illya-kuryaki-the-valderramas", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "sueter", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "sueter", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "willy-crook", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "willy-crook", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "willy-crook", "title": "mention", "to": "santiago-gonella", "value": 1.0}, {"color": "#ff5555", "from": "manto", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "marcelo-mapelman", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "marcelo-mapelman", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "bel-mondo", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "bel-mondo", "title": "bio", "to": "clap", "value": 1.0}, {"color": "#ff5555", "from": "bel-mondo", "title": "bio", "to": "fernando-samalea", "value": 1.0}, {"color": "#ff5555", "from": "a-tirador-laser", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "a-tirador-laser", "title": "mention", "to": "montecarlo-jazz-ensamble", "value": 1.0}, {"color": "#ff5555", "from": "juan-jacinto", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "fernando-nale", "title": "mention", "to": "gustavo-cerati", "value": 2.0}, {"color": "#ff5555", "from": "fernando-nale", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "instruccion-civica", "title": "mention", "to": "axel-krygier", "value": 1.0}, {"color": "#ff5555", "from": "instruccion-civica", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#ff5555", "from": "estelares", "title": "bio", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "friccion", "title": "bio", "to": "clap", "value": 1.0}, {"color": "#666666", "from": "friccion", "title": "bio", "to": "gustavo-cerati", "value": 1.0}, {"color": "#666666", "from": "friccion", "title": "bio", "to": "richard-coleman", "value": 2.0}, {"color": "#666666", "from": "friccion", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "friccion", "title": "bio", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "maria-gabriela-epumer", "title": "bio", "to": "charly-garcia", "value": 1.0}, {"color": "#ff5555", "from": "maria-gabriela-epumer", "title": "bio,mention", "to": "fernando-samalea", "value": 2.0}, {"color": "#666666", "from": "maria-gabriela-epumer", "title": "mention", "to": "montecarlo-jazz-ensamble", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "clap", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "gustavo-cerati", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "richard-coleman", "value": 2.0}, {"color": "#ff5555", "from": "charly-garcia", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "daniela-herrero", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "axel-krygier", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "mention", "to": "zelen", "value": 1.0}, {"color": "#ff5555", "from": "santiago-gonella", "title": "mention", "to": "fernando-samalea", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "bio", "to": "clap", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "gustavo-cerati", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "richard-coleman", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "marcelo-ezquiaga", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "daniela-herrero", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "axel-krygier", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "javier-malosetti", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "julio-moura", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "bio,mention", "to": "montecarlo-jazz-ensamble", "value": 2.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "no-lo-soporto", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "bio", "to": "hal9000", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "bio", "to": "samalea-kabusacki", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "sebastian-volco", "value": 1.0}, {"color": "#ff5555", "from": "fernando-samalea", "title": "mention", "to": "zelen", "value": 1.0}, {"color": "#666666", "from": "no-lo-soporto", "title": "bio", "to": "gustavo-cerati", "value": 1.0}, {"color": "#666666", "from": "zelen", "title": "mention", "to": "gustavo-cerati", "value": 1.0}, {"color": "#666666", "from": "richard-coleman", "title": "bio", "to": "clap", "value": 1.0}, {"color": "#666666", "from": "richard-coleman", "title": "bio,mention", "to": "gustavo-cerati", "value": 2.0}, {"color": "#666666", "from": "clap", "title": "bio", "to": "gustavo-cerati", "value": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150, "fit": true}, "solver": "barnesHut"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+      network.once("stabilizationIterationsDone", function () {
+        network.setOptions({ physics: false });
+      });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "la-mississippi", "label": "La Mississippi", "shape": "dot", "size": 18, "title": "La Mississippi \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "el-soldado", "label": "El Soldado", "shape": "dot", "size": 21, "title": "El Soldado \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "blues-band", "label": "Blues Band", "shape": "dot", "size": 21, "title": "Blues Band \u2014 3 colaboraciones"}, {"borderWidth": 3, "color": "#ffffff", "font": {"color": "white"}, "id": "gabriel-conejo-jolivet", "label": "Gabriel Conejo Jolivet", "shape": "dot", "size": 40, "title": "Gabriel Conejo Jolivet \u2014 16 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "durazno-de-gala", "label": "Durazno de Gala", "shape": "dot", "size": 21, "title": "Durazno de Gala \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "pappos-blues", "label": "Pappo\u2019s Blues", "shape": "dot", "size": 21, "title": "Pappo\u2019s Blues \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "pajarito-zaguri", "label": "Pajarito Zaguri", "shape": "dot", "size": 18, "title": "Pajarito Zaguri \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "dulces-16", "label": "Dulces 16", "shape": "dot", "size": 18, "title": "Dulces 16 \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "club-de-guitarras-callejeras", "label": "Club de Guitarras Callejeras", "shape": "dot", "size": 15, "title": "Club de Guitarras Callejeras \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-bluesbanda", "label": "La Bluesbanda", "shape": "dot", "size": 21, "title": "La Bluesbanda \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "heroicos-sobrevivientes", "label": "Heroicos Sobrevivientes", "shape": "dot", "size": 15, "title": "Heroicos Sobrevivientes \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "victor-hamudis", "label": "V\u00edctor Hamudis", "shape": "dot", "size": 21, "title": "V\u00edctor Hamudis \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "claudio-gabis", "label": "Claudio Gabis", "shape": "dot", "size": 18, "title": "Claudio Gabis \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "alejandro-medina", "label": "Alejandro Medina", "shape": "dot", "size": 21, "title": "Alejandro Medina \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "tao-de-king", "label": "Tao de King", "shape": "dot", "size": 15, "title": "Tao de King \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "rey-sonambulo", "label": "Rey Son\u00e1mbulo", "shape": "dot", "size": 21, "title": "Rey Son\u00e1mbulo \u2014 3 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "patricio-rey-y-sus-redonditos-de-ricota", "label": "Patricio Rey y sus Redonditos de Ricota", "shape": "dot", "size": 21, "title": "Patricio Rey y sus Redonditos de Ricota \u2014 3 colaboraciones"}]);
+                  edges = new vis.DataSet([{"color": "#666666", "from": "la-mississippi", "title": "mention", "to": "blues-band", "value": 1.0}, {"color": "#ff5555", "from": "la-mississippi", "title": "mention", "to": "gabriel-conejo-jolivet", "value": 1.0}, {"color": "#ff5555", "from": "el-soldado", "title": "mention", "to": "gabriel-conejo-jolivet", "value": 1.0}, {"color": "#666666", "from": "el-soldado", "title": "bio", "to": "patricio-rey-y-sus-redonditos-de-ricota", "value": 1.0}, {"color": "#666666", "from": "el-soldado", "title": "mention", "to": "rey-sonambulo", "value": 1.0}, {"color": "#666666", "from": "blues-band", "title": "mention", "to": "victor-hamudis", "value": 1.0}, {"color": "#ff5555", "from": "blues-band", "title": "mention", "to": "gabriel-conejo-jolivet", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "bio", "to": "la-bluesbanda", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "club-de-guitarras-callejeras", "value": 2.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "bio", "to": "dulces-16", "value": 2.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "durazno-de-gala", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "claudio-gabis", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "heroicos-sobrevivientes", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "victor-hamudis", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "bio", "to": "pappos-blues", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "bio", "to": "patricio-rey-y-sus-redonditos-de-ricota", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "bio", "to": "tao-de-king", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "alejandro-medina", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "pajarito-zaguri", "value": 1.0}, {"color": "#ff5555", "from": "gabriel-conejo-jolivet", "title": "mention", "to": "rey-sonambulo", "value": 1.0}, {"color": "#666666", "from": "durazno-de-gala", "title": "bio", "to": "pappos-blues", "value": 1.0}, {"color": "#666666", "from": "durazno-de-gala", "title": "mention", "to": "victor-hamudis", "value": 1.0}, {"color": "#666666", "from": "pappos-blues", "title": "bio", "to": "alejandro-medina", "value": 2.0}, {"color": "#666666", "from": "pajarito-zaguri", "title": "bio", "to": "la-bluesbanda", "value": 1.0}, {"color": "#666666", "from": "dulces-16", "title": "bio", "to": "la-bluesbanda", "value": 1.0}, {"color": "#666666", "from": "claudio-gabis", "title": "bio", "to": "alejandro-medina", "value": 1.0}, {"color": "#666666", "from": "rey-sonambulo", "title": "mention", "to": "patricio-rey-y-sus-redonditos-de-ricota", "value": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150, "fit": true}, "solver": "barnesHut"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+      network.once("stabilizationIterationsDone", function () {
+        network.setOptions({ physics: false });
+      });
+    </script>
+    </body>
+</html>

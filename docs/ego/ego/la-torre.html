@@ -1,0 +1,327 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #111111;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "companero-asma", "label": "Compa\u00f1ero Asma", "shape": "dot", "size": 15, "title": "Compa\u00f1ero Asma \u2014 1 colaboraciones"}, {"borderWidth": 3, "color": "#ffffff", "font": {"color": "white"}, "id": "la-torre", "label": "La Torre", "shape": "dot", "size": 40, "title": "La Torre \u2014 25 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "manuel-wirtz", "label": "Manuel Wirtz", "shape": "dot", "size": 15, "title": "Manuel Wirtz \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "patricia-sosa", "label": "Patricia Sosa", "shape": "dot", "size": 24, "title": "Patricia Sosa \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-pecosa-blues-band", "label": "La Pecosa Blues Band", "shape": "dot", "size": 15, "title": "La Pecosa Blues Band \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "gady-pampillon", "label": "Gady Pampill\u00f3n", "shape": "dot", "size": 24, "title": "Gady Pampill\u00f3n \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "gasolina", "label": "Gasolina", "shape": "dot", "size": 18, "title": "Gasolina \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "jeth", "label": "Jeth", "shape": "dot", "size": 18, "title": "Jeth \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "manuel-wirzt", "label": "Manuel Wirzt", "shape": "dot", "size": 18, "title": "Manuel Wirzt \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "charly-garcia", "label": "Charly Garc\u00eda", "shape": "dot", "size": 24, "title": "Charly Garc\u00eda \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "eyelites", "label": "Eyelites", "shape": "dot", "size": 15, "title": "Eyelites \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "fabian-gallardo", "label": "Fabi\u00e1n Gallardo", "shape": "dot", "size": 18, "title": "Fabi\u00e1n Gallardo \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "los-ratones-paranoicos", "label": "Los Ratones Paranoicos", "shape": "dot", "size": 18, "title": "Los Ratones Paranoicos \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "leonor-marchesi", "label": "Leonor Marchesi", "shape": "dot", "size": 15, "title": "Leonor Marchesi \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "no-salgas-con-robots", "label": "No salgas con robots", "shape": "dot", "size": 15, "title": "No salgas con robots \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "claudia-puyo", "label": "Claudia Puy\u00f3", "shape": "dot", "size": 18, "title": "Claudia Puy\u00f3 \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "la-llave", "label": "La Llave", "shape": "dot", "size": 15, "title": "La Llave \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "florentino", "label": "Florentino", "shape": "dot", "size": 15, "title": "Florentino \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#ffe119", "font": {"color": "white"}, "id": "juan-carlos-baglietto", "label": "Juan Carlos Baglietto", "shape": "dot", "size": 24, "title": "Juan Carlos Baglietto \u2014 4 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "fierro-y-cruz", "label": "Fierro y Cruz", "shape": "dot", "size": 15, "title": "Fierro y Cruz \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "via-varela", "label": "V\u00eda Varela", "shape": "dot", "size": 15, "title": "V\u00eda Varela \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "carlos-garcia-lopez", "label": "Carlos Garc\u00eda L\u00f3pez", "shape": "dot", "size": 18, "title": "Carlos Garc\u00eda L\u00f3pez \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#4363d8", "font": {"color": "white"}, "id": "pipas-rhum", "label": "Pipas Rhum", "shape": "dot", "size": 18, "title": "Pipas Rhum \u2014 2 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "steinein", "label": "SteinEin", "shape": "dot", "size": 15, "title": "SteinEin \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#e6194b", "font": {"color": "white"}, "id": "fision", "label": "Fisi\u00f3n", "shape": "dot", "size": 15, "title": "Fisi\u00f3n \u2014 1 colaboraciones"}, {"borderWidth": 1, "color": "#3cb44b", "font": {"color": "white"}, "id": "alakran", "label": "Alakr\u00e1n", "shape": "dot", "size": 21, "title": "Alakr\u00e1n \u2014 3 colaboraciones"}]);
+                  edges = new vis.DataSet([{"color": "#ff5555", "from": "companero-asma", "title": "mention", "to": "la-torre", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "alakran", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "eyelites", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "fierro-y-cruz", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "fision", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "florentino", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "carlos-garcia-lopez", "value": 2.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio,mention", "to": "charly-garcia", "value": 2.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "fabian-gallardo", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "gasolina", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "jeth", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "la-llave", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "leonor-marchesi", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "no-salgas-con-robots", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "claudia-puyo", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "gady-pampillon", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "la-pecosa-blues-band", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "pipas-rhum", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "los-ratones-paranoicos", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "patricia-sosa", "value": 2.0}, {"color": "#ff5555", "from": "la-torre", "title": "mention", "to": "steinein", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "manuel-wirtz", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "via-varela", "value": 1.0}, {"color": "#ff5555", "from": "la-torre", "title": "bio", "to": "manuel-wirzt", "value": 1.0}, {"color": "#666666", "from": "patricia-sosa", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#666666", "from": "patricia-sosa", "title": "mention", "to": "claudia-puyo", "value": 1.0}, {"color": "#666666", "from": "patricia-sosa", "title": "mention", "to": "gady-pampillon", "value": 1.0}, {"color": "#666666", "from": "gady-pampillon", "title": "bio", "to": "alakran", "value": 1.0}, {"color": "#666666", "from": "gady-pampillon", "title": "mention", "to": "charly-garcia", "value": 1.0}, {"color": "#666666", "from": "gasolina", "title": "bio", "to": "alakran", "value": 1.0}, {"color": "#666666", "from": "jeth", "title": "mention", "to": "pipas-rhum", "value": 1.0}, {"color": "#666666", "from": "manuel-wirzt", "title": "bio", "to": "juan-carlos-baglietto", "value": 1.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio,mention", "to": "carlos-garcia-lopez", "value": 2.0}, {"color": "#666666", "from": "charly-garcia", "title": "bio", "to": "los-ratones-paranoicos", "value": 1.0}, {"color": "#666666", "from": "fabian-gallardo", "title": "bio", "to": "juan-carlos-baglietto", "value": 2.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"stabilization": {"iterations": 150, "fit": true}, "solver": "barnesHut"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+    <script type="text/javascript">
+      network.once("stabilizationIterationsDone", function () {
+        network.setOptions({ physics: false });
+      });
+    </script>
+    </body>
+</html>
