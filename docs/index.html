@@ -176,6 +176,15 @@
   }
   .btn:hover, .btn:focus-visible { background: var(--gold); color: var(--bg); }
 
+  .side-footnote {
+    margin-top: 8px;
+    padding: 18px 0 0;
+    color: var(--paper-dim);
+    font-size: 0.92rem;
+    font-style: italic;
+  }
+  .side-footnote strong { color: var(--paper); font-style: normal; }
+
   @media (max-width: 560px) {
     .track { grid-template-columns: 32px 1fr; }
     .track-cta { grid-column: 1 / 3; grid-row: auto; margin-top: 10px; }
@@ -252,7 +261,7 @@
     <p class="dek">Quién grabó con quién, quién integró qué banda, quién aparece
       mencionado junto a quién — contado como un grafo, no como una biografía.</p>
     <div class="stat-line">
-      <span><strong>5.778</strong> artistas</span>
+      <span><strong>6.155</strong> artistas</span>
       <span><a href="artistas.html">ver lista completa</a></span>
       <span><strong>rock.com.ar</strong> como fuente</span>
       <span>código en <a href="https://github.com/droyktton/rockar-collab-network">GitHub</a></span>
@@ -270,8 +279,9 @@
       <span class="track-num">A1</span>
       <div>
         <p class="track-title">La red completa</p>
-        <p class="track-desc">Los 5.778 artistas y sus colaboraciones documentadas.
-          Arrastrá los nodos, hacé zoom, buscá un nombre.</p>
+        <p class="track-desc">Los 6.155 artistas y sus colaboraciones documentadas.
+          Arrastrá los nodos, hacé zoom, buscá un nombre. <em>Pesada en celular
+          — anda mejor en desktop.</em></p>
       </div>
       <span class="track-cta"><a class="btn" href="network.html">Abrir mapa interactivo</a></span>
     </div>
@@ -306,7 +316,7 @@
       <div>
         <p class="track-title">Ego-network: Charly García</p>
         <p class="track-desc">Un artista puntual y sus colaboradores directos,
-          sin el ruido de los otros 5.700.</p>
+          sin el ruido de los otros 6.100.</p>
       </div>
       <span class="track-cta"><a class="btn" href="ego-charly-garcia.html">Abrir</a></span>
     </div>
@@ -320,31 +330,42 @@
       </div>
       <span class="track-cta"><a class="btn" href="ego-spinetta.html">Abrir</a></span>
     </div>
+
+    <p class="side-footnote">Estos dos son ejemplos destacados — en realidad
+      <strong>todo artista con más de 5 colaboraciones</strong> tiene su
+      propio ego-network. Buscalo en la
+      <a href="artistas.html">lista completa</a>: el número de colaboraciones
+      es clickeable (🕸️) cuando existe.</p>
   </section>
 
   <section class="liner-notes">
     <h2>Cómo se conecta a quién</h2>
     <p>Dos artistas quedan unidos por una arista si la biografía de uno
-      <strong>menciona</strong> al otro, o si aparecen <strong>acreditados
+      <strong>menciona</strong> al otro (con link o en texto plano con
+      contexto de colaboración), o si aparecen <strong>acreditados
       juntos</strong> en la ficha de un mismo disco. Los nodos mezclan personas
       y bandas sin distinguirlos — así está modelada la enciclopedia original —
       así que una conexión puede ser persona↔persona, persona↔banda o
       banda↔banda.</p>
+    <p><strong>Colaboración real no es lo mismo que compartir cartel.</strong>
+      Al revisar los datos encontramos a Soda Stereo conectado con Sumo — no
+      porque hayan tocado juntos, sino porque ambos participaron del mismo
+      Festival Rock &amp; Pop de los 80s junto a una decena de bandas más.
+      Esos casos se filtran aparte y no entran a la red.</p>
     <p>La red mide <strong>colaboración documentada en rock.com.ar</strong>,
       no toda colaboración real existente: es tan completa como la propia
       enciclopedia.</p>
 
     <ul class="findings">
-      <li><strong>Charly García</strong> encabeza la comunidad más grande y
-        más activa en casi todas las décadas — el nodo más central de la red.</li>
-      <li>La comunidad de <strong>Gustavo Santaolalla</strong> recién despega
-        en los 2000s, coincidiendo con su rol como productor de una nueva
-        generación más que como figura de los 80s.</li>
-      <li>La comunidad de <strong>Cielo Razzo</strong> aparece solo a partir
-        de los 2010s — la fecha de formación real de la banda.</li>
-      <li>El grado (cantidad de colaboraciones) cae fuerte para los debuts
-        posteriores a 2010 — probablemente un efecto de acumulación (menos
-        años activos) más que una diferencia real de "importancia".</li>
+      <li><strong>Charly García</strong> es el nodo más conectado de la red
+        — el hub número uno por cantidad de colaboraciones.</li>
+      <li><strong>León Gieco</strong> es quien más actúa de puente entre
+        escenas distintas (mayor intermediación) — sin él, partes de la red
+        quedarían desconectadas entre sí.</li>
+      <li>Sumar menciones en texto plano (no sólo links) sacó de la
+        invisibilidad a músicos de sesión muy activos pero raramente
+        linkeados, como <strong>Marcelo Torres</strong> (bajista que tocó
+        con Spinetta, el Indio Solari y otros).</li>
     </ul>
   </section>
 

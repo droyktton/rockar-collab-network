@@ -4,7 +4,7 @@
 
 **[👉 Explorá la red interactiva](https://droyktton.github.io/rockar-collab-network/)**
 
-*(la red completa tiene 6.187 nodos — en celular puede tardar unos segundos
+*(la red completa tiene 6.155 nodos — en celular puede tardar unos segundos
 en acomodarse o sentirse menos fluida; el timeline, el heatmap y los
 ego-networks son más livianos y andan bien en cualquier dispositivo)*
 
@@ -24,7 +24,7 @@ explorarla.
 1. **Scraping respetuoso** de la enciclopedia (con caché en disco y rate
    limiting) para armar el índice completo de artistas, sus biografías y
    discografías — **5.778 artistas** indexados de la enciclopedia. El grafo
-   final tiene **6.187 nodos** y **7.132 aristas** (incluye además algunos
+   final tiene **6.155 nodos** y **6.862 aristas** (incluye además algunos
    artistas mencionados/acreditados que no tienen ficha propia scrapeada).
 2. **Construcción del grafo** de colaboración, combinando tres señales:
    - Links entre artistas mencionados en sus propias biografías
@@ -44,7 +44,7 @@ explorarla.
 
 ## 🔍 Algunos hallazgos
 
-- **Charly García** es el hub más conectado de la red por lejos: 128
+- **Charly García** es el hub más conectado de la red por lejos: 121
   colaboraciones directas, primero en el ranking de grado y de PageRank.
   **León Gieco** lo supera en intermediación (betweenness) — es quien más
   actúa de puente entre escenas que, si no fuera por él, quedarían
@@ -53,10 +53,19 @@ explorarla.
   músicos de sesión muy activos pero raramente linkeados quedaban casi
   invisibles en la red. **Marcelo Torres** (bajista que tocó con Spinetta,
   el Indio Solari y otros) pasó de estar prácticamente aislado a tener
-  grado 7 — incluyendo detectar automáticamente el patrón "Nombre en
+  varias colaboraciones reales detectadas — incluyendo el patrón "Nombre en
   instrumento" típico de listas de formación de banda (ej. *"Marcelo Torres
   en bajo, Hernán Arramberri en batería..."*), que resolvió casos donde el
   nombre aparecía lejos de cualquier verbo de colaboración explícito.
+- No todo link real implica colaboración musical: encontramos **Soda
+  Stereo ↔ Sumo** conectados en la red, no porque hayan tocado juntos sino
+  porque ambos participaron del mismo Festival Rock & Pop de los 80s junto
+  a una decena de bandas más. El sitio linkea a todos los mencionados en
+  ese párrafo, aunque no exista relación musical directa entre ellos. Esto
+  llevó a separar "colaboración real" de "mismo evento/cartel" a nivel de
+  oración (ver Metodología) — sin esa granularidad fina, se corre el
+  riesgo de perder colaboraciones genuinas que aparecen en el mismo párrafo
+  que una mención de festival, pero en otra oración distinta.
 - Detectar estas menciones en texto libre trajo su propio desafío: nombres
   de artistas que también son frases comunes del español ("La Banda",
   "Buenos Aires", "El Resto") generaban miles de falsos positivos. Quedan
@@ -85,6 +94,12 @@ conexión, mismo layout, generados con `ego_network.py`:
 
 Versiones interactivas (navegables, con hover): [Charly García](https://droyktton.github.io/rockar-collab-network/ego-charly-garcia.html) · [Spinetta](https://droyktton.github.io/rockar-collab-network/ego-spinetta.html)
 
+Estos dos son sólo ejemplos destacados — en realidad, **todo artista con más
+de 5 colaboraciones tiene su propio ego-network generado** (con
+`generate_ego_batch.py`). Se accede desde la
+[lista completa de artistas](https://droyktton.github.io/rockar-collab-network/artistas.html):
+el número de colaboraciones de cada fila es clickeable (🕸️) cuando existe.
+
 ## 📁 Qué genera
 
 | Archivo | Contenido |
@@ -93,7 +108,7 @@ Versiones interactivas (navegables, con hover): [Charly García](https://droyktt
 | `data/nodes.csv` / `edges.csv` | Tablas planas con centralidades y pesos |
 | `data/graph.gexf` / `.graphml` | El grafo, para abrir en [Gephi](https://gephi.org/) |
 | `data/network_static.png` | Imagen coloreada por comunidad |
-| `data/network_interactive.html` | Red completa navegable en el browser (6.187 nodos — más liviana en desktop que en celular) |
+| `data/network_interactive.html` | Red completa navegable en el browser (6.155 nodos — más liviana en desktop que en celular) |
 | `data/timeline_interactive.html` | Año de debut vs. grado, por comunidad |
 | `data/heatmap_comunidad_decada.png` | Actividad discográfica por comunidad/década |
 | `data/ego_<artista>.png` / `.html` | Red de colaboración de un artista puntual |
@@ -119,14 +134,21 @@ python3 scraper.py discs
 # (o las tres etapas juntas)
 python3 scraper.py all
 
-# 3) Analizar el grafo
+# 3) Refinar las conexiones (opcional pero recomendado, reprocesa el caché,
+#    no genera requests nuevos)
+python3 scraper.py mentions       # menciones en texto plano con contexto de colaboración
+python3 scraper.py bio-context    # separa colaboración real de "mismo festival/cartel"
+
+# 4) Analizar el grafo
 python3 analyze.py
 
-# 4) Visualizar
+# 5) Visualizar
 python3 visualize.py --min-degree 2                          # red completa
 python3 timeline.py --min-degree 2 --top-communities 10        # línea de tiempo
 python3 heatmap.py --top-communities 10                        # mapa de calor
-python3 ego_network.py "Charly Garcia" --hops 1                # ego-network
+python3 ego_network.py "Charly Garcia" --hops 1                # ego-network puntual
+python3 generate_ego_batch.py --min-degree 5                    # ego-networks masivos
+python3 export_artist_list.py                                    # lista buscable, con links a ego-networks
 ```
 
 Todo el detalle de opciones, tiempos esperados y cómo retomar una corrida
@@ -136,7 +158,21 @@ cortada está en [`USAGE.md`](USAGE.md).
 
 Dos artistas quedan conectados si:
 - La biografía de uno **linkea** al otro (colaboración, integrante de banda, proyecto paralelo), o
-- Aparecen **acreditados juntos** en la ficha de un mismo disco
+- Aparecen **acreditados juntos** en la ficha de un mismo disco, o
+- Uno **menciona al otro en texto plano** (sin link) con una palabra que indica
+  colaboración real (*"grabó junto a"*, *"integrante de"*, *"tocó en bajo"*,
+  etc.) — esto captura sobre todo a músicos de sesión que rara vez están linkeados
+
+⚠️ **Colaboración real ≠ compartir cartel.** Al revisar los links reales de
+biografía encontramos casos como *Soda Stereo* apareciendo conectado a
+*Sumo* — no porque hayan tocado juntos, sino porque ambos participaron del
+mismo Festival Rock & Pop de los 80s junto a una decena de bandas más. El
+sitio linkea a todos los mencionados en ese párrafo, aunque no haya relación
+musical directa entre ellos. Filtramos esto a nivel de **oración** (no de
+párrafo completo, para no perder colaboraciones reales que aparecen en la
+misma bio pero en otra oración distinta): si la oración donde vive un link
+menciona un festival/cartel compartido, esa conexión se guarda aparte
+(`bio_links_evento` en los datos crudos) y **no entra al grafo por default**.
 
 ⚠️ **Los nodos mezclan personas y bandas** sin distinguirlos (así están
 modelados en la enciclopedia original), así que una arista puede representar
@@ -147,7 +183,7 @@ conectada.
 
 La red refleja **colaboración documentada en rock.com.ar**, no
 necesariamente toda colaboración real existente — es tan completa como la
-propia enciclopedia.
+propia enciclopedia, y tan precisa como estas heurísticas de texto lo permiten.
 
 ## 🙏 Fuente y agradecimientos
 
